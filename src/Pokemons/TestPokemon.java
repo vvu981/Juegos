@@ -57,6 +57,7 @@ public class TestPokemon {
 
 	public static void main(String[] args) {
 
+		System.out.println("Combate: ");
 		Scanner entrada = new Scanner(System.in);
 
 		//
