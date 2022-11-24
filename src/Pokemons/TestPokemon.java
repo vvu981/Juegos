@@ -1,0 +1,1603 @@
+package Pokemons;
+
+import java.text.DecimalFormat;
+import java.util.*;
+
+public class TestPokemon {
+
+	public static void mostrarArrayPokemon(Pokemon[] pokemons) {
+
+		for (int i = 0; i < pokemons.length; i++) {
+			System.out.println(i + ". " + pokemons[i].nombre + " ");
+		}
+
+	}
+
+	public static void mostrarAtaques(Ataque[] a, Pokemon p) {
+		for (int i = 0; i < a.length; i++) {
+			System.out.print(i + ". " + a[i].nombre + "  ");
+		}
+
+	}
+
+	public static Pokemon eligeRival(Pokemon[] p) {
+		Ataque vacio = new Ataque("", 0, "", 0, 0, 0, 0, 0, "", 0, "Fisico");
+		Ataque[] vacios = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
+
+		Pokemon other = new Pokemon("", "", "", 0, vacios, 0, 0, 0, 0, 0, "");
+
+		double rnd = Math.random() * 100;
+		if (rnd < 17) {
+			return p[0];
+		} else if (rnd < 36) {
+			return p[1];
+		} else if (rnd < 54) {
+			return p[2];
+
+		} else if (rnd < 75) {
+			return p[3];
+		} else if (rnd < 87) {
+			return p[4];
+		} else {
+			return p[5];
+		}
+
+	}
+
+	public static int coincideTipo(Ataque[] a, Pokemon p) {
+		int j = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i].tipo.equals(p.tipo1) || a[i].tipo.equals(p.tipo2)) {
+				j++;
+			}
+
+		}
+		return j;
+	}
+
+	public static void main(String[] args) {
+
+		Scanner entrada = new Scanner(System.in);
+
+		//
+		//
+
+		/*
+		 * p = propio c = contrario Especie: 2 -> +0.5 at P 3 -> +0.5 def P 1 -> +0.5
+		 * vel P -3 -> -0.33 def P -2 -> -0.33 at P -1 -> -0.33 vel P 5 -> -0.33 vel c 6
+		 * -> -0.33 at c 7 -> -0.33 def c 4 -> +50%vida p 12 -> +1 at P 13 -> +1 def P
+		 * 10 -> +1 vel P -12 -> -0.5 at P -13 -> -0.5 def P -10 -> -0.5 vel P -5 ->
+		 * -0.5 vel c -6 -> -0.5 at c -7 -> -0.5 def c
+		 */
+
+		// ataques Ataque: nombre, poder, tipo, especie, prioridad, precision, probCrit,
+		// probabCambioEstado, cambioEstado, probRetr)
+		// ataque ditto
+		Ataque Transformacion = new Ataque("Transformacion", 0, "Normal", 0, 0, 0, 0, 0, "", 0, "");
+		// Ataques PokemonFuego
+		Ataque Ascuas = new Ataque("Ascuas", 70, "Fuego", 0, 1, 100, 5, 10, "Quemar", 0, "Especial");
+		Ataque Llamarada = new Ataque("Llamarada", 85, "Fuego", 0, 1, 85, 5, 30, "Quemar", 0, "Especial");
+		Ataque A_Bocajarro = new Ataque("A bocajarro", 100, "Lucha", -2, 1, 100, 5, 0, "", 0, "Fisico");
+		Ataque Danza_Espada = new Ataque("Danza Espada", 0, "Normal", 12, 1, 100, 0, 0, "", 0, "");
+
+		// Ataques PokemonAgua
+		Ataque Pistola_agua = new Ataque("Pistola agua", 72, "Agua", 0, 1, 100, 5, 0, "", 0, "Especial");
+		Ataque Hidrobomba = new Ataque("Hidrobomba", 80, "Agua", 0, 1, 80, 5, 0, "", 0, "Especial");
+		Ataque Mordisco = new Ataque("Mordisco", 90, "Siniestro", 0, 1, 100, 5, 0, "", 0, "Fisico");
+		Ataque Aqua_jet = new Ataque("Aqua jet", 40, "Agua", 0, 2, 100, 5, 0, "", 0, "Fisico");
+
+		// Ataques PokemonPlanta
+		Ataque Hoja_afilada = new Ataque("Hoja afilada", 55, "Planta", 0, 1, 95, 35, 0, "", 0, "Especial");
+		Ataque Tormenta_floral = new Ataque("Tormenta floral", 90, "Planta", 0, 1, 100, 5, 0, "", 0, "Especial");
+		Ataque Sintesis = new Ataque("Sintesis", 0, "Planta", 4, 1, 100, 0, 0, "", 0, "");
+		Ataque Polvo_Veneno = new Ataque("Polvo veneno", 0, "Veneno", -4, 1, 75, 0, 100, "Envenenar", 0, "Especial");
+
+		// Ataques Veneno
+		Ataque Toxico = new Ataque("Toxico", 0, "Veneno", -4, 1, 85, 0, 100, "Envenenar", 0, "Especial");
+		Ataque Picotazo_venenoso = new Ataque("Picotazo Venenoso", 15, "Veneno", 0, 1, 100, 5, 30, "Envenenar", 0,
+				"Fisico");
+		Ataque Lanza_mugre = new Ataque("Lanza mugre", 120, "Veneno", 0, 1, 70, 5, 30, "Envenenar", 0, "Especial");
+
+		// Ataques Siniestro
+		Ataque Juego_sucio = new Ataque("Juego sucio", 95, "Siniestro", 0, 1, 100, 5, 0, "", 0, "Fisico");
+
+		// Ataques Hada
+
+		// Array todos ataques
+		Ataque[] todos = { new Ataque(Ascuas), new Ataque(Llamarada), new Ataque(A_Bocajarro), new Ataque(Danza_Espada),
+				new Ataque(Pistola_agua), new Ataque(Hidrobomba), new Ataque(Mordisco), new Ataque(Aqua_jet),
+				new Ataque(Hoja_afilada), new Ataque(Tormenta_floral), new Ataque(Sintesis), new Ataque(Polvo_Veneno),
+				new Ataque(Transformacion), new Ataque(Toxico), new Ataque(Picotazo_venenoso), new Ataque(Lanza_mugre),
+				new Ataque(Juego_sucio) };
+
+		// vacios
+
+		Ataque vacio = new Ataque("", 0, "", 0, 0, 0, 0, 0, "", 0, "Fisico");
+		Ataque[] vacios = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
+		Ataque[] ditto = { new Ataque(Transformacion), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
+
+		Ataque[] ataquesJugador = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
+		Ataque[] ataquesRival = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
+
+		Pokemon Jugador = new Pokemon("", "", "", 0, vacios, 0, 0, 0, 0, 0, "");
+		Pokemon Rival = new Pokemon("", "", "", 0, vacios, 0, 0, 0, 0, 0, "");
+
+		// Pokemons
+		// Pokemon: nombre, tipo, vida, ataques[], ataqueF, ataqueEsp, defensaF,
+		// defensaEsp, vel, estado
+		Pokemon Charizard = new Pokemon("Charizard", "Fuego", "Volador", 185, vacios, 163, 165, 146, 150, 167, "Bien");
+		Pokemon Blastoise = new Pokemon("Blastoise", "Agua", "", 186, vacios, 149, 155, 170, 165, 143, "Bien");
+		Pokemon Venasaur = new Pokemon("Venasaur", "Planta", "Veneno", 185, vacios, 155, 160, 165, 149, 176, "Bien");
+		Pokemon Zubat = new Pokemon("Zubat", "Veneno", "Volador", 147, vacios, 106, 90, 95, 101, 117, "Bien");
+		Pokemon Snorlax = new Pokemon("Snorlax", "Normal", "", 267, vacios, 178, 128, 128, 178, 90, "Bien");
+		Pokemon Ditto = new Pokemon("Ditto", "Normal", "", 155, ditto, 210, 110, 110, 110, 110, "Bien");
+
+		Pokemon[] pokemon = { new Pokemon(Charizard), new Pokemon(Blastoise), new Pokemon(Venasaur), new Pokemon(Zubat),
+				new Pokemon(Snorlax), new Pokemon(Ditto) };
+		mostrarArrayPokemon(pokemon);
+		// leer que pokemon quiere el usuario
+		int i;
+		System.out.println("Elija con que pokemon quiere jugar:");
+		i = entrada.nextInt();
+		if (i != 5) {
+			Jugador = pokemon[i];
+			int max = coincideTipo(todos, Jugador);
+			for (int m = 0; m < todos.length; m++) {
+				if (todos[m].tipo.equals(Jugador.tipo1) || todos[i].tipo.equals(Jugador.tipo2)) {
+					vacios[i] = new Ataque(todos[i]);
+				}
+			}
+			Ataque[] je = new Ataque[max];
+			System.out.println("Ahora elija 4 de los ataques posibles:");
+			int u = 0;
+			for (int b = 0; b < todos.length; b++) {
+				if (todos[b].tipo.equals(Jugador.tipo1) || todos[b].tipo.equals(Jugador.tipo2)) {
+					je[u] = todos[b];
+					u++;
+				}
+			}
+			mostrarAtaques(je, Jugador);
+
+			// seleccionar los ataques
+			int ataque1 = entrada.nextInt();
+			int ataque2 = entrada.nextInt();
+			int ataque3 = entrada.nextInt();
+			int ataque4 = entrada.nextInt();
+			ataquesJugador[0] = je[ataque1];
+			ataquesJugador[1] = je[ataque2];
+			ataquesJugador[2] = je[ataque3];
+			ataquesJugador[3] = je[ataque4];
+
+			Jugador.setAtaques(ataquesJugador);
+
+		} else if (i == 5) {
+			Jugador = Ditto;
+			Jugador.setAtaques(ditto);
+		}
+
+		// todos los ataques posibles
+
+		Rival = eligeRival(pokemon);
+
+		double vidaTotal = Jugador.vida;
+		double vida2 = Rival.vida;
+
+		double est_AFInicial1 = Jugador.Est_ataque;
+		double est_AEInicial1 = Jugador.Est_ataqueEspecial;
+		double est_DFInicial1 = Jugador.Est_defensa;
+		double est_DEInicial1 = Jugador.Est_defensaEspecial;
+		double est_Vel1 = Jugador.velocidad;
+
+		double est_AFInicial2 = Rival.Est_ataque;
+		double est_AEInicial2 = Rival.Est_ataqueEspecial;
+		double est_DFInicial2 = Rival.Est_defensa;
+		double est_DEInicial2 = Rival.Est_defensaEspecial;
+		double est_Vel2 = Rival.velocidad;
+
+		System.out.println("El rival será " + Rival.nombre);
+
+		int Num_ataque;
+		int turno = 1;
+		while (Jugador.vida > 0 && Rival.vida > 0) {
+			double dano = -1;
+			System.out.println("Elija un ataque: ");
+			mostrarAtaques(Jugador);
+			Num_ataque = entrada.nextInt();
+			System.out.println();
+			System.out.println("---------------------------------------------------\n\t\t   Turno: " + turno
+					+ "\n---------------------------------------------------");
+			llamadaAtacar(Jugador, Rival, Jugador.ataques, Rival.ataques, Num_ataque, vidaTotal, vida2, est_AFInicial1,
+					est_AEInicial1, est_DFInicial1, est_DEInicial1, est_Vel1, est_AEInicial2, est_AFInicial2,
+					est_DFInicial2, est_DEInicial2, est_Vel2);
+
+			System.out.println();
+			if (Jugador.vida <= 0) {
+				System.out.println(Jugador.nombre + " ha perdido");
+			} else if (Rival.vida <= 0) {
+				System.out.println(Rival.nombre + " ha perdido");
+			}
+			turno++;
+		}
+
+	}
+
+	public static String est_Cambiada(double est_AFInicial1, double est_AEInicial1, double est_DFInicial1,
+			double est_DEInicial1, double est_Vel1, Pokemon jugador) {
+		
+		if (!jugador.nombre.equals("Ditto")){
+				String cambio = "";
+		double calc = 0;
+		DecimalFormat df = new DecimalFormat("#.00");
+		df.format(calc);
+		if (est_AFInicial1 != jugador.Est_ataque) {
+			calc = jugador.Est_ataque / est_AFInicial1;
+			cambio = "(x" + df.format(calc) + " At.) ";
+		}
+		if (est_AEInicial1 != jugador.Est_ataqueEspecial) {
+			calc = jugador.Est_ataqueEspecial / est_AEInicial1;
+			cambio = "(" + df.format(calc) + " At Esp.) ";
+		}
+		if (est_Vel1 != jugador.velocidad) {
+			calc = jugador.velocidad / est_Vel1;
+			cambio = "(" + df.format(calc) + " Vel) ";
+		}
+		if (est_DFInicial1 != jugador.Est_defensa) {
+			calc = jugador.Est_defensa / est_DFInicial1;
+			cambio = "(" + df.format(calc) + " Def.) ";
+		}
+		if (est_DEInicial1 != jugador.Est_defensaEspecial) {
+			calc = jugador.Est_defensaEspecial / est_DEInicial1;
+			cambio = "(" + df.format(calc) + " Def. Esp.) ";
+		}
+		return cambio;
+		}else 
+			return "";
+	}
+	
+
+	
+	static int cambiado = 0;
+	public static void llamadaAtacar(Pokemon jugador, Pokemon rival, Ataque[] atJug, Ataque[] atRiv, int numAtaque,
+			double vidaTotal, double vida2, double est_AFInicial1, double est_AEInicial1, double est_DFInicial1,
+			double est_DEInicial1, double est_Vel1, double est_AEInicial2, double est_AFInicial2, double est_DFInicial2,
+			double est_DEInicial2, double est_Vel2) {
+
+		/*
+		 * Atacar(jugador, rival, jugador.ataques, numAtaque); double vidaB =
+		 * rival.vida; double diferencia = vidaA - vidaB;
+		 * System.out.println(rival.nombre + " ha perdido " + diferencia);
+		 */
+		DecimalFormat df = new DecimalFormat("#.00");
+		
+		double R = Math.random() * 100;
+		int numAtaqueRival = (int) R;
+		double vidaA = 0;
+		double vidaB = 0;
+		double diferencia = 0;
+		int i = 0;
+
+		if (numAtaqueRival < 20) {
+			i = 0;
+		} else if (numAtaqueRival < 40) {
+			i = 1;
+		} else if (numAtaqueRival < 60) {
+			i = 2;
+
+		} else {
+			i = 3;
+
+		}
+
+		if (jugador.estado.equals(Bien)) {
+			js = 0.06;
+		}
+		if (rival.estado.equals(Bien)) {
+			is = 0.06;
+		}
+
+		if (jugador.ataques[numAtaque].prioridad > rival.ataques[i].prioridad) {
+
+			if (!jugador.nombre.equals("Ditto")) {
+				if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida < vidaTotal) { // ataca jugador
+																										// despues
+					Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
+					String cadena1 = barraVida(jugador, vidaTotal);
+					String cadena2 = barraVida(rival, vida2);
+					String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1, est_Vel1,
+							jugador);
+					String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
+							rival);
+					System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+					System.out.println(cadena1 + "\t\t" + cadena2);
+					System.out.println();
+				} else if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida >= vidaTotal) {
+					System.out.println(jugador.nombre + " ya tiene la vida al máximo");
+				} else {
+					vidaA = rival.vida;
+					Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
+					String cadena1 = barraVida(jugador, vidaTotal);
+					String cadena2 = barraVida(rival, vida2);
+					String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1, est_Vel1,
+							jugador);
+					String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
+							rival);
+					System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+					System.out.println(cadena1 + "\t\t" + cadena2);
+					System.out.println();
+					vidaB = rival.vida;
+					diferencia = vidaA - vidaB;
+				}
+				if (rival.comprobarVivo()) {
+					if (R > jugador.ataques[numAtaque].probRetr) {
+						if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida < vida2) { // ataca rival por
+																								// prioridad
+							Atacar(rival, jugador, rival.ataques, i, vida2);
+							String cadena1 = barraVida(jugador, vidaTotal);
+							String cadena2 = barraVida(rival, vida2);
+							String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1,
+									est_Vel1, jugador);
+							String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
+									est_Vel2, rival);
+							System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+							System.out.println(cadena1 + "\t\t" + cadena2);
+							System.out.println();
+						} else if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida >= vida2) {
+							System.out.println(rival.nombre + " ya tiene la vida al máximo");
+						} else {
+							vidaA = jugador.vida;
+							Atacar(rival, jugador, rival.ataques, i, vida2);
+							String cadena1 = barraVida(jugador, vidaTotal);
+							String cadena2 = barraVida(rival, vida2);
+							String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1,
+									est_Vel1, jugador);
+							String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
+									est_Vel2, rival);
+							System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+							System.out.println(cadena1 + "\t\t" + cadena2);
+							System.out.println();
+							vidaB = jugador.vida;
+							diferencia = vidaA - vidaB;
+						}
+
+					} else
+						System.out.println(rival.nombre + " ha retrocedido1");
+
+					if (rival.estado.equals(Quemado)) {
+						System.out.println("La quemadura le produjo daños");
+						rival.vida -= rival.vida * 0.05;
+						rival.setVida(rival.vida);
+
+					} else if (rival.estado.equals(Envenenado)) {
+						System.out.println("El envenenamiento le produjo daños");
+						rival.vida -= rival.vida * is;
+						rival.setVida(rival.vida);
+						double j = is * 100;
+						System.out.println(
+								rival.nombre + " ha sido dañado un " + j + "% debido a que está " + rival.estado);
+						is += 0.06;
+
+					}
+
+					if (jugador.estado.equals(Quemado)) {
+						System.out.println("La quemadura le produjo daños");
+						jugador.vida -= jugador.vida * 0.05;
+
+					} else if (jugador.estado.equals(Envenenado)) {
+						System.out.println("El envenenamiento le produjo daños");
+						double j = js * 100;
+						jugador.vida -= jugador.vida * js;
+						jugador.setVida(jugador.vida);
+						System.out.println(
+								jugador.nombre + " ha sido dañado un " + j + "% debido a que está " + jugador.estado);
+						js += 0.06;
+					}
+				} else
+					System.out.println(rival.nombre + " ha muerto");
+			} else if (jugador.nombre.equals("Ditto")) {
+				Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
+				System.out.println("1");
+
+			}
+		} else if (jugador.ataques[numAtaque].prioridad < rival.ataques[i].prioridad) {
+			if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida < vida2) { // ataca rival por prioridad
+				Atacar(rival, jugador, rival.ataques, i, vida2);
+				String cadena1 = barraVida(jugador, vidaTotal);
+				String cadena2 = barraVida(rival, vida2);
+				String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1, est_Vel1,
+						jugador);
+				String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
+						rival);
+				System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+				System.out.println(cadena1 + "\t\t" + cadena2);
+				System.out.println();
+			} else if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida >= vida2) {
+				System.out.println(rival.nombre + " ya tiene la vida al máximo");
+			} else {
+				vidaA = jugador.vida;
+				Atacar(rival, jugador, rival.ataques, i, vida2);
+				String cadena1 = barraVida(jugador, vidaTotal);
+				String cadena2 = barraVida(rival, vida2);
+				String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1, est_Vel1,
+						jugador);
+				String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
+						rival);
+				System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+				System.out.println(cadena1 + "\t\t" + cadena2);
+				System.out.println();
+				vidaB = jugador.vida;
+				diferencia = vidaA - vidaB;
+			}
+
+			System.out.println("Turno de " + jugador.nombre); // ha terminado de atacar el rival
+			if (jugador.comprobarVivo()) {
+				if (R > rival.ataques[i].probRetr) {
+					if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida < vidaTotal) { // ataca
+																											// jugador
+																											// despues
+						Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
+						String cadena1 = barraVida(jugador, vidaTotal);
+						String cadena2 = barraVida(rival, vida2);
+						String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1,
+								est_Vel1, jugador);
+						String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
+								est_Vel2, rival);
+						System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+						System.out.println(cadena1 + "\t\t" + cadena2);
+						System.out.println();
+					} else if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida >= vidaTotal) {
+						System.out.println(jugador.nombre + " ya tiene la vida al máximo");
+					} else {
+						vidaA = rival.vida;
+						Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
+						String cadena1 = barraVida(jugador, vidaTotal);
+						String cadena2 = barraVida(rival, vida2);
+						String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1,
+								est_Vel1, jugador);
+						String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
+								est_Vel2, rival);
+						System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+						System.out.println(cadena1 + "\t\t" + cadena2);
+						System.out.println();
+						System.out.println("10");
+						vidaB = rival.vida;
+						diferencia = vidaA - vidaB;
+					}
+				} else
+					System.out.println(jugador.nombre + " ha retrocedido2");
+				if (rival.estado.equals(Quemado)) {
+					System.out.println("La quemadura le produjo daños");
+					rival.vida -= rival.vida * 0.05;
+					rival.setVida(rival.vida);
+
+				} else if (rival.estado.equals(Envenenado)) {
+					System.out.println("El envenenamiento le produjo daños");
+					rival.vida -= rival.vida * is;
+					rival.setVida(rival.vida);
+
+					double j = is * 100;
+					System.out
+							.println(rival.nombre + " ha sido dañado un " + j + "% debido a que está " + rival.estado);
+					is += 0.06;
+
+				}
+
+				if (jugador.estado.equals(Quemado)) {
+					System.out.println("La quemadura le produjo daños");
+					jugador.vida -= jugador.vida * 0.05;
+					jugador.setVida(jugador.vida);
+
+				} else if (jugador.estado.equals(Envenenado)) {
+					System.out.println("El envenenamiento le produjo daños");
+					double j = js * 100;
+					jugador.setVida(jugador.vida);
+
+					System.out.println(
+							jugador.nombre + " ha sido dañado un " + j + "% debido a que está " + jugador.estado);
+					js += 0.06;
+				}
+			} else
+				System.out.println(jugador.nombre + " ha muerto");
+		} else {
+
+			if (jugador.velocidad > rival.velocidad) {
+
+				if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida < vidaTotal) { // ataca jugador
+					Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
+					String cadena1 = barraVida(jugador, vidaTotal);
+					String cadena2 = barraVida(rival, vida2);
+					String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1, est_Vel1,
+							jugador);
+					String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
+							rival);
+					System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+					System.out.println(cadena1 + "\t\t" + cadena2);
+					System.out.println();
+
+				} else if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida >= vidaTotal) {
+					System.out.println(jugador.nombre + " ya tiene la vida al máximo");
+				} else if (jugador.ataques[numAtaque].nombre.equals("Transformacion")){
+					
+					System.out.println(jugador.nombre + " ha usado " + jugador.ataques[numAtaque].nombre);
+					jugador = rival;
+					cambiado++;
+					System.out.println("Deberia haberse cambiado: " + jugador.nombre);
+					
+				}	else{
+					System.out.println("este mensaje no deberia aparecer");
+					vidaA = rival.vida;
+					Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
+					String cadena1 = barraVida(jugador, vidaTotal);
+					String cadena2 = barraVida(rival, vida2);
+					String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1, est_Vel1,
+							jugador);
+					String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
+							rival);
+					System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+					System.out.println(cadena1 + "\t\t" + cadena2);
+					System.out.println();
+					vidaB = rival.vida;
+					diferencia = vidaA - vidaB;
+				}
+				if (rival.comprobarVivo()) {
+					if (R > jugador.ataques[numAtaque].probRetr) {
+						if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida < vida2) { // ataca rival
+							System.out.println("ataca");
+							Atacar(rival, jugador, rival.ataques, i, vida2);
+							String cadena1 = barraVida(jugador, vidaTotal);
+							String cadena2 = barraVida(rival, vida2);
+							String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1,
+									est_Vel1, jugador);
+							String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
+									est_Vel2, rival);
+							System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+							System.out.println(cadena1 + "\t\t" + cadena2);
+							System.out.println();
+						} else if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida >= vida2) {
+							System.out.println(rival.nombre + " ya tiene la vida al máximo");
+						} else {
+							vidaA = jugador.vida;
+							Atacar(rival, jugador, rival.ataques, i, vida2);
+							String cadena1 = barraVida(jugador, vidaTotal);
+							String cadena2 = barraVida(rival, vida2);
+							String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1,
+									est_Vel1, jugador);
+							String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
+									est_Vel2, rival);
+							System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+							System.out.println(cadena1 + "\t\t" + cadena2);
+							System.out.println();
+							vidaB = jugador.vida;
+							diferencia = vidaA - vidaB;
+							System.out.println("4");
+
+						}
+					} else
+						System.out.println(rival.nombre + " ha retrocedido3");
+					if (rival.estado.equals(Quemado)) {
+						System.out.println("La quemadura le produjo daños");
+						rival.vida -= rival.vida * 0.05;
+						rival.setVida(rival.vida);
+
+					} else if (rival.estado.equals(Envenenado)) {
+						System.out.println("El envenenamiento le produjo daños");
+						rival.vida -= rival.vida * is;
+						rival.setVida(rival.vida);
+
+						double j = is * 100;
+						System.out.println(
+								rival.nombre + " ha sido dañado un " + j + "% debido a que está " + rival.estado);
+						is += 0.06;
+
+					}
+
+					if (jugador.estado.equals(Quemado)) {
+						System.out.println("La quemadura le produjo daños");
+						jugador.vida -= jugador.vida * 0.05;
+						jugador.setVida(jugador.vida);
+
+					} else if (jugador.estado.equals(Envenenado)) {
+						System.out.println("El envenenamiento le produjo daños");
+						double j = js * 100;
+						jugador.setVida(jugador.vida);
+
+						System.out.println(
+								jugador.nombre + " ha sido dañado un " + j + "% debido a que está " + jugador.estado);
+						js += 0.06;
+					}
+				} else
+					System.out.println(rival.nombre + " ha muerto");
+
+			} else {
+
+				if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida < vida2) { // ataca rival
+					Atacar(rival, jugador, rival.ataques, i, vida2);
+					String cadena1 = barraVida(jugador, vidaTotal);
+					String cadena2 = barraVida(rival, vida2);
+					String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1, est_Vel1,
+							jugador);
+					String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
+							rival);
+					System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+					System.out.println(cadena1 + "\t\t" + cadena2);
+					System.out.println();
+				} else if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida >= vida2) {
+					System.out.println(rival.nombre + " ya tiene la vida al máximo");
+				} else {
+					vidaA = jugador.vida;
+					Atacar(rival, jugador, rival.ataques, i, vida2);
+					String cadena1 = barraVida(jugador, vidaTotal);
+					String cadena2 = barraVida(rival, vida2);
+					String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1, est_Vel1,
+							jugador);
+					String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
+							rival);
+					System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+					System.out.println(cadena1 + "\t\t" + cadena2);
+					System.out.println();
+					vidaB = jugador.vida;
+					diferencia = vidaA - vidaB;
+					System.out.println("8");
+
+				}
+				if (jugador.comprobarVivo()) {
+					if (R > rival.ataques[i].probRetr) {
+						if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida < vidaTotal) { // ataca
+																												// jugador
+							Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
+							String cadena1 = barraVida(jugador, vidaTotal);
+							String cadena2 = barraVida(rival, vida2);
+							String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1,
+									est_Vel1, jugador);
+							String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
+									est_Vel2, rival);
+							System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+							System.out.println(cadena1 + "\t\t" + cadena2);
+							System.out.println();
+						} else if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida >= vidaTotal) {
+							System.out.println(jugador.nombre + " ya tiene la vida al máximo");
+						} else if (jugador.ataques[numAtaque].nombre.equals("Transformacion")){
+							jugador = rival;
+							System.out.println("3");
+						}else {
+							vidaA = rival.vida;
+							Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
+							
+							String cadena1 = barraVida(jugador, vidaTotal);
+							String cadena2 = barraVida(rival, vida2);
+							String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1,
+									est_Vel1, jugador);
+							String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
+									est_Vel2, rival);
+							System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
+							System.out.println(cadena1 + "\t\t" + cadena2);
+							System.out.println();
+							vidaB = rival.vida;
+							diferencia = vidaA - vidaB;
+							System.out.println("7");
+
+						}
+					} else
+						System.out.println(jugador.nombre + " ha retrocedido");
+					if (rival.estado.equals(Quemado)) {
+						System.out.println("La quemadura le produjo daños");
+						rival.vida -= vida2 * 0.05;
+						rival.setVida(rival.vida);
+
+					} else if (rival.estado.equals(Envenenado)) {
+						System.out.println("El envenenamiento le produjo daños");
+						rival.vida -= vida2 * is;
+						rival.setVida(rival.vida);
+
+						double j = is * 100;
+						System.out.println(
+								rival.nombre + " ha sido dañado un " + j + "% debido a que está " + rival.estado);
+						is += 0.06;
+
+					}
+
+					if (jugador.estado.equals(Quemado)) {
+						System.out.println("La quemadura le produjo daños");
+						jugador.vida -= vidaTotal * 0.05;
+						jugador.setVida(jugador.vida);
+
+					} else if (jugador.estado.equals(Envenenado)) {
+						jugador.vida -= vidaTotal * js;
+						System.out.println("El envenenamiento le produjo daños");
+						jugador.setVida(jugador.vida);
+
+						double j = js * 100;
+						System.out.println(
+								jugador.nombre + " ha sido dañado un " + j + "% debido a que está " + jugador.estado);
+						js += 0.06;
+
+					}
+				} else
+					System.out.println(jugador.nombre + " ha muerto");
+
+			}
+
+		}
+	}
+
+	static String Fisico = "Fisico";
+	static String Especial = "Especial";
+
+	// Tipos
+	static String Fuego = "Fuego";
+	static String Agua = "Agua";
+	static String Planta = "Planta";
+	static String Electrico = "Electrico";
+	static String Acero = "Acero";
+	static String Siniestro = "Siniestro";
+	static String Dragon = "Dragon";
+	static String Hielo = "Hielo";
+	static String Volador = "Volador";
+	static String Tierra = "Tierra";
+	static String Roca = "Roca";
+	static String Hada = "Hada";
+	static String Bicho = "Bicho";
+	static String Fantasma = "Fantasma";
+	static String Lucha = "Lucha";
+	static String Psiquico = "Psiquico";
+	static String Veneno = "Veneno";
+	static String Normal = "Normal";
+
+	// Estados
+	static String Bien = "Bien";
+	static String Congelado = "Congelado";
+	static String Envenenado = "Envenenado";
+	static String Paralizado = "Paralizado";
+	static String Dormido = "Dormido";
+	static String Quemado = "Quemado";
+
+	// Cambiar los estados
+	String Curar = "Curar";
+	String Congelar = "Congelar";
+	String Envenenar = "Envenenar";
+	String Paralizar = "Paralizar";
+	String Dormir = "Dormir";
+	String Quemar = "Quemar";
+
+	static String Venasaur = "Venasaur";
+	static String Sintesis = "Sintesis";
+
+	public static void mostrarPokemons(Pokemon pokemon1, Pokemon pokemon2, Pokemon pokemon3) {
+		System.out.println("Los Pokemons son: " + pokemon1.nombre + ", " + pokemon2.nombre + ", " + pokemon3.nombre);
+
+	}
+
+	public static void mostrarAtaques(Pokemon pokemon) {
+		for (int i = 0; i < 4; i++) {
+			System.out.println(i + ". " + pokemon.ataques[i].nombre + "\t");
+		}
+	}
+
+	/*
+	 * EfectTipo1: 2 si es *2 1 si es normal 0,5 si es poco efectivo 0 si no afecta
+	 */
+	public static double compareTipo1(Ataque ataque, Pokemon rival) {
+		double Efectipo = 1;
+		double mitad = 0.5;
+		double doble = 2;
+		if (ataque.tipo.equals(Acero) && rival.tipo1.equals(Acero)) { // Acero
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Acero) && rival.tipo1.equals(Agua)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Acero) && rival.tipo1.equals(Electrico)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Acero) && rival.tipo1.equals(Fuego)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Acero) && rival.tipo1.equals(Hada)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Acero) && rival.tipo1.equals(Hielo)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Acero) && rival.tipo1.equals(Roca)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Agua) && rival.tipo1.equals(Agua)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Agua) && rival.tipo1.equals(Dragon)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Agua) && rival.tipo1.equals(Fuego)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Agua) && rival.tipo1.equals(Planta)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Agua) && rival.tipo1.equals(Roca)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Agua) && rival.tipo1.equals(Fuego)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo1.equals(Acero)) { // Bicho
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo1.equals(Acero)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo1.equals(Fantasma)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo1.equals(Fuego)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo1.equals(Hada)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo1.equals(Lucha)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo1.equals(Planta)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo1.equals(Psiquico)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo1.equals(Siniestro)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo1.equals(Veneno)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo1.equals(Volador)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Dragon) && rival.tipo1.equals(Acero)) { // Dragon
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Dragon) && rival.tipo1.equals(Dragon)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Dragon) && rival.tipo1.equals(Acero)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Dragon) && rival.tipo1.equals(Hada)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Electrico) && rival.tipo1.equals(Agua)) { // Electrico
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Electrico) && rival.tipo1.equals(Dragon)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Electrico) && rival.tipo1.equals(Electrico)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Electrico) && rival.tipo1.equals(Planta)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Electrico) && rival.tipo1.equals(Tierra)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Electrico) && rival.tipo1.equals(Volador)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fantasma) && rival.tipo1.equals(Fantasma)) { // Fantasma
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fantasma) && rival.tipo1.equals(Psiquico)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fantasma) && rival.tipo1.equals(Siniestro)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo1.equals(Agua)) { // Fuego
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo1.equals(Acero)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo1.equals(Bicho)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo1.equals(Dragon)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo1.equals(Fuego)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo1.equals(Hielo)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo1.equals(Planta)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo1.equals(Roca)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo1.equals(Tierra)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hada) && rival.tipo1.equals(Acero)) { // Hada
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hada) && rival.tipo1.equals(Dragon)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Hada) && rival.tipo1.equals(Fuego)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hada) && rival.tipo1.equals(Lucha)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Hada) && rival.tipo1.equals(Siniestro)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Hada) && rival.tipo1.equals(Veneno)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo1.equals(Acero)) { // Hielo
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo1.equals(Agua)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo1.equals(Dragon)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo1.equals(Fuego)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo1.equals(Hielo)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo1.equals(Planta)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo1.equals(Tierra)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo1.equals(Volador)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo1.equals(Acero)) { // Lucha
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo1.equals(Bicho)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo1.equals(Fantasma)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo1.equals(Hada)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo1.equals(Hielo)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo1.equals(Normal)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo1.equals(Psiquico)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo1.equals(Roca)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo1.equals(Siniestro)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo1.equals(Volador)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo1.equals(Veneno)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Normal) && rival.tipo1.equals(Acero)) { // Normal
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Normal) && rival.tipo1.equals(Fantasma)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Normal) && rival.tipo1.equals(Roca)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo1.equals(Acero)) { // Planta
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo1.equals(Agua)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo1.equals(Bicho)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo1.equals(Dragon)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo1.equals(Fuego)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo1.equals(Planta)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo1.equals(Roca)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo1.equals(Tierra)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo1.equals(Veneno)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo1.equals(Volador)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Psiquico) && rival.tipo1.equals(Acero)) { // Psiquico
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Psiquico) && rival.tipo1.equals(Lucha)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Psiquico) && rival.tipo1.equals(Psiquico)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Psiquico) && rival.tipo1.equals(Siniestro)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Psiquico) && rival.tipo1.equals(Veneno)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo1.equals(Acero)) { // Roca
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo1.equals(Bicho)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo1.equals(Fuego)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo1.equals(Lucha)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo1.equals(Hielo)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo1.equals(Lucha)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo1.equals(Tierra)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo1.equals(Volador)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Siniestro) && rival.tipo1.equals(Hada)) { // Siniestro
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Siniestro) && rival.tipo1.equals(Fantasma)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Siniestro) && rival.tipo1.equals(Lucha)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Siniestro) && rival.tipo1.equals(Psiquico)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Siniestro) && rival.tipo1.equals(Siniestro)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Tierra) && rival.tipo1.equals(Acero)) { // Tierra
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Tierra) && rival.tipo1.equals(Bicho)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Tierra) && rival.tipo1.equals(Electrico)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Tierra) && rival.tipo1.equals(Fuego)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Tierra) && rival.tipo1.equals(Normal)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Tierra) && (rival.tipo1.equals(Roca) || rival.tipo1.equals(Veneno))) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Tierra) && rival.tipo1.equals(Volador)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Veneno) && (rival.tipo1.equals(Hada) || rival.tipo1.equals(Planta))) { // Veneno
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Veneno) && (rival.tipo1.equals(Fantasma) || rival.tipo1.equals(Roca)
+				|| rival.tipo1.equals(Tierra) || rival.tipo1.equals(Veneno))) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Veneno) && rival.tipo1.equals(Acero)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Volador) && rival.tipo1.equals(Acero)) { // Volador
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Volador) && rival.tipo1.equals(Bicho)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Volador) && rival.tipo1.equals(Electrico)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Volador) && rival.tipo1.equals(Lucha)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Volador) && rival.tipo1.equals(Planta)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Volador) && rival.tipo1.equals(Roca)) {
+			Efectipo = mitad;
+		}
+
+		return Efectipo;
+	}
+
+	public static double compareTipo2(Ataque ataque, Pokemon rival) {
+		double Efectipo = 1;
+		double mitad = 0.5;
+		double doble = 2;
+		if (ataque.tipo.equals(Acero) && rival.tipo2.equals(Acero)) { // Acero
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Acero) && rival.tipo2.equals(Agua)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Acero) && rival.tipo2.equals(Electrico)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Acero) && rival.tipo2.equals(Fuego)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Acero) && rival.tipo2.equals(Hada)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Acero) && rival.tipo2.equals(Hielo)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Acero) && rival.tipo2.equals(Roca)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Agua) && rival.tipo2.equals(Agua)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Agua) && rival.tipo2.equals(Dragon)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Agua) && rival.tipo2.equals(Fuego)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Agua) && rival.tipo2.equals(Planta)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Agua) && rival.tipo2.equals(Roca)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Agua) && rival.tipo2.equals(Fuego)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo2.equals(Acero)) { // Bicho
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo2.equals(Acero)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo2.equals(Fantasma)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo2.equals(Fuego)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo2.equals(Hada)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo2.equals(Lucha)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo2.equals(Planta)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo2.equals(Psiquico)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo2.equals(Siniestro)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo2.equals(Veneno)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Bicho) && rival.tipo2.equals(Volador)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Dragon) && rival.tipo2.equals(Acero)) { // Dragon
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Dragon) && rival.tipo2.equals(Dragon)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Dragon) && rival.tipo2.equals(Acero)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Dragon) && rival.tipo2.equals(Hada)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Electrico) && rival.tipo2.equals(Agua)) { // Electrico
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Electrico) && rival.tipo2.equals(Dragon)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Electrico) && rival.tipo2.equals(Electrico)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Electrico) && rival.tipo2.equals(Planta)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Electrico) && rival.tipo2.equals(Tierra)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Electrico) && rival.tipo2.equals(Volador)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fantasma) && rival.tipo2.equals(Fantasma)) { // Fantasma
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fantasma) && rival.tipo2.equals(Psiquico)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fantasma) && rival.tipo2.equals(Siniestro)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo2.equals(Agua)) { // Fuego
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo2.equals(Acero)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo2.equals(Bicho)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo2.equals(Dragon)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo2.equals(Fuego)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo2.equals(Hielo)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo2.equals(Planta)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo2.equals(Roca)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Fuego) && rival.tipo2.equals(Tierra)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hada) && rival.tipo2.equals(Acero)) { // Hada
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hada) && rival.tipo2.equals(Dragon)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Hada) && rival.tipo2.equals(Fuego)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hada) && rival.tipo2.equals(Lucha)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Hada) && rival.tipo2.equals(Siniestro)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Hada) && rival.tipo2.equals(Veneno)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo2.equals(Acero)) { // Hielo
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo2.equals(Agua)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo2.equals(Dragon)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo2.equals(Fuego)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo2.equals(Hielo)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo2.equals(Planta)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo2.equals(Tierra)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Hielo) && rival.tipo2.equals(Volador)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo2.equals(Acero)) { // Lucha
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo2.equals(Bicho)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo2.equals(Fantasma)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo2.equals(Hada)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo2.equals(Hielo)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo2.equals(Normal)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo2.equals(Psiquico)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo2.equals(Roca)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo2.equals(Siniestro)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo2.equals(Volador)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Lucha) && rival.tipo2.equals(Veneno)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Normal) && rival.tipo2.equals(Acero)) { // Normal
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Normal) && rival.tipo2.equals(Fantasma)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Normal) && rival.tipo2.equals(Roca)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo2.equals(Acero)) { // Planta
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo2.equals(Agua)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo2.equals(Bicho)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo2.equals(Dragon)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo2.equals(Fuego)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo2.equals(Planta)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo2.equals(Roca)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo2.equals(Tierra)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo2.equals(Veneno)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Planta) && rival.tipo2.equals(Volador)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Psiquico) && rival.tipo2.equals(Acero)) { // Psiquico
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Psiquico) && rival.tipo2.equals(Lucha)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Psiquico) && rival.tipo2.equals(Psiquico)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Psiquico) && rival.tipo2.equals(Siniestro)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Psiquico) && rival.tipo2.equals(Veneno)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo2.equals(Acero)) { // Roca
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo2.equals(Bicho)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo2.equals(Fuego)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo2.equals(Lucha)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo2.equals(Hielo)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo2.equals(Lucha)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo2.equals(Tierra)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Roca) && rival.tipo2.equals(Volador)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Siniestro) && rival.tipo2.equals(Hada)) { // Siniestro
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Siniestro) && rival.tipo2.equals(Fantasma)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Siniestro) && rival.tipo2.equals(Lucha)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Siniestro) && rival.tipo2.equals(Psiquico)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Siniestro) && rival.tipo2.equals(Siniestro)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Tierra) && rival.tipo2.equals(Acero)) { // Tierra
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Tierra) && rival.tipo2.equals(Bicho)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Tierra) && rival.tipo2.equals(Electrico)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Tierra) && rival.tipo2.equals(Fuego)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Tierra) && rival.tipo2.equals(Normal)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Tierra) && (rival.tipo2.equals(Roca) || rival.tipo2.equals(Veneno))) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Tierra) && rival.tipo2.equals(Volador)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Veneno) && (rival.tipo2.equals(Hada) || rival.tipo2.equals(Planta))) { // Veneno
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Veneno) && (rival.tipo2.equals(Fantasma) || rival.tipo2.equals(Roca)
+				|| rival.tipo2.equals(Tierra) || rival.tipo2.equals(Veneno))) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Veneno) && rival.tipo2.equals(Acero)) {
+			Efectipo = 0;
+		} else if (ataque.tipo.equals(Volador) && rival.tipo2.equals(Acero)) { // Volador
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Volador) && rival.tipo2.equals(Bicho)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Volador) && rival.tipo2.equals(Electrico)) {
+			Efectipo = mitad;
+		} else if (ataque.tipo.equals(Volador) && rival.tipo2.equals(Lucha)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Volador) && rival.tipo2.equals(Planta)) {
+			Efectipo = doble;
+		} else if (ataque.tipo.equals(Volador) && rival.tipo2.equals(Roca)) {
+			Efectipo = mitad;
+		}
+
+		return Efectipo;
+	}
+
+	static int i = 0;
+
+	// acciones
+	/*
+	 * Daño (PS) = {([{(2 * Nv. / 5 + 2) * Ataque * Poder / Defensa} / 50] + 2) *
+	 * STAB * Efec.Tipo#1 * Rnd / 100} * CH
+	 * 
+	 * EfectTipo1: 2 si es *2 1 si es normal 0,5 si es poco efectivo 0 si no afecta
+	 * 
+	 * Rnd: numero random entre 85 y 100
+	 * 
+	 * STAB: si el tipo del ataque coincide con el del pokemon
+	 * 
+	 * CH Critical hit
+	 * 
+	 */
+	static double is = 0.06;
+	static double js = 0.06;
+
+	public static void Atacar(Pokemon jugador, Pokemon rival, Ataque[] ataques, int ataque, double vidaTotal) {
+		System.out.println("¡" + jugador.nombre + " ha usado " + ataques[ataque].nombre + "!");
+		Random rd = new Random();
+		int RndPrec = rd.nextInt(101);
+		double Dano = -1;
+
+		if (jugador.estado.equals(Paralizado)) {
+			jugador.velocidad -= jugador.velocidad / 4;
+		}
+		if (rival.estado.equals(Paralizado)) {
+			rival.velocidad -= rival.velocidad / 4;
+		}
+
+		if (!jugador.estado.equals(Congelado) && !jugador.estado.equals(Dormido)) {
+			double rndPar = Math.random() * 100;
+
+			if ((jugador.estado.equals(Paralizado) && (rndPar < 30)) || jugador.estado.equals(Bien)
+					|| jugador.estado.equals(Envenenado) || jugador.estado.equals(Quemado)) {
+				if (!jugador.nombre.equals("Ditto")) {
+					if (ataques[ataque].precision > RndPrec) {
+
+						if (ataques[ataque].Poder != 0) {
+							double STAB = 1; // 1,5 si el tipo coincide o 1 en cualquier otro caso
+							double Nv = 50;
+
+							if (ataques[ataque].tipo.equals(jugador.tipo1)
+									|| ataques[ataque].tipo.equals(jugador.tipo2)) {
+								STAB = 1.5;
+							}
+
+							double Rnd = 0;
+							double CH = 1;
+							double ayudaCH = Math.random() * 100;
+							double EfecTipo1 = compareTipo1(ataques[ataque], rival);
+							double EfecTipo2 = compareTipo2(ataques[ataque], rival);
+
+							if (!jugador.tipo2.equals("")) {
+								if (EfecTipo1 == 0.5 && EfecTipo2 == 0.5) {
+									System.out.println("Es poco efectivo...");
+								} else if (EfecTipo1 == 0.5 && EfecTipo2 == 1) {
+									System.out.println("Es poco efectivo...");
+								} else if (EfecTipo1 == 2 && EfecTipo2 == 1) {
+									System.out.println("¡Es muy efectivo!");
+									// System.out.println(ataques[ataque].nombre + " no afecta a " + rival.nombre);
+								} else if (EfecTipo1 == 1 && EfecTipo2 == 0.5) {
+									System.out.println("Es poco efectivo...");
+
+								} else if (EfecTipo1 == 2 && EfecTipo2 == 2) {
+									System.out.println("¡Es muy eficaz!");
+								} else if (EfecTipo1 == 2 && EfecTipo2 == 1) {
+									System.out.println("¡Es muy eficaz!");
+								} else if (EfecTipo1 == 0 || EfecTipo2 == 0) {
+									System.out.println(ataques[ataque].nombre + " no afecta a " + rival.nombre);
+								}
+							} else {
+								if (EfecTipo1 == 0.5) {
+									System.out.println("Es poco efectivo...");
+								} else if (EfecTipo1 == 2) {
+									System.out.println("¡Es muy efectivo!");
+								} else if (EfecTipo1 == 0) {
+									System.out.println(ataques[ataque].nombre + " no afecta a " + rival.nombre);
+								}
+							}
+
+							if (ayudaCH < ataques[ataque].probCrit) {
+								System.out.println("¡GOLPE CRÍTICO!");
+								CH = 2;
+
+							}
+
+							while (Rnd < 0.85)
+								Rnd = Math.random();
+							Rnd *= 100;
+							if (ataques[ataque].tipoAtaque.equals(Fisico)
+									&& !ataques[ataque].nombre.equals("Juego sucio")) {
+								Dano = (((((2 * Nv / 5 + 2) * jugador.Est_ataque * ataques[ataque].Poder
+										/ rival.Est_defensa) / 50) + 2) * STAB * EfecTipo1 * EfecTipo2 * Rnd / 100)
+										* CH;
+								rival.vida = rival.vida - Dano;
+							} else if (ataques[ataque].tipoAtaque.equals(Especial)
+									&& !ataques[ataque].nombre.equals("Juego sucio")) {
+								Dano = (((((2 * Nv / 5 + 2) * jugador.Est_ataqueEspecial * ataques[ataque].Poder
+										/ rival.Est_defensaEspecial) / 50) + 2) * STAB * EfecTipo1 * EfecTipo2 * Rnd
+										/ 100) * CH;
+								rival.vida = rival.vida - Dano;
+							} else if (ataques[ataque].nombre.equals("Juego sucio")) {
+								Dano = (((((2 * Nv / 5 + 2) * rival.Est_ataque * ataques[ataque].Poder
+										/ rival.Est_defensaEspecial) / 50) + 2) * STAB * EfecTipo1 * EfecTipo2 * Rnd
+										/ 100) * CH;
+								rival.vida = rival.vida - Dano;
+							}
+						}
+
+						int p;
+						if (rival.comprobarBien(rival)) {
+							p = 0;
+						} else
+							p = 1;
+						if (ataques[ataque].especie == -4 && ataques[ataque].probabCambioEstado == 100
+								&& rival.comprobarBien(rival)) {
+							switch (ataques[ataque].cambioEstado) {
+							case "Envenenar":
+								rival.setEstado(Envenenado);
+								System.out.println(rival.nombre + " ha sido envenenado gravemente");
+								break;
+							case "Quemar":
+								rival.setEstado(Quemado);
+								System.out.println(rival.nombre + " ha sido quemado gravemente");
+								break;
+							case "Congelar":
+								rival.setEstado(Congelado);
+
+								System.out.println(rival.nombre + " ha sido congelado gravemente");
+								break;
+							case "Paralizar":
+								rival.setEstado(Paralizado);
+								System.out.println(rival.nombre + " ha sido paralizado gravemente");
+								break;
+							case "Dormir":
+								rival.setEstado(Dormido);
+								System.out.println(rival.nombre + " se ha dormido profundamente");
+								break;
+
+							}
+
+						} else if (!rival.comprobarBien(rival) && p != 0) {
+							System.out.println(rival.nombre + " ya está " + rival.estado);
+						}
+
+					} else
+						System.out.println("¡El ataque ha fallado!");
+				} else if (jugador.nombre.equals("Ditto")) {
+					if (jugador.ataques[ataque].nombre.equals("Transformacion")) {
+					jugador = rival;
+					jugador.setNombre(rival.nombre);
+					jugador.setAtaques(rival.ataques);
+					jugador.setEst_ataque(rival.Est_ataque);
+					jugador.setEst_defensa(rival.Est_defensa);
+					jugador.setEst_defensaEspecial(rival.Est_defensaEspecial);
+					jugador.setTipo(rival.tipo1);
+					jugador.setTipo2(rival.tipo2);
+					jugador.setVelocidad(rival.velocidad);
+					jugador.setVida(rival.vida);
+					System.out.println("Deberia funcionar: " + jugador.nombre);
+					}
+					
+				}
+
+				modificaEst(ataques[ataque].especie, jugador, rival, vidaTotal);
+
+			} else if (jugador.estado.equals(Paralizado)) {
+				System.out.println(jugador.nombre + " no se ha podido mover debido a la parálisis");
+			}
+		} else if (jugador.estado.equals(Congelado)) {
+			System.out.println(jugador.nombre + " no se ha podido mover debido a la congelación");
+		} else if (jugador.estado.equals(Dormido)) {
+			System.out.println(jugador.nombre + " está dormido...");
+		}
+
+		if (jugador.estado.equals(Congelado) || jugador.estado.equals(Dormido)) {
+			double rndm = Math.random() * 100;
+			if (rndm <= 30) {
+				jugador.setEstado(Bien);
+			}
+		}
+	}
+
+	public static void modificaEst(int especie, Pokemon jugador, Pokemon rival, double vidaTotal) {
+
+		if (especie == 2) {
+			// sube ataque
+			jugador.Est_ataque += jugador.Est_ataque / 2;
+			System.out.println(jugador.nombre + " ha aumentado el ataque");
+		} else if (especie == 3) {
+			// sube defensa
+			jugador.Est_defensa += jugador.Est_defensa / 2;
+			System.out.println(jugador.nombre + " ha aumentado la defensa");
+
+		} else if (especie == 1) {
+			// sube velocidad
+			jugador.velocidad = jugador.velocidad + jugador.velocidad / 2;
+			System.out.println(jugador.nombre + " ha aumentado la velocidad");
+
+		} else if (especie == -3) {
+			// baja MI defensa
+			jugador.Est_defensa -= jugador.Est_defensa / 3;
+			System.out.println(jugador.nombre + " ha disminuido su defensa");
+
+		} else if (especie == -2) {
+			// baja MI ataque
+			jugador.Est_ataque -= jugador.Est_ataque / 3;
+			System.out.println(jugador.nombre + " ha disminuido su ataque ");
+
+		} else if (especie == -1) {
+			jugador.velocidad -= jugador.velocidad / 3;
+			System.out.println(jugador.nombre + " ha disminuido su velocidad ");
+
+		} else if (especie == 5) {
+			// baja SU velocidad
+			rival.velocidad -= rival.velocidad / 3;
+			System.out.println(jugador.nombre + " ha disminuido la velocidad de " + rival.nombre);
+
+		} else if (especie == 6) {
+			// baja SU ataque
+			rival.Est_ataque -= rival.Est_ataque / 3;
+			System.out.println(jugador.nombre + " ha disminuido el ataque de " + rival.nombre);
+		} else if (especie == 7) {
+			// baja SU defensa
+			rival.Est_defensa -= rival.Est_defensa / 3;
+			System.out.println(jugador.nombre + " ha disminuido la defensa de " + rival.nombre);
+		} else if (especie == 4) {
+			// sube mi vida
+			double i = 0;
+			for (i = 0; (i < vidaTotal / 2) && (jugador.vida < vidaTotal); i++) {
+				jugador.vida++;
+			}
+		} else if (especie == 12) {
+			jugador.Est_ataque += jugador.Est_ataque;
+			System.out.println(jugador.nombre + " ha aumentado mucho su ataque");
+		} else if (especie == 13) {
+			jugador.Est_defensa += jugador.Est_defensa;
+			System.out.println(jugador.nombre + " ha aumentado mucho su defensa");
+		} else if (especie == 10) {
+			jugador.velocidad += jugador.velocidad;
+			System.out.println(jugador.nombre + " ha aumentado mucho su velocidad");
+		} else if (especie == -12) {
+			jugador.Est_ataque -= jugador.Est_ataque / 2;
+			System.out.println(jugador.nombre + " ha disminuido mucho su ataque");
+		} else if (especie == -13) {
+			jugador.Est_defensa -= jugador.Est_defensa / 2;
+			System.out.println(jugador.nombre + " ha disminuido mucho su defensa");
+		} else if (especie == -10) {
+			jugador.velocidad -= jugador.velocidad / 2;
+		} else if (especie == 102) {
+			jugador.Est_ataqueEspecial += jugador.Est_ataqueEspecial / 3;
+			System.out.println(jugador.nombre + " ha aumentado su ataque especial");
+		} else if (especie == 103) {
+			jugador.Est_defensaEspecial += jugador.Est_defensaEspecial / 2;
+			System.out.println(jugador.nombre + " ha aumentado su defensa especial");
+		} else if (especie == -103) {
+			jugador.Est_defensaEspecial -= jugador.Est_defensaEspecial / 3;
+			System.out.println(jugador.nombre + " ha disminuido su defensa especial");
+		} else if (especie == -102) {
+			jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 3;
+			System.out.println(jugador.nombre + " ha disminuido su ataque especial");
+		} else if (especie == -106) {
+			rival.Est_ataqueEspecial -= rival.Est_ataqueEspecial / 3;
+			System.out.println(rival.nombre + " ha disminuido su ataque especial");
+		} else if (especie == -107) {
+			rival.Est_defensaEspecial -= rival.Est_defensaEspecial / 3;
+			System.out.println(rival.nombre + " ha disminuido su defensa especial");
+		} else if (especie == 112) {
+			System.out.println(jugador.nombre + " ha aumentado mucho su ataque especial");
+			jugador.Est_ataqueEspecial += jugador.Est_ataqueEspecial;
+		} else if (especie == 113) {
+			jugador.Est_defensaEspecial += jugador.Est_defensaEspecial;
+			System.out.println(jugador.nombre + " ha aumentado mucho su defensa especial");
+		} else if (especie == -112) {
+			jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 2;
+			System.out.println(jugador.nombre + " ha disminuido mucho su ataque especial");
+		} else if (especie == -113) {
+			jugador.Est_defensaEspecial -= jugador.Est_defensaEspecial / 2;
+			System.out.println(jugador.nombre + " ha disminuido mucho su defensa especial");
+		}
+
+	}
+
+	public static String barraVida(Pokemon jugador, double VidaTotal) {
+
+		System.out.println();
+		double porc = (jugador.vida * 100) / VidaTotal;
+
+		String cadena = "";
+		if (porc <= 0) {
+			cadena += "[                    ]";
+		} else if (porc < 15) {
+			cadena += "[===                 ]";
+		} else if (porc < 20) {
+			cadena += "[====                ]";
+		} else if (porc < 25) {
+			cadena += "[=====               ]";
+		} else if (porc < 30) {
+			cadena += "[======              ]";
+		} else if (porc < 35) {
+			cadena += "[=======             ]";
+		} else if (porc < 40) {
+			cadena += "[========            ]";
+		} else if (porc < 45) {
+			cadena += "[=========           ]";
+		} else if (porc < 50) {
+			cadena += "[==========          ]";
+		} else if (porc < 55) {
+			cadena += "[===========         ]";
+		} else if (porc < 60) {
+			cadena += "[============        ]";
+		} else if (porc < 65) {
+			cadena += "[=============       ]";
+		} else if (porc < 70) {
+			cadena += "[==============      ]";
+		} else if (porc < 75) {
+			cadena += "[===============     ]";
+		} else if (porc < 80) {
+			cadena += "[================    ]";
+		} else if (porc < 85) {
+			cadena += "[=================   ]";
+		} else if (porc < 90) {
+			cadena += "[==================  ]";
+		} else if (porc < 95) {
+			cadena += "[=================== ]";
+		} else if (porc < 1000)
+			cadena += "[====================]";
+		return cadena;
+	}
+
+}

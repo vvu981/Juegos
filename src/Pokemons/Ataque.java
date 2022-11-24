@@ -1,0 +1,139 @@
+package Pokemons;
+
+public class Ataque {
+	
+	public String nombre;
+	public double Poder;
+	public String tipo;
+	public int especie;
+	public int prioridad;
+	public double precision;
+	public double probCrit;
+	public double probabCambioEstado;
+	public String cambioEstado;
+	public double probRetr;
+	public String tipoAtaque;
+	/*
+	 * especie es para ver si hace daño o no
+	 * 		0: No hace daño -> Sube defensa
+	 * 		-1: No hace daño -> Sube ataque
+	 * 		1: Hace daño
+	 * 		2: No hace daño -> Sube velocidad
+	 */
+	public Ataque(String nombre, double poder, String tipo, int especie, int prioridad, double precision, double probCrit, double probabCambioEstado, String cambioEstado, double probRetr, String tipoAtaque) {
+		super();
+		this.nombre = nombre;
+		Poder = poder;
+		this.tipo = tipo;
+		this.especie = especie;
+		this.prioridad = prioridad;
+		this.precision = precision;
+		this.probCrit = probCrit;
+		this.probabCambioEstado = probabCambioEstado;
+		this.cambioEstado = cambioEstado;
+		this.probRetr = probRetr;
+		this.tipoAtaque = tipoAtaque;
+	}
+	
+	public Ataque(Ataque ataque) {
+		this.nombre = ataque.nombre;
+		this.Poder = ataque.Poder;
+		this.tipo = ataque.tipo;
+		this.especie = ataque.especie;
+		this.prioridad = ataque.prioridad;
+		this.precision = ataque.precision;
+		this.probCrit = ataque.probCrit;
+		this.probabCambioEstado = ataque.probabCambioEstado;
+		this.cambioEstado = ataque.cambioEstado;
+		this.probRetr = ataque.probRetr;
+		this.tipoAtaque = ataque.tipoAtaque;
+	}
+
+	public String getTipoAtaque() {
+		return tipoAtaque;
+	}
+	
+	public void setTipoAtaque() {
+		this.tipoAtaque = tipoAtaque;
+	}
+	
+	public double getPoder() {
+		return Poder;
+	}
+
+	public double getProbabCambioEstado() {
+		return probabCambioEstado;
+	}
+	
+	public void setProbabCambioEstado(double probabCambioEstado) {
+		this.probabCambioEstado = probabCambioEstado;
+	}
+	
+	public void setPoder(double poder) {
+		Poder = poder;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public int getEspecie() {
+		return especie;
+	}
+
+	public void setEspecie(int especie) {
+		this.especie = especie;
+	}
+
+	public int getPrioridad() {
+		return prioridad;
+	}
+
+	public void setPrioridad(int prioridad) {
+		this.prioridad = prioridad;
+	}
+
+	public double getPrecision() {
+		return precision;
+	}
+
+	public void setPrecision(double precision) {
+		this.precision = precision;
+	}
+
+	public double getProbCrit() {
+		return probCrit;
+	}
+
+	public void setProbCrit(double probCrit) {
+		this.probCrit = probCrit;
+	}
+
+	public String getCambioEstado() {
+		return cambioEstado;
+	}
+
+	public void setCambioEstado(String cambioEstado) {
+		this.cambioEstado = cambioEstado;
+	}
+
+	public double getProbRetr() {
+		return probRetr;
+	}
+
+	public void setProbRetr(double probRetr) {
+		this.probRetr = probRetr;
+	}
+}
