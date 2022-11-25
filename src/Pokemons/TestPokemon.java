@@ -304,17 +304,20 @@ public class TestPokemon {
 		double diferencia = 0;
 		int i = 0;
 
-		if (numAtaqueRival < 20) {
+		if (!rival.nombre.equals("Ditto")) {
+			if (numAtaqueRival < 20) {
+				i = 0;
+			} else if (numAtaqueRival < 40) {
+				i = 1;
+			} else if (numAtaqueRival < 60) {
+				i = 2;
+
+			} else {
+				i = 3;
+
+			}
+		} else
 			i = 0;
-		} else if (numAtaqueRival < 40) {
-			i = 1;
-		} else if (numAtaqueRival < 60) {
-			i = 2;
-
-		} else {
-			i = 3;
-
-		}
 
 		if (jugador.estado.equals(Bien)) {
 			js = 0.06;
@@ -324,10 +327,13 @@ public class TestPokemon {
 		}
 
 		if (jugador.ataques[numAtaque].prioridad > rival.ataques[i].prioridad) {
+			System.out.println(jugador.ataques[numAtaque].nombre + " - Prioridad jugador: "
+					+ jugador.ataques[numAtaque].prioridad);
+			System.out.println(rival.ataques[i].nombre + " - Prioridad rival: " + rival.ataques[i].prioridad);
 			System.out.println("Prioridad jugador > prioridad rival");
 
 			if (!jugador.nombre.equals("Ditto")) {
-				if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida < vidaTotal) { // ataca jugador
+				if ((jugador.ataques[numAtaque].nombre.equals(Sintesis) || jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca jugador
 																										// despues
 					Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
 					String cadena1 = barraVida(jugador, vidaTotal);
@@ -336,10 +342,13 @@ public class TestPokemon {
 							jugador);
 					String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
 							rival);
-					System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-					System.out.println(cadena1 + "\t\t" + cadena2);
+					System.out.println(jugador.nombre + Est1);
+					System.out.println(cadena1);
 					System.out.println();
-				} else if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida >= vidaTotal) {
+					System.out.println(rival.nombre + Est2);
+					System.out.println(cadena2);
+					System.out.println();
+				} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
 					System.out.println(jugador.nombre + " ya tiene la vida al máximo");
 				} else {
 					vidaA = rival.vida;
@@ -350,15 +359,18 @@ public class TestPokemon {
 							jugador);
 					String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
 							rival);
-					System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-					System.out.println(cadena1 + "\t\t" + cadena2);
+					System.out.println(jugador.nombre + Est1);
+					System.out.println(cadena1);
+					System.out.println();
+					System.out.println(rival.nombre + Est2);
+					System.out.println(cadena2);
 					System.out.println();
 					vidaB = rival.vida;
 					diferencia = vidaA - vidaB;
 				}
 				if (rival.comprobarVivo()) {
 					if (R > jugador.ataques[numAtaque].probRetr) {
-						if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida < vida2) { // ataca rival por
+						if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida < vida2) { // ataca rival por
 																								// prioridad
 							Atacar(rival, jugador, rival.ataques, i, vida2);
 							String cadena1 = barraVida(jugador, vidaTotal);
@@ -367,10 +379,13 @@ public class TestPokemon {
 									est_Vel1, jugador);
 							String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
 									est_Vel2, rival);
-							System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-							System.out.println(cadena1 + "\t\t" + cadena2);
+							System.out.println(jugador.nombre + Est1);
+							System.out.println(cadena1);
 							System.out.println();
-						} else if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida >= vida2) {
+							System.out.println(rival.nombre + Est2);
+							System.out.println(cadena2);
+							System.out.println();
+						} else if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida >= vida2) {
 							System.out.println(rival.nombre + " ya tiene la vida al máximo");
 						} else {
 							vidaA = jugador.vida;
@@ -381,8 +396,11 @@ public class TestPokemon {
 									est_Vel1, jugador);
 							String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
 									est_Vel2, rival);
-							System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-							System.out.println(cadena1 + "\t\t" + cadena2);
+							System.out.println(jugador.nombre + Est1);
+							System.out.println(cadena1);
+							System.out.println();
+							System.out.println(rival.nombre + Est2);
+							System.out.println(cadena2);
 							System.out.println();
 							vidaB = jugador.vida;
 							diferencia = vidaA - vidaB;
@@ -422,14 +440,41 @@ public class TestPokemon {
 					}
 				} else
 					System.out.println(rival.nombre + " ha muerto");
-			} else if (jugador.nombre.equals("Ditto")) {
+			} else if (jugador.nombre.equals("Ditto") && cambiado == 0) {
 				Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
 				System.out.println("1");
+
+				jugador = rival;
+				jugador.ataques[0] = rival.ataques[0];
+				jugador.ataques[1] = rival.ataques[1];
+				jugador.ataques[2] = rival.ataques[2];
+				jugador.ataques[3] = rival.ataques[3];
+
+				jugador.setVelocidad(rival.velocidad);
+				jugador.setEst_ataque(rival.Est_ataque);
+				jugador.setEst_ataqueEspecial(rival.Est_ataqueEspecial);
+				jugador.setEst_defensa(rival.Est_defensa);
+				jugador.setEst_defensaEspecial(rival.Est_defensaEspecial);
+				jugador.setNombre(rival.nombre);
+				jugador.setVida(vida2);
+				jugador.setTipo(rival.tipo1);
+				jugador.setTipo2(rival.tipo2);
+				String cadena1 = barraVida(jugador, vidaTotal);
+				String cadena2 = barraVida(rival, vida2);
+
+				System.out.println(jugador.nombre);
+				System.out.println(cadena1);
+				System.out.println();
+				System.out.println(rival.nombre);
+				System.out.println(cadena2);
+				System.out.println();
+				vidaB = jugador.vida;
+				diferencia = vidaA - vidaB;
 
 			}
 		} else if (jugador.ataques[numAtaque].prioridad < rival.ataques[i].prioridad) {
 			System.out.println("Prioridad rival > prioridad jugador");
-			if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida < vida2) { // ataca rival por prioridad
+			if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida < vida2) { // ataca rival por prioridad
 				Atacar(rival, jugador, rival.ataques, i, vida2);
 				String cadena1 = barraVida(jugador, vidaTotal);
 				String cadena2 = barraVida(rival, vida2);
@@ -437,10 +482,13 @@ public class TestPokemon {
 						jugador);
 				String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
 						rival);
-				System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-				System.out.println(cadena1 + "\t\t" + cadena2);
+				System.out.println(jugador.nombre + Est1);
+				System.out.println(cadena1);
 				System.out.println();
-			} else if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida >= vida2) {
+				System.out.println(rival.nombre + Est2);
+				System.out.println(cadena2);
+				System.out.println();
+			} else if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida >= vida2) {
 				System.out.println(rival.nombre + " ya tiene la vida al máximo");
 			} else {
 				vidaA = jugador.vida;
@@ -451,17 +499,95 @@ public class TestPokemon {
 						jugador);
 				String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
 						rival);
-				System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-				System.out.println(cadena1 + "\t\t" + cadena2);
+				System.out.println(jugador.nombre + Est1);
+				System.out.println(cadena1);
+				System.out.println();
+				System.out.println(rival.nombre + Est2);
+				System.out.println(cadena2);
 				System.out.println();
 				vidaB = jugador.vida;
 				diferencia = vidaA - vidaB;
+
+				if (jugador.comprobarVivo()) {
+					if (R > rival.ataques[i].probRetr) {
+						if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca
+																												// jugador
+																												// despues
+							Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
+							cadena1 = barraVida(jugador, vidaTotal);
+							cadena2 = barraVida(rival, vida2);
+							Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1,
+									est_Vel1, jugador);
+							Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
+									est_Vel2, rival);
+							System.out.println(jugador.nombre + Est1);
+							System.out.println(cadena1);
+							System.out.println();
+							System.out.println(rival.nombre + Est2);
+							System.out.println(cadena2);
+							System.out.println();
+						} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
+							System.out.println(jugador.nombre + " ya tiene la vida al máximo");
+						} else {
+							vidaA = rival.vida;
+							Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
+							cadena1 = barraVida(jugador, vidaTotal);
+							cadena2 = barraVida(rival, vida2);
+							Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1,
+									est_Vel1, jugador);
+							Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
+									est_Vel2, rival);
+							System.out.println(jugador.nombre + Est1);
+							System.out.println(cadena1);
+							System.out.println();
+							System.out.println(rival.nombre + Est2);
+							System.out.println(cadena2);
+							System.out.println();
+							System.out.println("10");
+							vidaB = rival.vida;
+							diferencia = vidaA - vidaB;
+						}
+					} else
+						System.out.println(jugador.nombre + " ha retrocedido2");
+					if (rival.estado.equals(Quemado)) {
+						System.out.println("La quemadura le produjo daños");
+						rival.vida -= rival.vida * 0.05;
+						rival.setVida(rival.vida);
+
+					} else if (rival.estado.equals(Envenenado)) {
+						System.out.println("El envenenamiento le produjo daños");
+						rival.vida -= rival.vida * is;
+						rival.setVida(rival.vida);
+
+						double j = is * 100;
+						System.out.println(
+								rival.nombre + " ha sido dañado un " + j + "% debido a que está " + rival.estado);
+						is += 0.06;
+
+					}
+
+					if (jugador.estado.equals(Quemado)) {
+						System.out.println("La quemadura le produjo daños");
+						jugador.vida -= jugador.vida * 0.05;
+						jugador.setVida(jugador.vida);
+
+					} else if (jugador.estado.equals(Envenenado)) {
+						System.out.println("El envenenamiento le produjo daños");
+						double j = js * 100;
+						jugador.setVida(jugador.vida);
+
+						System.out.println(
+								jugador.nombre + " ha sido dañado un " + j + "% debido a que está " + jugador.estado);
+						js += 0.06;
+					}
+				} else
+					System.out.println(jugador.nombre + " ha muerto");
 			}
 
 			System.out.println("Turno de " + jugador.nombre); // ha terminado de atacar el rival
 			if (jugador.comprobarVivo()) {
 				if (R > rival.ataques[i].probRetr) {
-					if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida < vidaTotal) { // ataca
+					if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca
 																											// jugador
 																											// despues
 						Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
@@ -471,10 +597,13 @@ public class TestPokemon {
 								est_Vel1, jugador);
 						String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
 								est_Vel2, rival);
-						System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-						System.out.println(cadena1 + "\t\t" + cadena2);
+						System.out.println(jugador.nombre + Est1);
+						System.out.println(cadena1);
 						System.out.println();
-					} else if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida >= vidaTotal) {
+						System.out.println(rival.nombre + Est2);
+						System.out.println(cadena2);
+						System.out.println();
+					} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
 						System.out.println(jugador.nombre + " ya tiene la vida al máximo");
 					} else {
 						vidaA = rival.vida;
@@ -485,8 +614,11 @@ public class TestPokemon {
 								est_Vel1, jugador);
 						String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
 								est_Vel2, rival);
-						System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-						System.out.println(cadena1 + "\t\t" + cadena2);
+						System.out.println(jugador.nombre + Est1);
+						System.out.println(cadena1);
+						System.out.println();
+						System.out.println(rival.nombre + Est2);
+						System.out.println(cadena2);
 						System.out.println();
 						System.out.println("10");
 						vidaB = rival.vida;
@@ -532,7 +664,7 @@ public class TestPokemon {
 			if (jugador.velocidad > rival.velocidad) {
 				System.out.println("Velocidad jugador > rival");
 
-				if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida < vidaTotal) { // ataca jugador
+				if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca jugador
 					Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
 					String cadena1 = barraVida(jugador, vidaTotal);
 					String cadena2 = barraVida(rival, vida2);
@@ -540,11 +672,14 @@ public class TestPokemon {
 							jugador);
 					String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
 							rival);
-					System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-					System.out.println(cadena1 + "\t\t" + cadena2);
+					System.out.println(jugador.nombre + Est1);
+					System.out.println(cadena1);
+					System.out.println();
+					System.out.println(rival.nombre + Est2);
+					System.out.println(cadena2);
 					System.out.println();
 
-				} else if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida >= vidaTotal) {
+				} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
 					System.out.println(jugador.nombre + " ya tiene la vida al máximo");
 				} else if (jugador.ataques[numAtaque].nombre.equals("Transformacion")) {
 
@@ -574,15 +709,18 @@ public class TestPokemon {
 							jugador);
 					String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
 							rival);
-					System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-					System.out.println(cadena1 + "\t\t" + cadena2);
+					System.out.println(jugador.nombre + Est1);
+					System.out.println(cadena1);
+					System.out.println();
+					System.out.println(rival.nombre + Est2);
+					System.out.println(cadena2);
 					System.out.println();
 					vidaB = rival.vida;
 					diferencia = vidaA - vidaB;
 				}
 				if (rival.comprobarVivo()) {
 					if (R > jugador.ataques[numAtaque].probRetr) {
-						if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida < vida2) { // ataca rival
+						if ((rival.ataques[i].nombre.equals(Sintesis) || rival.ataques[i].nombre.equals("Respiro")) && rival.vida < vida2) { // ataca rival
 							System.out.println("ataca");
 							Atacar(rival, jugador, rival.ataques, i, vida2);
 							String cadena1 = barraVida(jugador, vidaTotal);
@@ -591,10 +729,13 @@ public class TestPokemon {
 									est_Vel1, jugador);
 							String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
 									est_Vel2, rival);
-							System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-							System.out.println(cadena1 + "\t\t" + cadena2);
+							System.out.println(jugador.nombre + Est1);
+							System.out.println(cadena1);
 							System.out.println();
-						} else if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida >= vida2) {
+							System.out.println(rival.nombre + Est2);
+							System.out.println(cadena2);
+							System.out.println();
+						} else if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida >= vida2) {
 							System.out.println(rival.nombre + " ya tiene la vida al máximo");
 						} else {
 							vidaA = jugador.vida;
@@ -605,8 +746,11 @@ public class TestPokemon {
 									est_Vel1, jugador);
 							String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
 									est_Vel2, rival);
-							System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-							System.out.println(cadena1 + "\t\t" + cadena2);
+							System.out.println(jugador.nombre + Est1);
+							System.out.println(cadena1);
+							System.out.println();
+							System.out.println(rival.nombre + Est2);
+							System.out.println(cadena2);
 							System.out.println();
 							vidaB = jugador.vida;
 							diferencia = vidaA - vidaB;
@@ -652,7 +796,7 @@ public class TestPokemon {
 			} else {
 				System.out.println("velocidad rival > jugador");
 
-				if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida < vida2) { // ataca rival
+				if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida < vida2) { // ataca rival
 					Atacar(rival, jugador, rival.ataques, i, vida2);
 					String cadena1 = barraVida(jugador, vidaTotal);
 					String cadena2 = barraVida(rival, vida2);
@@ -660,12 +804,16 @@ public class TestPokemon {
 							jugador);
 					String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
 							rival);
-					System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-					System.out.println(cadena1 + "\t\t" + cadena2);
+					System.out.println(jugador.nombre + Est1);
+					System.out.println(cadena1);
 					System.out.println();
-				} else if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida >= vida2) {
+					System.out.println(rival.nombre + Est2);
+					System.out.println(cadena2);
+					System.out.println();
+				} else if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida >= vida2) {
 					System.out.println(rival.nombre + " ya tiene la vida al máximo");
 				} else {
+					System.out.println("XDDDD");
 					vidaA = jugador.vida;
 					Atacar(rival, jugador, rival.ataques, i, vida2);
 					String cadena1 = barraVida(jugador, vidaTotal);
@@ -674,8 +822,11 @@ public class TestPokemon {
 							jugador);
 					String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
 							rival);
-					System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-					System.out.println(cadena1 + "\t\t" + cadena2);
+					System.out.println(jugador.nombre + Est1);
+					System.out.println(cadena1);
+					System.out.println();
+					System.out.println(rival.nombre + Est2);
+					System.out.println(cadena2);
 					System.out.println();
 					vidaB = jugador.vida;
 					diferencia = vidaA - vidaB;
@@ -684,7 +835,7 @@ public class TestPokemon {
 				}
 				if (jugador.comprobarVivo()) {
 					if (R > rival.ataques[i].probRetr) {
-						if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida < vidaTotal) { // ataca
+						if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca
 																												// jugador
 							Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
 							String cadena1 = barraVida(jugador, vidaTotal);
@@ -693,13 +844,28 @@ public class TestPokemon {
 									est_Vel1, jugador);
 							String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
 									est_Vel2, rival);
-							System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-							System.out.println(cadena1 + "\t\t" + cadena2);
+							System.out.println(jugador.nombre + Est1);
+							System.out.println(cadena1);
 							System.out.println();
-						} else if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida >= vidaTotal) {
+							System.out.println(rival.nombre + Est2);
+							System.out.println(cadena2);
+							System.out.println();
+						} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
 							System.out.println(jugador.nombre + " ya tiene la vida al máximo");
 						} else if (jugador.ataques[numAtaque].nombre.equals("Transformacion")) {
 							jugador = rival;
+
+							jugador.setNombre(rival.nombre);
+							jugador.setTipo(rival.tipo1);
+							jugador.setTipo2(rival.tipo2);
+							jugador.setVelocidad(rival.velocidad);
+							jugador.setVida(rival.vida);
+							jugador.setEst_ataque(rival.Est_ataque);
+							jugador.setEst_ataqueEspecial(rival.Est_ataqueEspecial);
+							jugador.setEst_defensa(rival.Est_defensa);
+							jugador.setEst_defensaEspecial(rival.Est_defensaEspecial);
+							jugador.setAtaques(rival.ataques);
+							cambiado++;
 							System.out.println("3");
 						} else {
 							vidaA = rival.vida;
@@ -711,8 +877,11 @@ public class TestPokemon {
 									est_Vel1, jugador);
 							String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2,
 									est_Vel2, rival);
-							System.out.println("\t" + jugador.nombre + Est1 + "\t\t" + rival.nombre + Est2 + "\t");
-							System.out.println(cadena1 + "\t\t" + cadena2);
+							System.out.println(jugador.nombre + Est1);
+							System.out.println(cadena1);
+							System.out.println();
+							System.out.println(rival.nombre + Est2);
+							System.out.println(cadena2);
 							System.out.println();
 							vidaB = rival.vida;
 							diferencia = vidaA - vidaB;
@@ -1479,7 +1648,7 @@ public class TestPokemon {
 
 				}
 
-				modificaEst(ataques[ataque], jugador, rival, vidaTotal);
+				modificaEst(ataque, jugador, rival, vidaTotal);
 
 			} else if (jugador.estado.equals(Paralizado)) {
 				System.out.println(jugador.nombre + " no se ha podido mover debido a la parálisis");
@@ -1498,10 +1667,10 @@ public class TestPokemon {
 		}
 	}
 
-	public static void modificaEst(Ataque ataque, Pokemon jugador, Pokemon rival, double vidaTotal) {
+	public static void modificaEst(int ataque, Pokemon jugador, Pokemon rival, double vidaTotal) {
 
-		if (ataque.cambAtEspecialP != 0) {
-			switch (ataque.cambAtEspecialP) {
+		if (jugador.ataques[ataque].cambAtEspecialP != 0) {
+			switch (jugador.ataques[ataque].cambAtEspecialP) {
 			case -2:
 				jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 2;
 				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
@@ -1520,10 +1689,10 @@ public class TestPokemon {
 				break;
 			}
 		}
-		
-		if (ataque.cambAtFisicoP != 0) {
 
-			switch (ataque.cambAtFisicoP) {
+		if (jugador.ataques[ataque].cambAtFisicoP != 0) {
+
+			switch (jugador.ataques[ataque].cambAtFisicoP) {
 			case -2:
 				jugador.Est_ataque -= jugador.Est_ataque / 2;
 				jugador.setEst_ataque(jugador.Est_ataque);
@@ -1543,6 +1712,178 @@ public class TestPokemon {
 			}
 		}
 
+		if (jugador.ataques[ataque].cambDefEspecialP != 0) {
+			switch (jugador.ataques[ataque].cambDefEspecialP) {
+			case -2:
+				jugador.Est_defensaEspecial -= jugador.Est_defensaEspecial / 2;
+				jugador.setEst_defensaEspecial(jugador.Est_defensaEspecial);
+				break;
+			case -1:
+				jugador.Est_defensaEspecial -= jugador.Est_defensaEspecial / 3;
+				jugador.setEst_defensaEspecial(jugador.Est_defensaEspecial);
+				break;
+			case 2:
+				jugador.Est_defensaEspecial *= 2;
+				jugador.setEst_defensaEspecial(jugador.Est_defensaEspecial);
+				break;
+			case 1:
+				jugador.Est_defensaEspecial += jugador.Est_defensaEspecial / 2;
+				jugador.setEst_defensaEspecial(jugador.Est_defensaEspecial);
+				break;
+			}
+		}
+
+		if (jugador.ataques[ataque].cambDefFisicaP != 0) {
+
+			switch (jugador.ataques[ataque].cambDefFisicaP) {
+			case -2:
+				jugador.Est_defensa -= jugador.Est_defensa / 2;
+				jugador.setEst_defensa(jugador.Est_defensa);
+				break;
+			case -1:
+				jugador.Est_defensa -= jugador.Est_defensa / 3;
+				jugador.setEst_defensa(jugador.Est_defensa);
+				break;
+			case 2:
+				jugador.Est_defensa *= 2;
+				jugador.setEst_defensa(jugador.Est_defensa);
+				break;
+			case 1:
+				jugador.Est_defensa += jugador.Est_defensa / 2;
+				jugador.setEst_defensa(jugador.Est_defensa);
+				break;
+			}
+		}
+
+		if (jugador.ataques[ataque].cambVelP != 0) {
+			switch (jugador.ataques[ataque].cambVelP) {
+			case -2:
+				jugador.velocidad -= jugador.velocidad / 2;
+				jugador.setVelocidad(jugador.velocidad);
+				break;
+			case -1:
+				jugador.velocidad -= jugador.velocidad / 3;
+				jugador.setVelocidad(jugador.velocidad);
+				break;
+			case 2:
+				jugador.velocidad *= 2;
+				jugador.setVelocidad(jugador.velocidad);
+				break;
+			case 1:
+				jugador.velocidad += jugador.velocidad / 2;
+				jugador.setVelocidad(jugador.velocidad);
+				break;
+			}
+		}
+
+		// Rival
+
+		if (jugador.ataques[ataque].cambAtEspecialP != 0) {
+			switch (jugador.ataques[ataque].cambAtEspecialP) {
+			case -2:
+				jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 2;
+				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+				break;
+			case -1:
+				jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 3;
+				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+				break;
+			case 2:
+				jugador.Est_ataqueEspecial *= 2;
+				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+				break;
+			case 1:
+				jugador.Est_ataqueEspecial += jugador.Est_ataqueEspecial / 2;
+				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+				break;
+			}
+		}
+
+		if (jugador.ataques[ataque].cambAtFisicoR != 0) {
+
+			switch (jugador.ataques[ataque].cambAtFisicoR) {
+			case -2:
+				rival.Est_ataque -= rival.Est_ataque / 2;
+				rival.setEst_ataque(rival.Est_ataque);
+				break;
+			case -1:
+				rival.Est_ataque -= rival.Est_ataque / 3;
+				rival.setEst_ataque(rival.Est_ataque);
+				break;
+			case 2:
+				rival.Est_ataque *= 2;
+				rival.setEst_ataqueEspecial(rival.Est_ataque);
+				break;
+			case 1:
+				rival.Est_ataque += rival.Est_ataque / 2;
+				rival.setEst_ataque(rival.Est_ataque);
+				break;
+			}
+		}
+
+		if (jugador.ataques[ataque].cambDefEspecialR != 0) {
+			switch (jugador.ataques[ataque].cambDefEspecialR) {
+			case -2:
+				rival.Est_defensaEspecial -= rival.Est_defensaEspecial / 2;
+				rival.setEst_defensaEspecial(rival.Est_defensaEspecial);
+				break;
+			case -1:
+				rival.Est_defensaEspecial -= rival.Est_defensaEspecial / 3;
+				rival.setEst_defensaEspecial(rival.Est_defensaEspecial);
+				break;
+			case 2:
+				rival.Est_defensaEspecial *= 2;
+				rival.setEst_defensaEspecial(rival.Est_defensaEspecial);
+				break;
+			case 1:
+				rival.Est_defensaEspecial += rival.Est_defensaEspecial / 2;
+				rival.setEst_defensaEspecial(jugador.Est_defensaEspecial);
+				break;
+			}
+		}
+
+		if (jugador.ataques[ataque].cambDefFisicaR != 0) {
+
+			switch (jugador.ataques[ataque].cambDefFisicaR) {
+			case -2:
+				rival.Est_defensa -= rival.Est_defensa / 2;
+				rival.setEst_defensa(rival.Est_defensa);
+				break;
+			case -1:
+				rival.Est_defensa -= rival.Est_defensa / 3;
+				rival.setEst_defensa(rival.Est_defensa);
+				break;
+			case 2:
+				rival.Est_defensa *= 2;
+				rival.setEst_defensa(rival.Est_defensa);
+				break;
+			case 1:
+				rival.Est_defensa += rival.Est_defensa / 2;
+				rival.setEst_defensa(rival.Est_defensa);
+				break;
+			}
+		}
+
+		if (jugador.ataques[ataque].cambVelR != 0) {
+			switch (jugador.ataques[ataque].cambVelR) {
+			case -2:
+				rival.velocidad -= rival.velocidad / 2;
+				rival.setVelocidad(rival.velocidad);
+				break;
+			case -1:
+				rival.velocidad -= rival.velocidad / 3;
+				rival.setVelocidad(rival.velocidad);
+				break;
+			case 2:
+				rival.velocidad *= 2;
+				rival.setVelocidad(rival.velocidad);
+				break;
+			case 1:
+				rival.velocidad += rival.velocidad / 2;
+				rival.setVelocidad(rival.velocidad);
+				break;
+			}
+		}
 	}
 
 	public static String barraVida(Pokemon jugador, double VidaTotal) {
