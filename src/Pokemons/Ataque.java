@@ -7,6 +7,16 @@ public class Ataque {
 	public String tipo;
 	public int especie;
 	public int prioridad;
+	public int cambAtFisicoP;
+	public int cambAtEspecialP;
+	public int cambDefFisicaP;
+	public int cambDefEspecialP;
+	public int cambVelP;
+	public int cambAtFisicoR;
+	public int cambAtEspecialR;
+	public int cambDefFisicaR;
+	public int cambDefEspecialR;
+	public int cambVelR;
 	public double precision;
 	public double probCrit;
 	public double probabCambioEstado;
@@ -20,12 +30,12 @@ public class Ataque {
 	 * 		1: Hace daño
 	 * 		2: No hace daño -> Sube velocidad
 	 */
-	public Ataque(String nombre, double poder, String tipo, int especie, int prioridad, double precision, double probCrit, double probabCambioEstado, String cambioEstado, double probRetr, String tipoAtaque) {
+	public Ataque(String nombre, double poder, String tipo, int prioridad, double precision, double probCrit, double probabCambioEstado, String cambioEstado, double probRetr, String tipoAtaque,  int cambAtFisicoP, int cambAtEspecialP,  int cambDefFisicaP, int cambDefEspecialP, int cambVelP,
+			 int cambAtFisicoR, int cambAtEspecialR,  int cambDefFisicaR, int cambDefEspecialR, int cambVelR) {
 		super();
 		this.nombre = nombre;
 		Poder = poder;
 		this.tipo = tipo;
-		this.especie = especie;
 		this.prioridad = prioridad;
 		this.precision = precision;
 		this.probCrit = probCrit;
@@ -33,13 +43,23 @@ public class Ataque {
 		this.cambioEstado = cambioEstado;
 		this.probRetr = probRetr;
 		this.tipoAtaque = tipoAtaque;
+		
+		this.cambAtEspecialP = cambAtEspecialP;
+		this.cambAtFisicoP = cambAtFisicoP;
+		this.cambAtEspecialR = cambAtEspecialR;
+		this.cambAtFisicoR = cambAtFisicoR;
+		this.cambDefEspecialP = cambDefEspecialP;
+		this.cambDefFisicaP = cambDefFisicaP;
+		this.cambDefEspecialR = cambDefEspecialR;
+		this.cambDefFisicaR = cambDefFisicaR;
+		this.cambVelP = cambVelP;
+		this.cambVelR = cambVelR;
 	}
 	
 	public Ataque(Ataque ataque) {
 		this.nombre = ataque.nombre;
 		this.Poder = ataque.Poder;
 		this.tipo = ataque.tipo;
-		this.especie = ataque.especie;
 		this.prioridad = ataque.prioridad;
 		this.precision = ataque.precision;
 		this.probCrit = ataque.probCrit;
@@ -47,15 +67,23 @@ public class Ataque {
 		this.cambioEstado = ataque.cambioEstado;
 		this.probRetr = ataque.probRetr;
 		this.tipoAtaque = ataque.tipoAtaque;
+		
+		this.cambAtEspecialP = ataque.cambAtEspecialP;
+		this.cambAtFisicoP = ataque.cambAtFisicoP;
+		this.cambAtEspecialR = ataque.cambAtEspecialR;
+		this.cambAtFisicoR = ataque.cambAtFisicoR;
+		this.cambDefEspecialP = ataque.cambDefEspecialP;
+		this.cambDefFisicaP = ataque.cambDefFisicaP;
+		this.cambDefEspecialR = ataque.cambDefEspecialR;
+		this.cambDefFisicaR = ataque.cambDefFisicaR;
+		this.cambVelP = ataque.cambVelP;
+		this.cambVelR = ataque.cambVelR;
 	}
 
 	public String getTipoAtaque() {
 		return tipoAtaque;
 	}
 	
-	public void setTipoAtaque() {
-		this.tipoAtaque = tipoAtaque;
-	}
 	
 	public double getPoder() {
 		return Poder;
@@ -135,5 +163,91 @@ public class Ataque {
 
 	public void setProbRetr(double probRetr) {
 		this.probRetr = probRetr;
+	}
+
+	
+	public void setTipoAtaque(String tipoAtaque) {
+		this.tipoAtaque = tipoAtaque;
+	}
+
+
+	public int getCambAtFisicoP() {
+		return cambAtFisicoP;
+	}
+
+	public void setCambAtFisicoP(int cambAtFisicoP) {
+		this.cambAtFisicoP = cambAtFisicoP;
+	}
+
+	public int getCambAtEspecialP() {
+		return cambAtEspecialP;
+	}
+
+	public void setCambAtEspecialP(int cambAtEspecialP) {
+		this.cambAtEspecialP = cambAtEspecialP;
+	}
+
+	public int getCambDefFisicaP() {
+		return cambDefFisicaP;
+	}
+
+	public void setCambDefFisicaP(int cambDefFisicaP) {
+		this.cambDefFisicaP = cambDefFisicaP;
+	}
+
+	public int getCambDefEspecialP() {
+		return cambDefEspecialP;
+	}
+
+	public void setCambDefEspecialP(int cambDefEspecialP) {
+		this.cambDefEspecialP = cambDefEspecialP;
+	}
+
+	public int getCambVelP() {
+		return cambVelP;
+	}
+
+	public void setCambVelP(int cambVelP) {
+		this.cambVelP = cambVelP;
+	}
+
+	public int getCambAtFisicoR() {
+		return cambAtFisicoR;
+	}
+
+	public void setCambAtFisicoR(int cambAtFisicoR) {
+		this.cambAtFisicoR = cambAtFisicoR;
+	}
+
+	public int getCambAtEspecialR() {
+		return cambAtEspecialR;
+	}
+
+	public void setCambAtEspecialR(int cambAtEspecialR) {
+		this.cambAtEspecialR = cambAtEspecialR;
+	}
+
+	public int getCambDefFisicaR() {
+		return cambDefFisicaR;
+	}
+
+	public void setCambDefFisicaR(int cambDefFisicaR) {
+		this.cambDefFisicaR = cambDefFisicaR;
+	}
+
+	public int getCambDefEspecialR() {
+		return cambDefEspecialR;
+	}
+
+	public void setCambDefEspecialR(int cambDefEspecialR) {
+		this.cambDefEspecialR = cambDefEspecialR;
+	}
+
+	public int getCambVelR() {
+		return cambVelR;
+	}
+
+	public void setCambVelR(int cambVelR) {
+		this.cambVelR = cambVelR;
 	}
 }

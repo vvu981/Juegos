@@ -16,13 +16,13 @@ public class TestPokemon {
 	public static void mostrarAtaques(Ataque[] a, Pokemon p) {
 		for (int i = 0; i < a.length; i++) {
 			if (!a[i].nombre.equals("a"))
-			System.out.print(i + ". " + a[i].nombre + "  ");
+				System.out.print(i + ". " + a[i].nombre + "  ");
 		}
 
 	}
 
 	public static Pokemon eligeRival(Pokemon[] p) {
-		Ataque vacio = new Ataque("a", 0, "", 0, 0, 0, 0, 0, "", 0, "Fisico");
+		Ataque vacio = new Ataque("a", 0, "", 0, 0, 0, 0, "", 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		Ataque[] vacios = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
 
 		Pokemon other = new Pokemon("", "", "", 0, vacios, 0, 0, 0, 0, 0, "");
@@ -72,43 +72,63 @@ public class TestPokemon {
 		 * -0.5 vel c -6 -> -0.5 at c -7 -> -0.5 def c
 		 */
 
-		// ataques Ataque: nombre, poder, tipo, especie, prioridad, precision, probCrit,
-		// probabCambioEstado, cambioEstado, probRetr)
-		//ataque normal
-		Ataque Descanso = new Ataque("Descanso", 0, "Normal", 0, 1, 100, 0, 100, "Dormir", 0, "");
+		// ataques Ataque: nombre, poder, tipo, prioridad, precision, probCrit,
+		// probabCambioEstado, cambioEstado, probRetr, cambAtFisico, cambAtEspecial,
+		// cambDefFisica, cambDefEspecial, CambVel)
+		// ataque normal
+		Ataque Descanso = new Ataque("Descanso", 0, "Normal", 1, 100, 0, 100, "Dormir", 0, "", 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0);
 		// ataque ditto
-		Ataque Transformacion = new Ataque("Transformacion", 0, "Normal", 0, 1, 0, 0, 0, "", 0, "");
+		Ataque Transformacion = new Ataque("Transformacion", 0, "Normal", 1, 100, 0, 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0,
+				0, 0, 0);
 		// Ataques PokemonFuego
-		Ataque Ascuas = new Ataque("Ascuas", 70, "Fuego", 0, 1, 100, 5, 10, "Quemar", 0, "Especial");
-		Ataque Llamarada = new Ataque("Llamarada", 85, "Fuego", 0, 1, 85, 5, 30, "Quemar", 0, "Especial");
-		Ataque A_Bocajarro = new Ataque("A bocajarro", 100, "Lucha", -2, 1, 100, 5, 0, "", 0, "Fisico");
-		Ataque Danza_Espada = new Ataque("Danza Espada", 0, "Normal", 12, 1, 100, 0, 0, "", 0, "");
+		Ataque Ascuas = new Ataque("Ascuas", 70, "Fuego", 1, 100, 5, 10, "Quemar", 0, "Especial", 0, 0, 0, 0, 0, 0, 0,
+				0, 0, 0);
+		Ataque Llamarada = new Ataque("Llamarada", 85, "Fuego", 1, 85, 5, 30, "Quemar", 0, "Especial", 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0);
+		Ataque A_Bocajarro = new Ataque("A bocajarro", 100, "Lucha", 1, 100, 5, 0, "", 0, "Fisico", -1, 0, 0, 0, 0, 0,
+				0, 0, 0, 0);
+		Ataque Danza_Espada = new Ataque("Danza Espada", 0, "Normal", 1, 100, 0, 0, "", 0, "", 2, 0, 0, 0, 0, 0, 0, 0,
+				0, 0);
 
 		// Ataques PokemonAgua
-		Ataque Pistola_agua = new Ataque("Pistola agua", 72, "Agua", 0, 1, 100, 5, 0, "", 0, "Especial");
-		Ataque Hidrobomba = new Ataque("Hidrobomba", 80, "Agua", 0, 1, 80, 5, 0, "", 0, "Especial");
-		Ataque Mordisco = new Ataque("Mordisco", 90, "Siniestro", 0, 1, 100, 5, 0, "", 0, "Fisico");
-		Ataque Aqua_jet = new Ataque("Aqua jet", 40, "Agua", 0, 2, 100, 5, 0, "", 0, "Fisico");
+		Ataque Pistola_agua = new Ataque("Pistola agua", 72, "Agua", 1, 100, 5, 0, "", 0, "Especial", 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0);
+		Ataque Hidrobomba = new Ataque("Hidrobomba", 80, "Agua", 1, 80, 5, 0, "", 0, "Especial", 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0);
+		Ataque Mordisco = new Ataque("Mordisco", 90, "Siniestro", 1, 100, 5, 0, "", 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0);
+		Ataque Aqua_jet = new Ataque("Aqua jet", 40, "Agua", 2, 100, 5, 0, "", 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				0);
 
 		// Ataques PokemonPlanta
-		Ataque Hoja_afilada = new Ataque("Hoja afilada", 55, "Planta", 0, 1, 95, 35, 0, "", 0, "Especial");
-		Ataque Tormenta_floral = new Ataque("Tormenta floral", 90, "Planta", 0, 1, 100, 5, 0, "", 0, "Especial");
-		Ataque Sintesis = new Ataque("Sintesis", 0, "Planta", 4, 1, 100, 0, 0, "", 0, "");
-		Ataque Polvo_Veneno = new Ataque("Polvo veneno", 0, "Veneno", -4, 1, 75, 0, 100, "Envenenar", 0, "Especial");
+		Ataque Hoja_afilada = new Ataque("Hoja afilada", 55, "Planta", 1, 95, 35, 0, "", 0, "Especial", 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0);
+		Ataque Tormenta_floral = new Ataque("Tormenta floral", 90, "Planta", 1, 100, 5, 0, "", 0, "Especial", 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0);
+		Ataque Sintesis = new Ataque("Sintesis", 0, "Planta", 1, 100, 0, 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		Ataque Polvo_Veneno = new Ataque("Polvo veneno", 0, "Veneno", 1, 75, 0, 100, "Envenenar", 0, "Especial", 0, 0,
+				0, 0, 0, 0, 0, 0, 0, 0);
 
 		// Ataques Veneno
-		Ataque Toxico = new Ataque("Toxico", 0, "Veneno", -4, 1, 85, 0, 100, "Envenenar", 0, "Especial");
-		Ataque Picotazo_venenoso = new Ataque("Picotazo Venenoso", 15, "Veneno", 0, 1, 100, 5, 30, "Envenenar", 0,
-				"Fisico");
-		Ataque Lanza_mugre = new Ataque("Lanza mugre", 120, "Veneno", 0, 1, 70, 5, 30, "Envenenar", 0, "Especial");
+		Ataque Toxico = new Ataque("Toxico", 0, "Veneno", 1, 85, 0, 100, "Envenenar", 0, "Especial", 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0);
+		Ataque Picotazo_venenoso = new Ataque("Picotazo Venenoso", 15, "Veneno", 1, 100, 5, 30, "Envenenar", 0,
+				"Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		Ataque Lanza_mugre = new Ataque("Lanza mugre", 120, "Veneno", 1, 70, 5, 30, "Envenenar", 0, "Especial", 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0);
 
-		//Ataques Volador
-		Ataque Respiro = new Ataque("Respiro", 0, "Volador", 4, 1, 100, 0, 0, "", 0, "");
-		Ataque Danza_pluma = new Ataque("Danza pluma", 0, "Volador", -6, 1, 100, 0, 0, "", 0, "");
-		Ataque Aerochorro = new Ataque("Aerochorro", 180, "Volador", 0, 1, 95, 12.5, 0, "", 0, "");
+		// Ataques Volador
+		Ataque Respiro = new Ataque("Respiro", 0, "Volador", 1, 100, 0, 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		Ataque Danza_pluma = new Ataque("Danza pluma", 0, "Volador", 1, 100, 0, 0, "", 0, "", 0, 0, 0, 0, 0, -2, 0, 0,
+				0, 0);
+		Ataque Aerochorro = new Ataque("Aerochorro", 180, "Volador", 1, 95, 12.5, 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0);
 		// Ataques Siniestro
-		Ataque Juego_sucio = new Ataque("Juego sucio", 95, "Siniestro", 0, 1, 100, 5, 0, "", 0, "Fisico");
-		Ataque Tajo_umbrio = new Ataque("Tajo umbrío", 75, "Siniestro", 0, 1, 100, 5, 0, "", 0, "Especial");
+		Ataque Juego_sucio = new Ataque("Juego sucio", 95, "Siniestro", 1, 100, 5, 0, "", 0, "Fisico", 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0);
+		Ataque Tajo_umbrio = new Ataque("Tajo umbrío", 75, "Siniestro", 1, 100, 5, 0, "", 0, "Especial", 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0);
 		// Ataques Hada
 
 		// Array todos ataques
@@ -116,11 +136,12 @@ public class TestPokemon {
 				new Ataque(Pistola_agua), new Ataque(Hidrobomba), new Ataque(Mordisco), new Ataque(Aqua_jet),
 				new Ataque(Hoja_afilada), new Ataque(Tormenta_floral), new Ataque(Sintesis), new Ataque(Polvo_Veneno),
 				new Ataque(Transformacion), new Ataque(Toxico), new Ataque(Picotazo_venenoso), new Ataque(Lanza_mugre),
-				new Ataque(Juego_sucio), new Ataque(Tajo_umbrio), new Ataque(Respiro), new Ataque(Danza_pluma), new Ataque(Aerochorro), new Ataque(Descanso) };
+				new Ataque(Juego_sucio), new Ataque(Tajo_umbrio), new Ataque(Respiro), new Ataque(Danza_pluma),
+				new Ataque(Aerochorro), new Ataque(Descanso) };
 
 		// vacios
 
-		Ataque vacio = new Ataque("", 0, "", 0, 0, 0, 0, 0, "", 0, "Fisico");
+		Ataque vacio = new Ataque("", 0, "", 0, 0, 0, 0, "", 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		Ataque[] vacios = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
 		Ataque[] ditto = { new Ataque(Transformacion), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
 
@@ -529,7 +550,7 @@ public class TestPokemon {
 
 					System.out.println(jugador.nombre + " ha usado " + jugador.ataques[numAtaque].nombre);
 					jugador = rival;
-					
+
 					jugador.setNombre(rival.nombre);
 					jugador.setTipo(rival.tipo1);
 					jugador.setTipo2(rival.tipo2);
@@ -1458,7 +1479,7 @@ public class TestPokemon {
 
 				}
 
-				modificaEst(ataques[ataque].especie, jugador, rival, vidaTotal);
+				modificaEst(ataques[ataque], jugador, rival, vidaTotal);
 
 			} else if (jugador.estado.equals(Paralizado)) {
 				System.out.println(jugador.nombre + " no se ha podido mover debido a la parálisis");
@@ -1477,102 +1498,49 @@ public class TestPokemon {
 		}
 	}
 
-	public static void modificaEst(int especie, Pokemon jugador, Pokemon rival, double vidaTotal) {
+	public static void modificaEst(Ataque ataque, Pokemon jugador, Pokemon rival, double vidaTotal) {
 
-		if (especie == 2) {
-			// sube ataque
-			jugador.Est_ataque += jugador.Est_ataque / 2;
-			System.out.println(jugador.nombre + " ha aumentado el ataque");
-		} else if (especie == 3) {
-			// sube defensa
-			jugador.Est_defensa += jugador.Est_defensa / 2;
-			System.out.println(jugador.nombre + " ha aumentado la defensa");
-
-		} else if (especie == 1) {
-			// sube velocidad
-			jugador.velocidad = jugador.velocidad + jugador.velocidad / 2;
-			System.out.println(jugador.nombre + " ha aumentado la velocidad");
-
-		} else if (especie == -3) {
-			// baja MI defensa
-			jugador.Est_defensa -= jugador.Est_defensa / 3;
-			System.out.println(jugador.nombre + " ha disminuido su defensa");
-
-		} else if (especie == -2) {
-			// baja MI ataque
-			jugador.Est_ataque -= jugador.Est_ataque / 3;
-			System.out.println(jugador.nombre + " ha disminuido su ataque ");
-
-		} else if (especie == -1) {
-			jugador.velocidad -= jugador.velocidad / 3;
-			System.out.println(jugador.nombre + " ha disminuido su velocidad ");
-
-		} else if (especie == 5) {
-			// baja SU velocidad
-			rival.velocidad -= rival.velocidad / 3;
-			System.out.println(jugador.nombre + " ha disminuido la velocidad de " + rival.nombre);
-
-		} else if (especie == 6) {
-			// baja SU ataque
-			rival.Est_ataque -= rival.Est_ataque / 3;
-			System.out.println(jugador.nombre + " ha disminuido el ataque de " + rival.nombre);
-		} else if (especie == 7) {
-			// baja SU defensa
-			rival.Est_defensa -= rival.Est_defensa / 3;
-			System.out.println(jugador.nombre + " ha disminuido la defensa de " + rival.nombre);
-		} else if (especie == 4) {
-			// sube mi vida
-			double i = 0;
-			for (i = 0; (i < vidaTotal / 2) && (jugador.vida < vidaTotal); i++) {
-				jugador.vida++;
+		if (ataque.cambAtEspecialP != 0) {
+			switch (ataque.cambAtEspecialP) {
+			case -2:
+				jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 2;
+				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+				break;
+			case -1:
+				jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 3;
+				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+				break;
+			case 2:
+				jugador.Est_ataqueEspecial *= 2;
+				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+				break;
+			case 1:
+				jugador.Est_ataqueEspecial += jugador.Est_ataqueEspecial / 2;
+				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+				break;
 			}
-		} else if (especie == 12) {
-			jugador.Est_ataque += jugador.Est_ataque;
-			System.out.println(jugador.nombre + " ha aumentado mucho su ataque");
-		} else if (especie == 13) {
-			jugador.Est_defensa += jugador.Est_defensa;
-			System.out.println(jugador.nombre + " ha aumentado mucho su defensa");
-		} else if (especie == 10) {
-			jugador.velocidad += jugador.velocidad;
-			System.out.println(jugador.nombre + " ha aumentado mucho su velocidad");
-		} else if (especie == -12) {
-			jugador.Est_ataque -= jugador.Est_ataque / 2;
-			System.out.println(jugador.nombre + " ha disminuido mucho su ataque");
-		} else if (especie == -13) {
-			jugador.Est_defensa -= jugador.Est_defensa / 2;
-			System.out.println(jugador.nombre + " ha disminuido mucho su defensa");
-		} else if (especie == -10) {
-			jugador.velocidad -= jugador.velocidad / 2;
-		} else if (especie == 102) {
-			jugador.Est_ataqueEspecial += jugador.Est_ataqueEspecial / 3;
-			System.out.println(jugador.nombre + " ha aumentado su ataque especial");
-		} else if (especie == 103) {
-			jugador.Est_defensaEspecial += jugador.Est_defensaEspecial / 2;
-			System.out.println(jugador.nombre + " ha aumentado su defensa especial");
-		} else if (especie == -103) {
-			jugador.Est_defensaEspecial -= jugador.Est_defensaEspecial / 3;
-			System.out.println(jugador.nombre + " ha disminuido su defensa especial");
-		} else if (especie == -102) {
-			jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 3;
-			System.out.println(jugador.nombre + " ha disminuido su ataque especial");
-		} else if (especie == -106) {
-			rival.Est_ataqueEspecial -= rival.Est_ataqueEspecial / 3;
-			System.out.println(rival.nombre + " ha disminuido su ataque especial");
-		} else if (especie == -107) {
-			rival.Est_defensaEspecial -= rival.Est_defensaEspecial / 3;
-			System.out.println(rival.nombre + " ha disminuido su defensa especial");
-		} else if (especie == 112) {
-			System.out.println(jugador.nombre + " ha aumentado mucho su ataque especial");
-			jugador.Est_ataqueEspecial += jugador.Est_ataqueEspecial;
-		} else if (especie == 113) {
-			jugador.Est_defensaEspecial += jugador.Est_defensaEspecial;
-			System.out.println(jugador.nombre + " ha aumentado mucho su defensa especial");
-		} else if (especie == -112) {
-			jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 2;
-			System.out.println(jugador.nombre + " ha disminuido mucho su ataque especial");
-		} else if (especie == -113) {
-			jugador.Est_defensaEspecial -= jugador.Est_defensaEspecial / 2;
-			System.out.println(jugador.nombre + " ha disminuido mucho su defensa especial");
+		}
+		
+		if (ataque.cambAtFisicoP != 0) {
+
+			switch (ataque.cambAtFisicoP) {
+			case -2:
+				jugador.Est_ataque -= jugador.Est_ataque / 2;
+				jugador.setEst_ataque(jugador.Est_ataque);
+				break;
+			case -1:
+				jugador.Est_ataque -= jugador.Est_ataque / 3;
+				jugador.setEst_ataque(jugador.Est_ataque);
+				break;
+			case 2:
+				jugador.Est_ataque *= 2;
+				jugador.setEst_ataqueEspecial(jugador.Est_ataque);
+				break;
+			case 1:
+				jugador.Est_ataque += jugador.Est_ataque / 2;
+				jugador.setEst_ataque(jugador.Est_ataque);
+				break;
+			}
 		}
 
 	}
