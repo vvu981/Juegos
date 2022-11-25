@@ -22,7 +22,7 @@ public class TestPokemon {
 	}
 
 	public static Pokemon eligeRival(Pokemon[] p) {
-		Ataque vacio = new Ataque("a", 0, "", 0, 0, 0, 0, "", 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		Ataque vacio = new Ataque("a", 0, "", 0, 0, 0, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0);
 		Ataque[] vacios = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
 
 		Pokemon other = new Pokemon("", "", "", 0, vacios, 0, 0, 0, 0, 0, "");
@@ -76,72 +76,79 @@ public class TestPokemon {
 		// probabCambioEstado, cambioEstado, probRetr, cambAtFisico, cambAtEspecial,
 		// cambDefFisica, cambDefEspecial, CambVel)
 		// ataque normal
-		Ataque Descanso = new Ataque("Descanso", 0, "Normal", 1, 100, 0, 100, "Dormir", 0, "", 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0);
+		Ataque Descanso = new Ataque("Descanso", 0, "Normal", 1, 100, 0, 100, "Dormir", 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0);
 		// ataque ditto
-		Ataque Transformacion = new Ataque("Transformacion", 0, "Normal", 1, 100, 0, 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0);
+		Ataque Transformacion = new Ataque("Transformacion", 0, "Normal", 1, 100, 0, 0, "", 0, 0, "", 0, 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0 ,0);
 		// Ataques PokemonFuego
-		Ataque Ascuas = new Ataque("Ascuas", 70, "Fuego", 1, 100, 5, 10, "Quemar", 0, "Especial", 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0);
-		Ataque Llamarada = new Ataque("Llamarada", 85, "Fuego", 1, 85, 5, 30, "Quemar", 0, "Especial", 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0);
-		Ataque A_Bocajarro = new Ataque("A bocajarro", 100, "Lucha", 1, 100, 5, 0, "", 0, "Fisico", -1, 0, 0, 0, 0, 0,
-				0, 0, 0, 0);
-		Ataque Danza_Espada = new Ataque("Danza Espada", 0, "Normal", 1, 100, 0, 0, "", 0, "", 2, 0, 0, 0, 0, 0, 0, 0,
-				0, 0);
+		Ataque Ascuas = new Ataque("Ascuas", 70, "Fuego", 1, 100, 5, 10, "Quemar", 0, 0, "Especial", 0, 0, 0, 0, 0, 0, 0,
+				0, 0,0 ,0 , 0);
+		Ataque Llamarada = new Ataque("Llamarada", 85, "Fuego", 1, 85, 5, 30, "Quemar", 0, 0, "Especial", 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0,0 , 0);
+		Ataque A_Bocajarro = new Ataque("A bocajarro", 100, "Lucha", 1, 100, 5, 0, "", 0, 0, "Fisico", -1, 0, 0, 0, 0, 0,
+				0, 0, 0, 0,0 , 0);
+		Ataque Danza_Espada = new Ataque("Danza Espada", 0, "Normal", 1, 100, 0, 0, "", 100, 0,"", 2, 0, 0, 0, 0, 0, 0, 0,
+				0, 0,0 , 0);
 
 		// Ataques PokemonAgua
-		Ataque Pistola_agua = new Ataque("Pistola agua", 72, "Agua", 1, 100, 5, 0, "", 0, "Especial", 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0);
-		Ataque Hidrobomba = new Ataque("Hidrobomba", 80, "Agua", 1, 80, 5, 0, "", 0, "Especial", 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0);
-		Ataque Mordisco = new Ataque("Mordisco", 90, "Siniestro", 1, 100, 5, 0, "", 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0);
-		Ataque Aqua_jet = new Ataque("Aqua jet", 40, "Agua", 2, 100, 5, 0, "", 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0);
+		Ataque Pistola_agua = new Ataque("Pistola agua", 72, "Agua", 1, 100, 5, 0, "", 0, 0, "Especial", 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0,0 , 0);
+		Ataque Hidrobomba = new Ataque("Hidrobomba", 80, "Agua", 1, 80, 5, 0, "", 0, 0, "Especial", 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0,0 , 0);
+		Ataque Mordisco = new Ataque("Mordisco", 90, "Siniestro", 1, 100, 5, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0,0 , 0);
+		Ataque Aqua_jet = new Ataque("Aqua jet", 40, "Agua", 2, 100, 5, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				0,0 , 0);
 
 		// Ataques PokemonPlanta
-		Ataque Hoja_afilada = new Ataque("Hoja afilada", 55, "Planta", 1, 95, 35, 0, "", 0, "Especial", 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0);
-		Ataque Tormenta_floral = new Ataque("Tormenta floral", 90, "Planta", 1, 100, 5, 0, "", 0, "Especial", 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0);
-		Ataque Sintesis = new Ataque("Sintesis", 0, "Planta", 1, 100, 0, 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-		Ataque Polvo_Veneno = new Ataque("Polvo veneno", 0, "Veneno", 1, 75, 0, 100, "Envenenar", 0, "Especial", 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0);
+		Ataque Hoja_afilada = new Ataque("Hoja afilada", 55, "Planta", 1, 95, 35, 0, "", 0, 0, "Especial", 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0,0 , 0);
+		Ataque Tormenta_floral = new Ataque("Tormenta floral", 90, "Planta", 1, 100, 5, 0, "", 0, 0, "Especial", 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0,0 , 0);
+		Ataque Sintesis = new Ataque("Sintesis", 0, "Planta", 1, 100, 0, 0, "", 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 , 0);
+		Ataque Polvo_Veneno = new Ataque("Polvo veneno", 0, "Veneno", 1, 75, 0, 100, "Envenenar", 0, 0, "Especial", 0, 0,
+				0, 0, 0, 0, 0, 0, 0, 0,0 , 0);
 
 		// Ataques Veneno
-		Ataque Toxico = new Ataque("Toxico", 0, "Veneno", 1, 85, 0, 100, "Envenenar", 0, "Especial", 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0);
-		Ataque Picotazo_venenoso = new Ataque("Picotazo Venenoso", 15, "Veneno", 1, 100, 5, 30, "Envenenar", 0,
-				"Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-		Ataque Lanza_mugre = new Ataque("Lanza mugre", 120, "Veneno", 1, 70, 5, 30, "Envenenar", 0, "Especial", 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0);
+		Ataque Toxico = new Ataque("Toxico", 0, "Veneno", 1, 85, 0, 100, "Envenenar", 0, 0, "Especial", 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0,0 , 0);
+		Ataque Picotazo_venenoso = new Ataque("Picotazo Venenoso", 15, "Veneno", 1, 100, 5, 30, "Envenenar", 0, 0,
+				"Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 , 0);
+		Ataque Lanza_mugre = new Ataque("Lanza mugre", 120, "Veneno", 1, 70, 5, 30, "Envenenar", 0, 0, "Especial", 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0,0 , 0);
 
 		// Ataques Volador
-		Ataque Respiro = new Ataque("Respiro", 0, "Volador", 1, 100, 0, 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-		Ataque Danza_pluma = new Ataque("Danza pluma", 0, "Volador", 1, 100, 0, 0, "", 0, "", 0, 0, 0, 0, 0, -2, 0, 0,
-				0, 0);
-		Ataque Aerochorro = new Ataque("Aerochorro", 180, "Volador", 1, 95, 12.5, 0, "", 0, "", 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0);
+		Ataque Respiro = new Ataque("Respiro", 0, "Volador", 1, 100, 0, 0, "", 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		Ataque Danza_pluma = new Ataque("Danza pluma", 0, "Volador", 1, 100, 0, 0, "", 100, 0, "", 0, 0, 0, 0, 0, -2, 0, 0,
+				0, 0,0 , 0);
+		Ataque Aerochorro = new Ataque("Aerochorro", 180, "Volador", 1, 95, 12.5, 0, "",0,  0, "", 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0,0 , 0);
+		Ataque Ala_bis = new Ataque("Ala bis", 80,"Volador", 1, 90, 5, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0,0,0, 0,0 , 0);
 		// Ataques Siniestro
-		Ataque Juego_sucio = new Ataque("Juego sucio", 95, "Siniestro", 1, 100, 5, 0, "", 0, "Fisico", 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0);
-		Ataque Tajo_umbrio = new Ataque("Tajo umbrío", 75, "Siniestro", 1, 100, 5, 0, "", 0, "Especial", 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0);
+		Ataque Juego_sucio = new Ataque("Juego sucio", 95, "Siniestro", 1, 100, 5, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0);
+		Ataque Tajo_umbrio = new Ataque("Tajo umbrío", 75, "Siniestro", 1, 100, 5, 0, "", 40, 0, "Especial", 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0);
+		Ataque 
 		// Ataques Hada
 
 		// Array todos ataques
-		Ataque[] todos = { new Ataque(Ascuas), new Ataque(Llamarada), new Ataque(A_Bocajarro), new Ataque(Danza_Espada),
+		Ataque[]  todos = { new Ataque(Ascuas), new Ataque(Llamarada), new Ataque(A_Bocajarro), new Ataque(Danza_Espada),
 				new Ataque(Pistola_agua), new Ataque(Hidrobomba), new Ataque(Mordisco), new Ataque(Aqua_jet),
 				new Ataque(Hoja_afilada), new Ataque(Tormenta_floral), new Ataque(Sintesis), new Ataque(Polvo_Veneno),
 				new Ataque(Transformacion), new Ataque(Toxico), new Ataque(Picotazo_venenoso), new Ataque(Lanza_mugre),
 				new Ataque(Juego_sucio), new Ataque(Tajo_umbrio), new Ataque(Respiro), new Ataque(Danza_pluma),
-				new Ataque(Aerochorro), new Ataque(Descanso) };
-
+				new Ataque(Aerochorro), new Ataque(Descanso)};
+		Ataque[] a =  { new Ataque(Ascuas), new Ataque(Llamarada), new Ataque(A_Bocajarro), new Ataque(Danza_Espada),
+				new Ataque(Pistola_agua), new Ataque(Hidrobomba), new Ataque(Mordisco), new Ataque(Aqua_jet),
+				new Ataque(Hoja_afilada), new Ataque(Tormenta_floral), new Ataque(Sintesis), new Ataque(Polvo_Veneno),
+				new Ataque(Transformacion), new Ataque(Toxico), new Ataque(Picotazo_venenoso), new Ataque(Lanza_mugre),
+				new Ataque(Juego_sucio), new Ataque(Tajo_umbrio), new Ataque(Respiro), new Ataque(Danza_pluma),
+				new Ataque(Aerochorro), new Ataque(Descanso)};
 		// vacios
 
-		Ataque vacio = new Ataque("", 0, "", 0, 0, 0, 0, "", 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		Ataque vacio = new Ataque("", 0, "", 0, 0, 0, 0, "", 0 ,0 , "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		Ataque[] vacios = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
 		Ataque[] ditto = { new Ataque(Transformacion), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
 
@@ -333,8 +340,10 @@ public class TestPokemon {
 			System.out.println("Prioridad jugador > prioridad rival");
 
 			if (!jugador.nombre.equals("Ditto")) {
-				if ((jugador.ataques[numAtaque].nombre.equals(Sintesis) || jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca jugador
-																										// despues
+				if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)
+						|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca
+																												// jugador
+					// despues
 					Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
 					String cadena1 = barraVida(jugador, vidaTotal);
 					String cadena2 = barraVida(rival, vida2);
@@ -348,7 +357,8 @@ public class TestPokemon {
 					System.out.println(rival.nombre + Est2);
 					System.out.println(cadena2);
 					System.out.println();
-				} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
+				} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)
+						|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
 					System.out.println(jugador.nombre + " ya tiene la vida al máximo");
 				} else {
 					vidaA = rival.vida;
@@ -370,8 +380,9 @@ public class TestPokemon {
 				}
 				if (rival.comprobarVivo()) {
 					if (R > jugador.ataques[numAtaque].probRetr) {
-						if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida < vida2) { // ataca rival por
-																								// prioridad
+						if ((rival.ataques[i].nombre.equals(Sintesis) || rival.ataques[i].nombre.equals("Respiro"))
+								&& rival.vida < vida2) { // ataca rival por
+							// prioridad
 							Atacar(rival, jugador, rival.ataques, i, vida2);
 							String cadena1 = barraVida(jugador, vidaTotal);
 							String cadena2 = barraVida(rival, vida2);
@@ -385,7 +396,8 @@ public class TestPokemon {
 							System.out.println(rival.nombre + Est2);
 							System.out.println(cadena2);
 							System.out.println();
-						} else if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida >= vida2) {
+						} else if ((rival.ataques[i].nombre.equals(Sintesis)
+								|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida >= vida2) {
 							System.out.println(rival.nombre + " ya tiene la vida al máximo");
 						} else {
 							vidaA = jugador.vida;
@@ -474,7 +486,8 @@ public class TestPokemon {
 			}
 		} else if (jugador.ataques[numAtaque].prioridad < rival.ataques[i].prioridad) {
 			System.out.println("Prioridad rival > prioridad jugador");
-			if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida < vida2) { // ataca rival por prioridad
+			if ((rival.ataques[i].nombre.equals(Sintesis) || rival.ataques[i].nombre.equals("Respiro"))
+					&& rival.vida < vida2) { // ataca rival por prioridad
 				Atacar(rival, jugador, rival.ataques, i, vida2);
 				String cadena1 = barraVida(jugador, vidaTotal);
 				String cadena2 = barraVida(rival, vida2);
@@ -488,7 +501,8 @@ public class TestPokemon {
 				System.out.println(rival.nombre + Est2);
 				System.out.println(cadena2);
 				System.out.println();
-			} else if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida >= vida2) {
+			} else if ((rival.ataques[i].nombre.equals(Sintesis) || rival.ataques[i].nombre.equals("Respiro"))
+					&& rival.vida >= vida2) {
 				System.out.println(rival.nombre + " ya tiene la vida al máximo");
 			} else {
 				vidaA = jugador.vida;
@@ -510,9 +524,10 @@ public class TestPokemon {
 
 				if (jugador.comprobarVivo()) {
 					if (R > rival.ataques[i].probRetr) {
-						if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca
-																												// jugador
-																												// despues
+						if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)
+								|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca
+							// jugador
+							// despues
 							Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
 							cadena1 = barraVida(jugador, vidaTotal);
 							cadena2 = barraVida(rival, vida2);
@@ -526,7 +541,8 @@ public class TestPokemon {
 							System.out.println(rival.nombre + Est2);
 							System.out.println(cadena2);
 							System.out.println();
-						} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
+						} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)
+								|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
 							System.out.println(jugador.nombre + " ya tiene la vida al máximo");
 						} else {
 							vidaA = rival.vida;
@@ -587,9 +603,10 @@ public class TestPokemon {
 			System.out.println("Turno de " + jugador.nombre); // ha terminado de atacar el rival
 			if (jugador.comprobarVivo()) {
 				if (R > rival.ataques[i].probRetr) {
-					if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca
-																											// jugador
-																											// despues
+					if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)
+							|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca
+						// jugador
+						// despues
 						Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
 						String cadena1 = barraVida(jugador, vidaTotal);
 						String cadena2 = barraVida(rival, vida2);
@@ -603,7 +620,8 @@ public class TestPokemon {
 						System.out.println(rival.nombre + Est2);
 						System.out.println(cadena2);
 						System.out.println();
-					} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
+					} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)
+							|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
 						System.out.println(jugador.nombre + " ya tiene la vida al máximo");
 					} else {
 						vidaA = rival.vida;
@@ -664,7 +682,9 @@ public class TestPokemon {
 			if (jugador.velocidad > rival.velocidad) {
 				System.out.println("Velocidad jugador > rival");
 
-				if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca jugador
+				if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)
+						|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca
+																												// jugador
 					Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
 					String cadena1 = barraVida(jugador, vidaTotal);
 					String cadena2 = barraVida(rival, vida2);
@@ -679,7 +699,8 @@ public class TestPokemon {
 					System.out.println(cadena2);
 					System.out.println();
 
-				} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
+				} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)
+						|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
 					System.out.println(jugador.nombre + " ya tiene la vida al máximo");
 				} else if (jugador.ataques[numAtaque].nombre.equals("Transformacion")) {
 
@@ -720,7 +741,8 @@ public class TestPokemon {
 				}
 				if (rival.comprobarVivo()) {
 					if (R > jugador.ataques[numAtaque].probRetr) {
-						if ((rival.ataques[i].nombre.equals(Sintesis) || rival.ataques[i].nombre.equals("Respiro")) && rival.vida < vida2) { // ataca rival
+						if ((rival.ataques[i].nombre.equals(Sintesis) || rival.ataques[i].nombre.equals("Respiro"))
+								&& rival.vida < vida2) { // ataca rival
 							System.out.println("ataca");
 							Atacar(rival, jugador, rival.ataques, i, vida2);
 							String cadena1 = barraVida(jugador, vidaTotal);
@@ -735,7 +757,8 @@ public class TestPokemon {
 							System.out.println(rival.nombre + Est2);
 							System.out.println(cadena2);
 							System.out.println();
-						} else if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida >= vida2) {
+						} else if ((rival.ataques[i].nombre.equals(Sintesis)
+								|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida >= vida2) {
 							System.out.println(rival.nombre + " ya tiene la vida al máximo");
 						} else {
 							vidaA = jugador.vida;
@@ -796,7 +819,8 @@ public class TestPokemon {
 			} else {
 				System.out.println("velocidad rival > jugador");
 
-				if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida < vida2) { // ataca rival
+				if ((rival.ataques[i].nombre.equals(Sintesis) || rival.ataques[i].nombre.equals("Respiro"))
+						&& rival.vida < vida2) { // ataca rival
 					Atacar(rival, jugador, rival.ataques, i, vida2);
 					String cadena1 = barraVida(jugador, vidaTotal);
 					String cadena2 = barraVida(rival, vida2);
@@ -810,7 +834,8 @@ public class TestPokemon {
 					System.out.println(rival.nombre + Est2);
 					System.out.println(cadena2);
 					System.out.println();
-				} else if ((rival.ataques[i].nombre.equals(Sintesis)|| rival.ataques[i].nombre.equals("Respiro")) && rival.vida >= vida2) {
+				} else if ((rival.ataques[i].nombre.equals(Sintesis) || rival.ataques[i].nombre.equals("Respiro"))
+						&& rival.vida >= vida2) {
 					System.out.println(rival.nombre + " ya tiene la vida al máximo");
 				} else {
 					System.out.println("XDDDD");
@@ -835,8 +860,9 @@ public class TestPokemon {
 				}
 				if (jugador.comprobarVivo()) {
 					if (R > rival.ataques[i].probRetr) {
-						if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca
-																												// jugador
+						if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)
+								|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida < vidaTotal) { // ataca
+							// jugador
 							Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
 							String cadena1 = barraVida(jugador, vidaTotal);
 							String cadena2 = barraVida(rival, vida2);
@@ -850,7 +876,8 @@ public class TestPokemon {
 							System.out.println(rival.nombre + Est2);
 							System.out.println(cadena2);
 							System.out.println();
-						} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
+						} else if ((jugador.ataques[numAtaque].nombre.equals(Sintesis)
+								|| jugador.ataques[numAtaque].nombre.equals("Respiro")) && jugador.vida >= vidaTotal) {
 							System.out.println(jugador.nombre + " ya tiene la vida al máximo");
 						} else if (jugador.ataques[numAtaque].nombre.equals("Transformacion")) {
 							jugador = rival;
@@ -1668,220 +1695,243 @@ public class TestPokemon {
 	}
 
 	public static void modificaEst(int ataque, Pokemon jugador, Pokemon rival, double vidaTotal) {
-
-		if (jugador.ataques[ataque].cambAtEspecialP != 0) {
-			switch (jugador.ataques[ataque].cambAtEspecialP) {
-			case -2:
-				jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 2;
-				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
-				break;
-			case -1:
-				jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 3;
-				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
-				break;
-			case 2:
-				jugador.Est_ataqueEspecial *= 2;
-				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
-				break;
-			case 1:
-				jugador.Est_ataqueEspecial += jugador.Est_ataqueEspecial / 2;
-				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
-				break;
+		double rnd = Math.random() * 100;
+		if (rnd <= jugador.ataques[ataque].probabCambioEstadistica) {
+			if (jugador.ataques[ataque].cambAtEspecialP != 0) {
+				switch (jugador.ataques[ataque].cambAtEspecialP) {
+				case -2:
+					jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 2;
+					jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+					break;
+				case -1:
+					jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 3;
+					jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+					break;
+				case 2:
+					jugador.Est_ataqueEspecial *= 2;
+					jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+					break;
+				case 1:
+					jugador.Est_ataqueEspecial += jugador.Est_ataqueEspecial / 2;
+					jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+					break;
+				}
 			}
-		}
 
-		if (jugador.ataques[ataque].cambAtFisicoP != 0) {
+			if (jugador.ataques[ataque].cambAtFisicoP != 0) {
 
-			switch (jugador.ataques[ataque].cambAtFisicoP) {
-			case -2:
-				jugador.Est_ataque -= jugador.Est_ataque / 2;
-				jugador.setEst_ataque(jugador.Est_ataque);
-				break;
-			case -1:
-				jugador.Est_ataque -= jugador.Est_ataque / 3;
-				jugador.setEst_ataque(jugador.Est_ataque);
-				break;
-			case 2:
-				jugador.Est_ataque *= 2;
-				jugador.setEst_ataqueEspecial(jugador.Est_ataque);
-				break;
-			case 1:
-				jugador.Est_ataque += jugador.Est_ataque / 2;
-				jugador.setEst_ataque(jugador.Est_ataque);
-				break;
+				switch (jugador.ataques[ataque].cambAtFisicoP) {
+				case -2:
+					jugador.Est_ataque -= jugador.Est_ataque / 2;
+					jugador.setEst_ataque(jugador.Est_ataque);
+					break;
+				case -1:
+					jugador.Est_ataque -= jugador.Est_ataque / 3;
+					jugador.setEst_ataque(jugador.Est_ataque);
+					break;
+				case 2:
+					jugador.Est_ataque *= 2;
+					jugador.setEst_ataqueEspecial(jugador.Est_ataque);
+					break;
+				case 1:
+					jugador.Est_ataque += jugador.Est_ataque / 2;
+					jugador.setEst_ataque(jugador.Est_ataque);
+					break;
+				}
 			}
-		}
 
-		if (jugador.ataques[ataque].cambDefEspecialP != 0) {
-			switch (jugador.ataques[ataque].cambDefEspecialP) {
-			case -2:
-				jugador.Est_defensaEspecial -= jugador.Est_defensaEspecial / 2;
-				jugador.setEst_defensaEspecial(jugador.Est_defensaEspecial);
-				break;
-			case -1:
-				jugador.Est_defensaEspecial -= jugador.Est_defensaEspecial / 3;
-				jugador.setEst_defensaEspecial(jugador.Est_defensaEspecial);
-				break;
-			case 2:
-				jugador.Est_defensaEspecial *= 2;
-				jugador.setEst_defensaEspecial(jugador.Est_defensaEspecial);
-				break;
-			case 1:
-				jugador.Est_defensaEspecial += jugador.Est_defensaEspecial / 2;
-				jugador.setEst_defensaEspecial(jugador.Est_defensaEspecial);
-				break;
+			if (jugador.ataques[ataque].cambDefEspecialP != 0) {
+				switch (jugador.ataques[ataque].cambDefEspecialP) {
+				case -2:
+					jugador.Est_defensaEspecial -= jugador.Est_defensaEspecial / 2;
+					jugador.setEst_defensaEspecial(jugador.Est_defensaEspecial);
+					break;
+				case -1:
+					jugador.Est_defensaEspecial -= jugador.Est_defensaEspecial / 3;
+					jugador.setEst_defensaEspecial(jugador.Est_defensaEspecial);
+					break;
+				case 2:
+					jugador.Est_defensaEspecial *= 2;
+					jugador.setEst_defensaEspecial(jugador.Est_defensaEspecial);
+					break;
+				case 1:
+					jugador.Est_defensaEspecial += jugador.Est_defensaEspecial / 2;
+					jugador.setEst_defensaEspecial(jugador.Est_defensaEspecial);
+					break;
+				}
 			}
-		}
 
-		if (jugador.ataques[ataque].cambDefFisicaP != 0) {
+			if (jugador.ataques[ataque].cambDefFisicaP != 0) {
 
-			switch (jugador.ataques[ataque].cambDefFisicaP) {
-			case -2:
-				jugador.Est_defensa -= jugador.Est_defensa / 2;
-				jugador.setEst_defensa(jugador.Est_defensa);
-				break;
-			case -1:
-				jugador.Est_defensa -= jugador.Est_defensa / 3;
-				jugador.setEst_defensa(jugador.Est_defensa);
-				break;
-			case 2:
-				jugador.Est_defensa *= 2;
-				jugador.setEst_defensa(jugador.Est_defensa);
-				break;
-			case 1:
-				jugador.Est_defensa += jugador.Est_defensa / 2;
-				jugador.setEst_defensa(jugador.Est_defensa);
-				break;
+				switch (jugador.ataques[ataque].cambDefFisicaP) {
+				case -2:
+					jugador.Est_defensa -= jugador.Est_defensa / 2;
+					jugador.setEst_defensa(jugador.Est_defensa);
+					break;
+				case -1:
+					jugador.Est_defensa -= jugador.Est_defensa / 3;
+					jugador.setEst_defensa(jugador.Est_defensa);
+					break;
+				case 2:
+					jugador.Est_defensa *= 2;
+					jugador.setEst_defensa(jugador.Est_defensa);
+					break;
+				case 1:
+					jugador.Est_defensa += jugador.Est_defensa / 2;
+					jugador.setEst_defensa(jugador.Est_defensa);
+					break;
+				}
 			}
-		}
 
-		if (jugador.ataques[ataque].cambVelP != 0) {
-			switch (jugador.ataques[ataque].cambVelP) {
-			case -2:
-				jugador.velocidad -= jugador.velocidad / 2;
-				jugador.setVelocidad(jugador.velocidad);
-				break;
-			case -1:
-				jugador.velocidad -= jugador.velocidad / 3;
-				jugador.setVelocidad(jugador.velocidad);
-				break;
-			case 2:
-				jugador.velocidad *= 2;
-				jugador.setVelocidad(jugador.velocidad);
-				break;
-			case 1:
-				jugador.velocidad += jugador.velocidad / 2;
-				jugador.setVelocidad(jugador.velocidad);
-				break;
+			if (jugador.ataques[ataque].cambVelP != 0) {
+				switch (jugador.ataques[ataque].cambVelP) {
+				case -2:
+					jugador.velocidad -= jugador.velocidad / 2;
+					jugador.setVelocidad(jugador.velocidad);
+					break;
+				case -1:
+					jugador.velocidad -= jugador.velocidad / 3;
+					jugador.setVelocidad(jugador.velocidad);
+					break;
+				case 2:
+					jugador.velocidad *= 2;
+					jugador.setVelocidad(jugador.velocidad);
+					break;
+				case 1:
+					jugador.velocidad += jugador.velocidad / 2;
+					jugador.setVelocidad(jugador.velocidad);
+					break;
+				}
 			}
-		}
 
-		// Rival
+			// Rival
 
-		if (jugador.ataques[ataque].cambAtEspecialP != 0) {
-			switch (jugador.ataques[ataque].cambAtEspecialP) {
-			case -2:
-				jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 2;
-				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
-				break;
-			case -1:
-				jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 3;
-				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
-				break;
-			case 2:
-				jugador.Est_ataqueEspecial *= 2;
-				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
-				break;
-			case 1:
-				jugador.Est_ataqueEspecial += jugador.Est_ataqueEspecial / 2;
-				jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
-				break;
+			if (jugador.ataques[ataque].cambAtEspecialP != 0) {
+				switch (jugador.ataques[ataque].cambAtEspecialP) {
+				case -2:
+					jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 2;
+					jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+					break;
+				case -1:
+					jugador.Est_ataqueEspecial -= jugador.Est_ataqueEspecial / 3;
+					jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+					break;
+				case 2:
+					jugador.Est_ataqueEspecial *= 2;
+					jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+					break;
+				case 1:
+					jugador.Est_ataqueEspecial += jugador.Est_ataqueEspecial / 2;
+					jugador.setEst_ataqueEspecial(jugador.Est_ataqueEspecial);
+					break;
+				}
 			}
-		}
 
-		if (jugador.ataques[ataque].cambAtFisicoR != 0) {
+			if (jugador.ataques[ataque].cambAtFisicoR != 0) {
 
-			switch (jugador.ataques[ataque].cambAtFisicoR) {
-			case -2:
-				rival.Est_ataque -= rival.Est_ataque / 2;
-				rival.setEst_ataque(rival.Est_ataque);
-				break;
-			case -1:
-				rival.Est_ataque -= rival.Est_ataque / 3;
-				rival.setEst_ataque(rival.Est_ataque);
-				break;
-			case 2:
-				rival.Est_ataque *= 2;
-				rival.setEst_ataqueEspecial(rival.Est_ataque);
-				break;
-			case 1:
-				rival.Est_ataque += rival.Est_ataque / 2;
-				rival.setEst_ataque(rival.Est_ataque);
-				break;
+				switch (jugador.ataques[ataque].cambAtFisicoR) {
+				case -2:
+					rival.Est_ataque -= rival.Est_ataque / 2;
+					rival.setEst_ataque(rival.Est_ataque);
+					break;
+				case -1:
+					rival.Est_ataque -= rival.Est_ataque / 3;
+					rival.setEst_ataque(rival.Est_ataque);
+					break;
+				case 2:
+					rival.Est_ataque *= 2;
+					rival.setEst_ataqueEspecial(rival.Est_ataque);
+					break;
+				case 1:
+					rival.Est_ataque += rival.Est_ataque / 2;
+					rival.setEst_ataque(rival.Est_ataque);
+					break;
+				}
 			}
-		}
 
-		if (jugador.ataques[ataque].cambDefEspecialR != 0) {
-			switch (jugador.ataques[ataque].cambDefEspecialR) {
-			case -2:
-				rival.Est_defensaEspecial -= rival.Est_defensaEspecial / 2;
-				rival.setEst_defensaEspecial(rival.Est_defensaEspecial);
-				break;
-			case -1:
-				rival.Est_defensaEspecial -= rival.Est_defensaEspecial / 3;
-				rival.setEst_defensaEspecial(rival.Est_defensaEspecial);
-				break;
-			case 2:
-				rival.Est_defensaEspecial *= 2;
-				rival.setEst_defensaEspecial(rival.Est_defensaEspecial);
-				break;
-			case 1:
-				rival.Est_defensaEspecial += rival.Est_defensaEspecial / 2;
-				rival.setEst_defensaEspecial(jugador.Est_defensaEspecial);
-				break;
+			if (jugador.ataques[ataque].cambDefEspecialR != 0) {
+				switch (jugador.ataques[ataque].cambDefEspecialR) {
+				case -2:
+					rival.Est_defensaEspecial -= rival.Est_defensaEspecial / 2;
+					rival.setEst_defensaEspecial(rival.Est_defensaEspecial);
+					break;
+				case -1:
+					rival.Est_defensaEspecial -= rival.Est_defensaEspecial / 3;
+					rival.setEst_defensaEspecial(rival.Est_defensaEspecial);
+					break;
+				case 2:
+					rival.Est_defensaEspecial *= 2;
+					rival.setEst_defensaEspecial(rival.Est_defensaEspecial);
+					break;
+				case 1:
+					rival.Est_defensaEspecial += rival.Est_defensaEspecial / 2;
+					rival.setEst_defensaEspecial(jugador.Est_defensaEspecial);
+					break;
+				}
 			}
-		}
 
-		if (jugador.ataques[ataque].cambDefFisicaR != 0) {
+			if (jugador.ataques[ataque].cambDefFisicaR != 0) {
 
-			switch (jugador.ataques[ataque].cambDefFisicaR) {
-			case -2:
-				rival.Est_defensa -= rival.Est_defensa / 2;
-				rival.setEst_defensa(rival.Est_defensa);
-				break;
-			case -1:
-				rival.Est_defensa -= rival.Est_defensa / 3;
-				rival.setEst_defensa(rival.Est_defensa);
-				break;
-			case 2:
-				rival.Est_defensa *= 2;
-				rival.setEst_defensa(rival.Est_defensa);
-				break;
-			case 1:
-				rival.Est_defensa += rival.Est_defensa / 2;
-				rival.setEst_defensa(rival.Est_defensa);
-				break;
+				switch (jugador.ataques[ataque].cambDefFisicaR) {
+				case -2:
+					rival.Est_defensa -= rival.Est_defensa / 2;
+					rival.setEst_defensa(rival.Est_defensa);
+					break;
+				case -1:
+					rival.Est_defensa -= rival.Est_defensa / 3;
+					rival.setEst_defensa(rival.Est_defensa);
+					break;
+				case 2:
+					rival.Est_defensa *= 2;
+					rival.setEst_defensa(rival.Est_defensa);
+					break;
+				case 1:
+					rival.Est_defensa += rival.Est_defensa / 2;
+					rival.setEst_defensa(rival.Est_defensa);
+					break;
+				}
 			}
-		}
 
-		if (jugador.ataques[ataque].cambVelR != 0) {
-			switch (jugador.ataques[ataque].cambVelR) {
-			case -2:
-				rival.velocidad -= rival.velocidad / 2;
-				rival.setVelocidad(rival.velocidad);
-				break;
-			case -1:
-				rival.velocidad -= rival.velocidad / 3;
-				rival.setVelocidad(rival.velocidad);
-				break;
-			case 2:
-				rival.velocidad *= 2;
-				rival.setVelocidad(rival.velocidad);
-				break;
-			case 1:
-				rival.velocidad += rival.velocidad / 2;
-				rival.setVelocidad(rival.velocidad);
-				break;
+			if (jugador.ataques[ataque].cambVelR != 0) {
+				switch (jugador.ataques[ataque].cambVelR) {
+				case -2:
+					rival.velocidad -= rival.velocidad / 2;
+					rival.setVelocidad(rival.velocidad);
+					break;
+				case -1:
+					rival.velocidad -= rival.velocidad / 3;
+					rival.setVelocidad(rival.velocidad);
+					break;
+				case 2:
+					rival.velocidad *= 2;
+					rival.setVelocidad(rival.velocidad);
+					break;
+				case 1:
+					rival.velocidad += rival.velocidad / 2;
+					rival.setVelocidad(rival.velocidad);
+					break;
+				}
+			}
+			
+			if (jugador.ataques[ataque].cambPrecisionP != 0) {
+				switch (jugador.ataques[ataque].cambPrecisionP) {
+				case -2:
+					rival.velocidad -= rival.velocidad / 2;
+					rival.setVelocidad(rival.velocidad);
+					break;
+				case -1:
+					rival.velocidad -= rival.velocidad / 3;
+					rival.setVelocidad(rival.velocidad);
+					break;
+				case 2:
+					rival.velocidad *= 2;
+					rival.setVelocidad(rival.velocidad);
+					break;
+				case 1:
+					rival.velocidad += rival.velocidad / 2;
+					rival.setVelocidad(rival.velocidad);
+					break;
+				}
 			}
 		}
 	}

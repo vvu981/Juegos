@@ -23,6 +23,9 @@ public class Ataque {
 	public String cambioEstado;
 	public double probRetr;
 	public String tipoAtaque;
+	public double probabCambioEstadistica;
+	public int cambPrecisionP;
+	public int cambPrecisionR;
 	/*
 	 * especie es para ver si hace daño o no
 	 * 		0: No hace daño -> Sube defensa
@@ -30,8 +33,8 @@ public class Ataque {
 	 * 		1: Hace daño
 	 * 		2: No hace daño -> Sube velocidad
 	 */
-	public Ataque(String nombre, double poder, String tipo, int prioridad, double precision, double probCrit, double probabCambioEstado, String cambioEstado, double probRetr, String tipoAtaque,  int cambAtFisicoP, int cambAtEspecialP,  int cambDefFisicaP, int cambDefEspecialP, int cambVelP,
-			 int cambAtFisicoR, int cambAtEspecialR,  int cambDefFisicaR, int cambDefEspecialR, int cambVelR) {
+	public Ataque(String nombre, double poder, String tipo, int prioridad, double precision, double probCrit, double probabCambioEstado, String cambioEstado, double probabCambioEstadistica, double probRetr, String tipoAtaque,  int cambAtFisicoP, int cambAtEspecialP,  int cambDefFisicaP, int cambDefEspecialP, int cambVelP,
+			 int cambAtFisicoR, int cambAtEspecialR,  int cambDefFisicaR, int cambDefEspecialR, int cambVelR, int cambPrecisionP, int cambPrecisionR) {
 		super();
 		this.nombre = nombre;
 		Poder = poder;
@@ -43,6 +46,7 @@ public class Ataque {
 		this.cambioEstado = cambioEstado;
 		this.probRetr = probRetr;
 		this.tipoAtaque = tipoAtaque;
+		this.probabCambioEstadistica = probabCambioEstadistica;
 		
 		this.cambAtEspecialP = cambAtEspecialP;
 		this.cambAtFisicoP = cambAtFisicoP;
@@ -54,6 +58,8 @@ public class Ataque {
 		this.cambDefFisicaR = cambDefFisicaR;
 		this.cambVelP = cambVelP;
 		this.cambVelR = cambVelR;
+		this.cambPrecisionP = cambPrecisionP;
+		this.cambPrecisionR = cambPrecisionR;
 	}
 	
 	public Ataque(Ataque ataque) {
@@ -67,6 +73,8 @@ public class Ataque {
 		this.cambioEstado = ataque.cambioEstado;
 		this.probRetr = ataque.probRetr;
 		this.tipoAtaque = ataque.tipoAtaque;
+		this.probabCambioEstadistica = ataque.probabCambioEstadistica;
+
 		
 		this.cambAtEspecialP = ataque.cambAtEspecialP;
 		this.cambAtFisicoP = ataque.cambAtFisicoP;
@@ -78,6 +86,8 @@ public class Ataque {
 		this.cambDefFisicaR = ataque.cambDefFisicaR;
 		this.cambVelP = ataque.cambVelP;
 		this.cambVelR = ataque.cambVelR;
+		this.cambPrecisionP = ataque.cambPrecisionP;
+		this.cambPrecisionR = ataque.cambPrecisionR;
 	}
 
 	public String getTipoAtaque() {
@@ -249,5 +259,29 @@ public class Ataque {
 
 	public void setCambVelR(int cambVelR) {
 		this.cambVelR = cambVelR;
+	}
+
+	public double getProbabCambioEstadistica() {
+		return probabCambioEstadistica;
+	}
+
+	public void setProbabCambioEstadistica(double probabCambioEstadistica) {
+		this.probabCambioEstadistica = probabCambioEstadistica;
+	}
+
+	public int getCambPrecisionP() {
+		return cambPrecisionP;
+	}
+
+	public void setCambPrecisionP(int cambPrecisionP) {
+		this.cambPrecisionP = cambPrecisionP;
+	}
+
+	public int getCambPrecisionR() {
+		return cambPrecisionR;
+	}
+
+	public void setCambPrecisionR(int cambPrecisionR) {
+		this.cambPrecisionR = cambPrecisionR;
 	}
 }
