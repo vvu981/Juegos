@@ -15,13 +15,14 @@ public class TestPokemon {
 
 	public static void mostrarAtaques(Ataque[] a, Pokemon p) {
 		for (int i = 0; i < a.length; i++) {
+			if (!a[i].nombre.equals("a"))
 			System.out.print(i + ". " + a[i].nombre + "  ");
 		}
 
 	}
 
 	public static Pokemon eligeRival(Pokemon[] p) {
-		Ataque vacio = new Ataque("", 0, "", 0, 0, 0, 0, 0, "", 0, "Fisico");
+		Ataque vacio = new Ataque("a", 0, "", 0, 0, 0, 0, 0, "", 0, "Fisico");
 		Ataque[] vacios = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
 
 		Pokemon other = new Pokemon("", "", "", 0, vacios, 0, 0, 0, 0, 0, "");
@@ -73,8 +74,10 @@ public class TestPokemon {
 
 		// ataques Ataque: nombre, poder, tipo, especie, prioridad, precision, probCrit,
 		// probabCambioEstado, cambioEstado, probRetr)
+		//ataque normal
+		Ataque Descanso = new Ataque("Descanso", 0, "Normal", 0, 1, 100, 0, 100, "Dormir", 0, "");
 		// ataque ditto
-		Ataque Transformacion = new Ataque("Transformacion", 0, "Normal", 0, 0, 0, 0, 0, "", 0, "");
+		Ataque Transformacion = new Ataque("Transformacion", 0, "Normal", 0, 1, 0, 0, 0, "", 0, "");
 		// Ataques PokemonFuego
 		Ataque Ascuas = new Ataque("Ascuas", 70, "Fuego", 0, 1, 100, 5, 10, "Quemar", 0, "Especial");
 		Ataque Llamarada = new Ataque("Llamarada", 85, "Fuego", 0, 1, 85, 5, 30, "Quemar", 0, "Especial");
@@ -99,9 +102,13 @@ public class TestPokemon {
 				"Fisico");
 		Ataque Lanza_mugre = new Ataque("Lanza mugre", 120, "Veneno", 0, 1, 70, 5, 30, "Envenenar", 0, "Especial");
 
+		//Ataques Volador
+		Ataque Respiro = new Ataque("Respiro", 0, "Volador", 4, 1, 100, 0, 0, "", 0, "");
+		Ataque Danza_pluma = new Ataque("Danza pluma", 0, "Volador", -6, 1, 100, 0, 0, "", 0, "");
+		Ataque Aerochorro = new Ataque("Aerochorro", 180, "Volador", 0, 1, 95, 12.5, 0, "", 0, "");
 		// Ataques Siniestro
 		Ataque Juego_sucio = new Ataque("Juego sucio", 95, "Siniestro", 0, 1, 100, 5, 0, "", 0, "Fisico");
-
+		Ataque Tajo_umbrio = new Ataque("Tajo umbrío", 75, "Siniestro", 0, 1, 100, 5, 0, "", 0, "Especial");
 		// Ataques Hada
 
 		// Array todos ataques
@@ -109,7 +116,7 @@ public class TestPokemon {
 				new Ataque(Pistola_agua), new Ataque(Hidrobomba), new Ataque(Mordisco), new Ataque(Aqua_jet),
 				new Ataque(Hoja_afilada), new Ataque(Tormenta_floral), new Ataque(Sintesis), new Ataque(Polvo_Veneno),
 				new Ataque(Transformacion), new Ataque(Toxico), new Ataque(Picotazo_venenoso), new Ataque(Lanza_mugre),
-				new Ataque(Juego_sucio) };
+				new Ataque(Juego_sucio), new Ataque(Tajo_umbrio), new Ataque(Respiro), new Ataque(Danza_pluma), new Ataque(Aerochorro), new Ataque(Descanso) };
 
 		// vacios
 
@@ -131,10 +138,10 @@ public class TestPokemon {
 		Pokemon Venasaur = new Pokemon("Venasaur", "Planta", "Veneno", 185, vacios, 155, 160, 165, 149, 176, "Bien");
 		Pokemon Zubat = new Pokemon("Zubat", "Veneno", "Volador", 147, vacios, 106, 90, 95, 101, 117, "Bien");
 		Pokemon Snorlax = new Pokemon("Snorlax", "Normal", "", 267, vacios, 178, 128, 128, 178, 90, "Bien");
-		Pokemon Ditto = new Pokemon("Ditto", "Normal", "", 155, ditto, 210, 110, 110, 110, 110, "Bien");
-
+		Pokemon Ditto = new Pokemon("Ditto", "Normal", "", 155, ditto, 110, 110, 110, 110, 210, "Bien");
+		Pokemon Rayquaza = new Pokemon("Rayquaza", "Dragon", "Volador", 212, vacios, 222, 222, 156, 156, 161, "Bien");
 		Pokemon[] pokemon = { new Pokemon(Charizard), new Pokemon(Blastoise), new Pokemon(Venasaur), new Pokemon(Zubat),
-				new Pokemon(Snorlax), new Pokemon(Ditto) };
+				new Pokemon(Snorlax), new Pokemon(Ditto), new Pokemon(Rayquaza) };
 		mostrarArrayPokemon(pokemon);
 		// leer que pokemon quiere el usuario
 		int i;
@@ -224,40 +231,39 @@ public class TestPokemon {
 
 	public static String est_Cambiada(double est_AFInicial1, double est_AEInicial1, double est_DFInicial1,
 			double est_DEInicial1, double est_Vel1, Pokemon jugador) {
-		
-		if (!jugador.nombre.equals("Ditto")){
-				String cambio = "";
-		double calc = 0;
-		DecimalFormat df = new DecimalFormat("#.00");
-		df.format(calc);
-		if (est_AFInicial1 != jugador.Est_ataque) {
-			calc = jugador.Est_ataque / est_AFInicial1;
-			cambio = "(x" + df.format(calc) + " At.) ";
-		}
-		if (est_AEInicial1 != jugador.Est_ataqueEspecial) {
-			calc = jugador.Est_ataqueEspecial / est_AEInicial1;
-			cambio = "(" + df.format(calc) + " At Esp.) ";
-		}
-		if (est_Vel1 != jugador.velocidad) {
-			calc = jugador.velocidad / est_Vel1;
-			cambio = "(" + df.format(calc) + " Vel) ";
-		}
-		if (est_DFInicial1 != jugador.Est_defensa) {
-			calc = jugador.Est_defensa / est_DFInicial1;
-			cambio = "(" + df.format(calc) + " Def.) ";
-		}
-		if (est_DEInicial1 != jugador.Est_defensaEspecial) {
-			calc = jugador.Est_defensaEspecial / est_DEInicial1;
-			cambio = "(" + df.format(calc) + " Def. Esp.) ";
-		}
-		return cambio;
-		}else 
+
+		if (!jugador.nombre.equals("Ditto")) {
+			String cambio = "";
+			double calc = 0;
+			DecimalFormat df = new DecimalFormat("#.00");
+			df.format(calc);
+			if (est_AFInicial1 != jugador.Est_ataque) {
+				calc = jugador.Est_ataque / est_AFInicial1;
+				cambio = "(x" + df.format(calc) + " At.) ";
+			}
+			if (est_AEInicial1 != jugador.Est_ataqueEspecial) {
+				calc = jugador.Est_ataqueEspecial / est_AEInicial1;
+				cambio = "(" + df.format(calc) + " At Esp.) ";
+			}
+			if (est_Vel1 != jugador.velocidad) {
+				calc = jugador.velocidad / est_Vel1;
+				cambio = "(" + df.format(calc) + " Vel) ";
+			}
+			if (est_DFInicial1 != jugador.Est_defensa) {
+				calc = jugador.Est_defensa / est_DFInicial1;
+				cambio = "(" + df.format(calc) + " Def.) ";
+			}
+			if (est_DEInicial1 != jugador.Est_defensaEspecial) {
+				calc = jugador.Est_defensaEspecial / est_DEInicial1;
+				cambio = "(" + df.format(calc) + " Def. Esp.) ";
+			}
+			return cambio;
+		} else
 			return "";
 	}
-	
 
-	
 	static int cambiado = 0;
+
 	public static void llamadaAtacar(Pokemon jugador, Pokemon rival, Ataque[] atJug, Ataque[] atRiv, int numAtaque,
 			double vidaTotal, double vida2, double est_AFInicial1, double est_AEInicial1, double est_DFInicial1,
 			double est_DEInicial1, double est_Vel1, double est_AEInicial2, double est_AFInicial2, double est_DFInicial2,
@@ -269,7 +275,7 @@ public class TestPokemon {
 		 * System.out.println(rival.nombre + " ha perdido " + diferencia);
 		 */
 		DecimalFormat df = new DecimalFormat("#.00");
-		
+
 		double R = Math.random() * 100;
 		int numAtaqueRival = (int) R;
 		double vidaA = 0;
@@ -297,6 +303,7 @@ public class TestPokemon {
 		}
 
 		if (jugador.ataques[numAtaque].prioridad > rival.ataques[i].prioridad) {
+			System.out.println("Prioridad jugador > prioridad rival");
 
 			if (!jugador.nombre.equals("Ditto")) {
 				if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida < vidaTotal) { // ataca jugador
@@ -400,6 +407,7 @@ public class TestPokemon {
 
 			}
 		} else if (jugador.ataques[numAtaque].prioridad < rival.ataques[i].prioridad) {
+			System.out.println("Prioridad rival > prioridad jugador");
 			if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida < vida2) { // ataca rival por prioridad
 				Atacar(rival, jugador, rival.ataques, i, vida2);
 				String cadena1 = barraVida(jugador, vidaTotal);
@@ -501,6 +509,7 @@ public class TestPokemon {
 		} else {
 
 			if (jugador.velocidad > rival.velocidad) {
+				System.out.println("Velocidad jugador > rival");
 
 				if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida < vidaTotal) { // ataca jugador
 					Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
@@ -516,14 +525,25 @@ public class TestPokemon {
 
 				} else if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida >= vidaTotal) {
 					System.out.println(jugador.nombre + " ya tiene la vida al máximo");
-				} else if (jugador.ataques[numAtaque].nombre.equals("Transformacion")){
-					
+				} else if (jugador.ataques[numAtaque].nombre.equals("Transformacion")) {
+
 					System.out.println(jugador.nombre + " ha usado " + jugador.ataques[numAtaque].nombre);
 					jugador = rival;
+					
+					jugador.setNombre(rival.nombre);
+					jugador.setTipo(rival.tipo1);
+					jugador.setTipo2(rival.tipo2);
+					jugador.setVelocidad(rival.velocidad);
+					jugador.setVida(rival.vida);
+					jugador.setEst_ataque(rival.Est_ataque);
+					jugador.setEst_ataqueEspecial(rival.Est_ataqueEspecial);
+					jugador.setEst_defensa(rival.Est_defensa);
+					jugador.setEst_defensaEspecial(rival.Est_defensaEspecial);
+					jugador.setAtaques(rival.ataques);
 					cambiado++;
 					System.out.println("Deberia haberse cambiado: " + jugador.nombre);
-					
-				}	else{
+
+				} else {
 					System.out.println("este mensaje no deberia aparecer");
 					vidaA = rival.vida;
 					Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
@@ -609,6 +629,7 @@ public class TestPokemon {
 					System.out.println(rival.nombre + " ha muerto");
 
 			} else {
+				System.out.println("velocidad rival > jugador");
 
 				if (rival.ataques[i].nombre.equals(Sintesis) && rival.vida < vida2) { // ataca rival
 					Atacar(rival, jugador, rival.ataques, i, vida2);
@@ -656,13 +677,13 @@ public class TestPokemon {
 							System.out.println();
 						} else if (jugador.ataques[numAtaque].nombre.equals(Sintesis) && jugador.vida >= vidaTotal) {
 							System.out.println(jugador.nombre + " ya tiene la vida al máximo");
-						} else if (jugador.ataques[numAtaque].nombre.equals("Transformacion")){
+						} else if (jugador.ataques[numAtaque].nombre.equals("Transformacion")) {
 							jugador = rival;
 							System.out.println("3");
-						}else {
+						} else {
 							vidaA = rival.vida;
 							Atacar(jugador, rival, jugador.ataques, numAtaque, vidaTotal);
-							
+
 							String cadena1 = barraVida(jugador, vidaTotal);
 							String cadena2 = barraVida(rival, vida2);
 							String Est1 = est_Cambiada(est_AFInicial1, est_AEInicial1, est_DFInicial1, est_DEInicial1,
@@ -1385,7 +1406,9 @@ public class TestPokemon {
 							p = 0;
 						} else
 							p = 1;
-						if (ataques[ataque].especie == -4 && ataques[ataque].probabCambioEstado == 100
+						if (ataques[ataque].nombre.equals("Descanso")) {
+							jugador.setEstado(Dormido);
+						} else if (ataques[ataque].especie == -4 && ataques[ataque].probabCambioEstado == 100
 								&& rival.comprobarBien(rival)) {
 							switch (ataques[ataque].cambioEstado) {
 							case "Envenenar":
@@ -1420,19 +1443,19 @@ public class TestPokemon {
 						System.out.println("¡El ataque ha fallado!");
 				} else if (jugador.nombre.equals("Ditto")) {
 					if (jugador.ataques[ataque].nombre.equals("Transformacion")) {
-					jugador = rival;
-					jugador.setNombre(rival.nombre);
-					jugador.setAtaques(rival.ataques);
-					jugador.setEst_ataque(rival.Est_ataque);
-					jugador.setEst_defensa(rival.Est_defensa);
-					jugador.setEst_defensaEspecial(rival.Est_defensaEspecial);
-					jugador.setTipo(rival.tipo1);
-					jugador.setTipo2(rival.tipo2);
-					jugador.setVelocidad(rival.velocidad);
-					jugador.setVida(rival.vida);
-					System.out.println("Deberia funcionar: " + jugador.nombre);
+						jugador = rival;
+						jugador.setNombre(rival.nombre);
+						jugador.setAtaques(rival.ataques);
+						jugador.setEst_ataque(rival.Est_ataque);
+						jugador.setEst_defensa(rival.Est_defensa);
+						jugador.setEst_defensaEspecial(rival.Est_defensaEspecial);
+						jugador.setTipo(rival.tipo1);
+						jugador.setTipo2(rival.tipo2);
+						jugador.setVelocidad(rival.velocidad);
+						jugador.setVida(rival.vida);
+						System.out.println("Deberia funcionar: " + jugador.nombre);
 					}
-					
+
 				}
 
 				modificaEst(ataques[ataque].especie, jugador, rival, vidaTotal);
