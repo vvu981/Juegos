@@ -14,18 +14,17 @@ public class TestPokemon {
 	}
 
 	public static void mostrarAtaques(Ataque[] a, Pokemon p) {
-		for (int i = 0; i < a.length; i++) {
-			if (!a[i].nombre.equals("a"))
-				System.out.print(i + ". " + a[i].nombre + "  ");
+		for (int b = 0; b < a.length - 1; b++) {
+			System.out.print(b + ". " + a[b].nombre + "  ");
 		}
 
 	}
 
 	public static Pokemon eligeRival(Pokemon[] p) {
-		Ataque vacio = new Ataque("a", 0, "", 0, 0, 0, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0);
+		Ataque vacio = new Ataque("a", 0, "", 0, 0, 0, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		Ataque[] vacios = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
 
-		Pokemon other = new Pokemon("", "", "", 0, vacios, 0, 0, 0, 0, 0, "");
+		Pokemon other = new Pokemon("", "", "", 0, vacios, 0, 0, 0, 0, 0, "", 0);
 
 		double rnd = Math.random() * 100;
 		if (rnd < 17) {
@@ -48,7 +47,8 @@ public class TestPokemon {
 	public static int coincideTipo(Ataque[] a, Pokemon p) {
 		int j = 0;
 		for (int i = 0; i < a.length; i++) {
-			if (a[i].tipo.equals(p.tipo1) || a[i].tipo.equals(p.tipo2)) {
+			if ((a[i].tipo.equals(p.tipo1) || a[i].tipo.equals(p.tipo2))
+					|| (a[i].nombre.equals("Terremoto") && p.nombre.equals("Snorlax"))) {
 				j++;
 			}
 
@@ -72,127 +72,158 @@ public class TestPokemon {
 		 * -0.5 vel c -6 -> -0.5 at c -7 -> -0.5 def c
 		 */
 
+		Ataque vacio = new Ataque("", 0, "", 0, 0, 0, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		Ataque[] vacios = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
 		// ataques Ataque: nombre, poder, tipo, prioridad, precision, probCrit,
 		// probabCambioEstado, cambioEstado, probRetr, cambAtFisico, cambAtEspecial,
 		// cambDefFisica, cambDefEspecial, CambVel)
 		// ataque normal
-		Ataque Descanso = new Ataque("Descanso", 0, "Normal", 1, 100, 0, 100, "Dormir", 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0);
+		Ataque Descanso = new Ataque("Descanso", 0, "Normal", 1, 100, 0, 100, "Dormir", 0, 0, "", 0, 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0);
+		Ataque Ronquido = new Ataque("Ronquido", 50, "Normal", 1, 100, 5, 0, "", 0, 0, "Especial", 0, 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0);
+		Ataque Bomba_huevo = new Ataque("Bomba_huevo", 100, "Normal", 1, 50, 5, 0, "", 0, 0, "Especial", 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0);
 		// ataque ditto
-		Ataque Transformacion = new Ataque("Transformacion", 0, "Normal", 1, 100, 0, 0, "", 0, 0, "", 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0 ,0);
+		Ataque Transformacion = new Ataque("Transformacion", 0, "Normal", 1, 100, 0, 0, "", 0, 0, "", 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0);
 		// Ataques PokemonFuego
-		Ataque Ascuas = new Ataque("Ascuas", 70, "Fuego", 1, 100, 5, 10, "Quemar", 0, 0, "Especial", 0, 0, 0, 0, 0, 0, 0,
-				0, 0,0 ,0 , 0);
-		Ataque Llamarada = new Ataque("Llamarada", 85, "Fuego", 1, 85, 5, 30, "Quemar", 0, 0, "Especial", 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0,0 , 0);
-		Ataque A_Bocajarro = new Ataque("A bocajarro", 100, "Lucha", 1, 100, 5, 0, "", 0, 0, "Fisico", -1, 0, 0, 0, 0, 0,
-				0, 0, 0, 0,0 , 0);
-		Ataque Danza_Espada = new Ataque("Danza Espada", 0, "Normal", 1, 100, 0, 0, "", 100, 0,"", 2, 0, 0, 0, 0, 0, 0, 0,
-				0, 0,0 , 0);
+		Ataque Ascuas = new Ataque("Ascuas", 70, "Fuego", 1, 100, 5, 10, "Quemar", 0, 0, "Especial", 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0);
+		Ataque Llamarada = new Ataque("Llamarada", 85, "Fuego", 1, 85, 5, 30, "Quemar", 0, 0, "Especial", 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0);
+		Ataque A_Bocajarro = new Ataque("A bocajarro", 100, "Lucha", 1, 100, 5, 0, "", 0, 0, "Fisico", -1, 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0);
+		Ataque Danza_Espada = new Ataque("Danza Espada", 0, "Normal", 1, 100, 0, 0, "", 100, 0, "", 2, 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0);
 
 		// Ataques PokemonAgua
-		Ataque Pistola_agua = new Ataque("Pistola agua", 72, "Agua", 1, 100, 5, 0, "", 0, 0, "Especial", 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0,0 , 0);
-		Ataque Hidrobomba = new Ataque("Hidrobomba", 80, "Agua", 1, 80, 5, 0, "", 0, 0, "Especial", 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0,0 , 0);
-		Ataque Mordisco = new Ataque("Mordisco", 90, "Siniestro", 1, 100, 5, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0,0 , 0);
-		Ataque Aqua_jet = new Ataque("Aqua jet", 40, "Agua", 2, 100, 5, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0,0 , 0);
+		Ataque Pistola_agua = new Ataque("Pistola agua", 72, "Agua", 1, 100, 5, 0, "", 0, 0, "Especial", 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0);
+		Ataque Hidrobomba = new Ataque("Hidrobomba", 80, "Agua", 1, 80, 5, 0, "", 0, 0, "Especial", 0, 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0);
+		Ataque Mordisco = new Ataque("Mordisco", 90, "Siniestro", 1, 100, 5, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0);
+		Ataque Aqua_jet = new Ataque("Aqua jet", 40, "Agua", 2, 100, 5, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0);
 
 		// Ataques PokemonPlanta
-		Ataque Hoja_afilada = new Ataque("Hoja afilada", 55, "Planta", 1, 95, 35, 0, "", 0, 0, "Especial", 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0,0 , 0);
-		Ataque Tormenta_floral = new Ataque("Tormenta floral", 90, "Planta", 1, 100, 5, 0, "", 0, 0, "Especial", 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0,0 , 0);
-		Ataque Sintesis = new Ataque("Sintesis", 0, "Planta", 1, 100, 0, 0, "", 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 , 0);
-		Ataque Polvo_Veneno = new Ataque("Polvo veneno", 0, "Veneno", 1, 75, 0, 100, "Envenenar", 0, 0, "Especial", 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0,0 , 0);
+		Ataque Hoja_afilada = new Ataque("Hoja afilada", 55, "Planta", 1, 95, 35, 0, "", 0, 0, "Especial", 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0, 0);
+		Ataque Tormenta_floral = new Ataque("Tormenta floral", 90, "Planta", 1, 100, 5, 0, "", 0, 0, "Especial", 0, 0,
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		Ataque Sintesis = new Ataque("Sintesis", 0, "Planta", 1, 100, 0, 0, "", 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0);
+		Ataque Polvo_Veneno = new Ataque("Polvo veneno", 0, "Veneno", 1, 75, 0, 100, "Envenenar", 0, 0, "Especial", 0,
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		Ataque Drenadoras = new Ataque("Drenadoras", 0, "Planta", 1, 90, 0, 0, "", 0, 0, "Especial", 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0);
 
 		// Ataques Veneno
-		Ataque Toxico = new Ataque("Toxico", 0, "Veneno", 1, 85, 0, 100, "Envenenar", 0, 0, "Especial", 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0,0 , 0);
+		Ataque Toxico = new Ataque("Toxico", 0, "Veneno", 1, 85, 0, 100, "Envenenar", 0, 0, "Especial", 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0);
 		Ataque Picotazo_venenoso = new Ataque("Picotazo Venenoso", 15, "Veneno", 1, 100, 5, 30, "Envenenar", 0, 0,
-				"Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0 , 0);
-		Ataque Lanza_mugre = new Ataque("Lanza mugre", 120, "Veneno", 1, 70, 5, 30, "Envenenar", 0, 0, "Especial", 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0,0 , 0);
+				"Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		Ataque Lanza_mugre = new Ataque("Lanza mugre", 120, "Veneno", 1, 70, 5, 30, "Envenenar", 0, 0, "Especial", 0, 0,
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 		// Ataques Volador
-		Ataque Respiro = new Ataque("Respiro", 0, "Volador", 1, 100, 0, 0, "", 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-		Ataque Danza_pluma = new Ataque("Danza pluma", 0, "Volador", 1, 100, 0, 0, "", 100, 0, "", 0, 0, 0, 0, 0, -2, 0, 0,
-				0, 0,0 , 0);
-		Ataque Aerochorro = new Ataque("Aerochorro", 180, "Volador", 1, 95, 12.5, 0, "",0,  0, "", 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0,0 , 0);
-		Ataque Ala_bis = new Ataque("Ala bis", 80,"Volador", 1, 90, 5, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0,0,0, 0,0 , 0);
+		Ataque Respiro = new Ataque("Respiro", 0, "Volador", 1, 100, 0, 0, "", 0, 0, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0);
+		Ataque Danza_pluma = new Ataque("Danza pluma", 0, "Volador", 1, 100, 0, 0, "", 100, 0, "", 0, 0, 0, 0, 0, -2, 0,
+				0, 0, 0, 0, 0);
+		Ataque Aerochorro = new Ataque("Aerochorro", 180, "Volador", 1, 95, 12.5, 0, "", 0, 0, "", 0, 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0);
+		Ataque Ala_bis = new Ataque("Ala bis", 80, "Volador", 1, 90, 5, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0);
 		// Ataques Siniestro
-		Ataque Juego_sucio = new Ataque("Juego sucio", 95, "Siniestro", 1, 100, 5, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0);
-		Ataque Tajo_umbrio = new Ataque("Tajo umbrío", 75, "Siniestro", 1, 100, 5, 0, "", 40, 0, "Especial", 0, 0, 0, 0, 0,
+		Ataque Juego_sucio = new Ataque("Juego sucio", 95, "Siniestro", 1, 100, 5, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0,
 				0, 0, 0, 0, 0, 0, 0);
-		Ataque 
+		Ataque Tajo_umbrio = new Ataque("Tajo umbrío", 75, "Siniestro", 1, 100, 5, 0, "", 0, 0, "Especial", 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0, 0);
+		Ataque Pulso_noche = new Ataque("Pulso noche", 85, "Siniestro", 1, 95, 5, 0, "", 40, 0, "Especial", 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0, -1);
+		Ataque Pulso_umbrio = new Ataque("Pulso umbrio", 80, "Siniestro", 1, 100, 5, 20, "", 0, 0, "Especial", 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0, 0, 0);
 		// Ataques Hada
 
+		// Ataque tierra
+		Ataque Terremoto = new Ataque("Terremoto", 100, "Tierra", 1, 100, 5, 0, "", 0, 0, "Fisico", 0, 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0, 0);
+
 		// Array todos ataques
-		Ataque[]  todos = { new Ataque(Ascuas), new Ataque(Llamarada), new Ataque(A_Bocajarro), new Ataque(Danza_Espada),
+		Ataque[] todos = { new Ataque(Ascuas), new Ataque(Llamarada), new Ataque(A_Bocajarro), new Ataque(Danza_Espada),
 				new Ataque(Pistola_agua), new Ataque(Hidrobomba), new Ataque(Mordisco), new Ataque(Aqua_jet),
 				new Ataque(Hoja_afilada), new Ataque(Tormenta_floral), new Ataque(Sintesis), new Ataque(Polvo_Veneno),
 				new Ataque(Transformacion), new Ataque(Toxico), new Ataque(Picotazo_venenoso), new Ataque(Lanza_mugre),
 				new Ataque(Juego_sucio), new Ataque(Tajo_umbrio), new Ataque(Respiro), new Ataque(Danza_pluma),
-				new Ataque(Aerochorro), new Ataque(Descanso)};
-		Ataque[] a =  { new Ataque(Ascuas), new Ataque(Llamarada), new Ataque(A_Bocajarro), new Ataque(Danza_Espada),
-				new Ataque(Pistola_agua), new Ataque(Hidrobomba), new Ataque(Mordisco), new Ataque(Aqua_jet),
-				new Ataque(Hoja_afilada), new Ataque(Tormenta_floral), new Ataque(Sintesis), new Ataque(Polvo_Veneno),
-				new Ataque(Transformacion), new Ataque(Toxico), new Ataque(Picotazo_venenoso), new Ataque(Lanza_mugre),
-				new Ataque(Juego_sucio), new Ataque(Tajo_umbrio), new Ataque(Respiro), new Ataque(Danza_pluma),
-				new Ataque(Aerochorro), new Ataque(Descanso)};
+				new Ataque(Aerochorro), new Ataque(Descanso), new Ataque(Ala_bis), new Ataque(Pulso_noche),
+				new Ataque(Drenadoras), new Ataque(Pulso_umbrio), new Ataque(Ronquido), new Ataque(Bomba_huevo),
+				new Ataque(Terremoto) };
+		
 		// vacios
 
-		Ataque vacio = new Ataque("", 0, "", 0, 0, 0, 0, "", 0 ,0 , "Fisico", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-		Ataque[] vacios = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
 		Ataque[] ditto = { new Ataque(Transformacion), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
 
 		Ataque[] ataquesJugador = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
 		Ataque[] ataquesRival = { new Ataque(vacio), new Ataque(vacio), new Ataque(vacio), new Ataque(vacio) };
 
-		Pokemon Jugador = new Pokemon("", "", "", 0, vacios, 0, 0, 0, 0, 0, "");
-		Pokemon Rival = new Pokemon("", "", "", 0, vacios, 0, 0, 0, 0, 0, "");
+		Pokemon Jugador = new Pokemon("", "", "", 0, vacios, 0, 0, 0, 0, 0, "", 0);
+		Pokemon Rival = new Pokemon("", "", "", 0, vacios, 0, 0, 0, 0, 0, "", 0);
 
 		// Pokemons
 		// Pokemon: nombre, tipo, vida, ataques[], ataqueF, ataqueEsp, defensaF,
 		// defensaEsp, vel, estado
-		Pokemon Charizard = new Pokemon("Charizard", "Fuego", "Volador", 185, vacios, 163, 165, 146, 150, 167, "Bien");
-		Pokemon Blastoise = new Pokemon("Blastoise", "Agua", "", 186, vacios, 149, 155, 170, 165, 143, "Bien");
-		Pokemon Venasaur = new Pokemon("Venasaur", "Planta", "Veneno", 185, vacios, 155, 160, 165, 149, 176, "Bien");
-		Pokemon Zubat = new Pokemon("Zubat", "Veneno", "Volador", 147, vacios, 106, 90, 95, 101, 117, "Bien");
-		Pokemon Snorlax = new Pokemon("Snorlax", "Normal", "", 267, vacios, 178, 128, 128, 178, 90, "Bien");
-		Pokemon Ditto = new Pokemon("Ditto", "Normal", "", 155, ditto, 110, 110, 110, 110, 210, "Bien");
-		Pokemon Rayquaza = new Pokemon("Rayquaza", "Dragon", "Volador", 212, vacios, 222, 222, 156, 156, 161, "Bien");
+		Pokemon Charizard = new Pokemon("Charizard", "Fuego", "Volador", 185, vacios, 163, 165, 146, 150, 167, "Bien",
+				0);
+		Pokemon Blastoise = new Pokemon("Blastoise", "Agua", "", 186, vacios, 149, 155, 170, 165, 143, "Bien", 0);
+		Pokemon Venasaur = new Pokemon("Venasaur", "Planta", "Veneno", 185, vacios, 155, 160, 165, 149, 176, "Bien", 0);
+		Pokemon Zubat = new Pokemon("Zubat", "Veneno", "Volador", 147, vacios, 106, 90, 95, 101, 117, "Bien", 0);
+		Pokemon Snorlax = new Pokemon("Snorlax", "Normal", "", 267, vacios, 178, 128, 128, 178, 90, "Bien", 0);
+		Pokemon Ditto = new Pokemon("Ditto", "Normal", "", 155, ditto, 110, 110, 110, 110, 210, "Bien", 0);
+		Pokemon Rayquaza = new Pokemon("Rayquaza", "Dragon", "Volador", 212, vacios, 222, 222, 156, 156, 161, "Bien",
+				0);
 		Pokemon[] pokemon = { new Pokemon(Charizard), new Pokemon(Blastoise), new Pokemon(Venasaur), new Pokemon(Zubat),
 				new Pokemon(Snorlax), new Pokemon(Ditto), new Pokemon(Rayquaza) };
+		
+		
 		mostrarArrayPokemon(pokemon);
 		// leer que pokemon quiere el usuario
 		int i;
+
 		System.out.println("Elija con que pokemon quiere jugar:");
 		i = entrada.nextInt();
 		if (i != 5) {
 			Jugador = pokemon[i];
 			int max = coincideTipo(todos, Jugador);
-			for (int m = 0; m < todos.length; m++) {
-				if (todos[m].tipo.equals(Jugador.tipo1) || todos[i].tipo.equals(Jugador.tipo2)) {
-					vacios[i] = new Ataque(todos[i]);
-				}
-			}
+			System.out.println(max);
 			Ataque[] je = new Ataque[max];
+
 			System.out.println("Ahora elija 4 de los ataques posibles:");
 			int u = 0;
+		
 			for (int b = 0; b < todos.length; b++) {
-				if (todos[b].tipo.equals(Jugador.tipo1) || todos[b].tipo.equals(Jugador.tipo2)) {
+				
+				if (!todos[b].nombre.equals("Transformacion")) {
+					
+				if ((((todos[b].tipo.equals(Jugador.tipo1) || todos[b].tipo.equals(Jugador.tipo2))) || (todos[i].nombre.equals("Terremoto") && (Jugador.nombre.equals("Snorlax"))))) {
+					System.out.println(b);
+					System.out.println("NOMBRES: " + todos[b].nombre);
+					System.out.println("XD " + todos[b].nombre);
 					je[u] = todos[b];
+					System.out.println("JODER");
+					System.out.println(je[u].nombre + " - ");
 					u++;
 				}
+				}
+			}
+			/*
+			for (int y = 0; y < je.length-1; y++) {
+				System.out.println(y);
+				System.out.println(y + ". " + je[y].nombre);
 			}
 			mostrarAtaques(je, Jugador);
+			*/
 
 			// seleccionar los ataques
 			int ataque1 = entrada.nextInt();
@@ -235,7 +266,6 @@ public class TestPokemon {
 		int Num_ataque;
 		int turno = 1;
 		while (Jugador.vida > 0 && Rival.vida > 0) {
-			double dano = -1;
 			System.out.println("Elija un ataque: ");
 			mostrarAtaques(Jugador);
 			Num_ataque = entrada.nextInt();
@@ -254,6 +284,8 @@ public class TestPokemon {
 			}
 			turno++;
 		}
+
+		entrada.close();
 
 	}
 
@@ -956,6 +988,23 @@ public class TestPokemon {
 			}
 
 		}
+		if (jugador.Drenadoras == 1) {
+			double danoDrenadoras = vidaTotal * 0.06;
+			jugador.vida -= danoDrenadoras;
+			System.out.println(jugador.nombre + " ha perdido vida por las drenadoras");
+			rival.vida += danoDrenadoras;
+			System.out.println();
+			System.out.println(rival.nombre + " ha recuperado vida por las drenadoras");
+		}
+
+		if (rival.Drenadoras == 1) {
+			double danoDrenadoras = vida2 * 0.06;
+			rival.vida -= danoDrenadoras;
+			System.out.println(rival.nombre + " ha perdido vida por las drenadoras");
+			jugador.vida = danoDrenadoras;
+			System.out.println();
+			System.out.println(jugador.nombre + " ha recuperado vida por las drenadoras");
+		}
 	}
 
 	static String Fisico = "Fisico";
@@ -1530,12 +1579,21 @@ public class TestPokemon {
 		Random rd = new Random();
 		int RndPrec = rd.nextInt(101);
 		double Dano = -1;
+		int nuevaVel;
+		if (jugador.estado.equals(Bien)) {
 
+			jugador.setVelocidad(jugador.velocidad);
+		}
+		if (rival.estado.equals(Bien)) {
+			rival.setVelocidad(rival.velocidad);
+		}
 		if (jugador.estado.equals(Paralizado)) {
-			jugador.velocidad -= jugador.velocidad / 4;
+			nuevaVel = (int) jugador.velocidad - jugador.velocidad / 4;
+			jugador.setVelocidad(nuevaVel);
 		}
 		if (rival.estado.equals(Paralizado)) {
-			rival.velocidad -= rival.velocidad / 4;
+			nuevaVel = (int) rival.velocidad - rival.velocidad / 4;
+			rival.setVelocidad(nuevaVel);
 		}
 
 		if (!jugador.estado.equals(Congelado) && !jugador.estado.equals(Dormido)) {
@@ -1545,7 +1603,6 @@ public class TestPokemon {
 					|| jugador.estado.equals(Envenenado) || jugador.estado.equals(Quemado)) {
 				if (!jugador.nombre.equals("Ditto")) {
 					if (ataques[ataque].precision > RndPrec) {
-
 						if (ataques[ataque].Poder != 0) {
 							double STAB = 1; // 1,5 si el tipo coincide o 1 en cualquier otro caso
 							double Nv = 50;
@@ -1616,6 +1673,11 @@ public class TestPokemon {
 										/ 100) * CH;
 								rival.vida = rival.vida - Dano;
 							}
+						} else if (ataques[ataque].nombre.equals("Drenadoras")) {
+							rival.setDrenadoras(1);
+						} else if (ataques[ataque].nombre.equals("Descanso")) {
+							System.out.println(jugador.nombre + " ha recuperado su vida");
+							jugador.setVida(vidaTotal);
 						}
 
 						int p;
@@ -1912,7 +1974,7 @@ public class TestPokemon {
 					break;
 				}
 			}
-			
+
 			if (jugador.ataques[ataque].cambPrecisionP != 0) {
 				switch (jugador.ataques[ataque].cambPrecisionP) {
 				case -2:

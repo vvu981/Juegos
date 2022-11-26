@@ -48,9 +48,10 @@ public class Pokemon {
 	public String estado;
 	public double Est_ataqueEspecial;
 	public double Est_defensaEspecial;
+	public int Drenadoras;
 
 	public Pokemon(String nombre, String tipo1, String tipo2, double vida, Ataque[] ataques, double Est_ataque, double Est_ataqueEspecial, double Est_defensa, double Est_defensaEspecial,
-			int velocidad, String estado) {
+			int velocidad, String estado, int Drenadoras) {
 		this.velocidad = velocidad;
 		this.nombre = new String(nombre);
 		this.tipo1 = new String(tipo1);
@@ -65,6 +66,7 @@ public class Pokemon {
 			this.ataques[i] = new Ataque(ataques[i]);
 		}
 		this.estado = new String(estado);
+		this.Drenadoras = Drenadoras;
 	}
 
 	// Getters y setters
@@ -84,6 +86,7 @@ public class Pokemon {
 			this.ataques[i] = new Ataque(pokemon.ataques[i]);
 		}
 		this.estado = pokemon.estado;
+		this.Drenadoras = pokemon.Drenadoras;
 	}
 
 	public String getTipo2() {
@@ -274,6 +277,18 @@ public class Pokemon {
 
 		} else
 			System.out.println("No se puede cambiar el estado, ya está " + rival.estado);
+	}
+
+	public int getDrenadoras() {
+		return Drenadoras;
+	}
+
+	public void setDrenadoras(int drenadoras) {
+		Drenadoras = drenadoras;
+	}
+
+	public void setTipo1(String tipo1) {
+		this.tipo1 = tipo1;
 	}
 
 }
