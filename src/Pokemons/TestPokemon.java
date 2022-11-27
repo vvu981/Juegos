@@ -21,9 +21,9 @@ public class TestPokemon {
 
 	}
 
-	public static void verAtaques(Ataque[] a) {
-		for (int h = 0; h < a.length; h++) {
-			System.out.println(h + ". " + a[h].nombre);
+	public static void verAtaques(Ataque[] a, int max) {
+		for (int j = 0; j < max; j++) {
+			System.out.println(j + ". " + a[j].nombre);
 		}
 
 	}
@@ -190,8 +190,9 @@ public class TestPokemon {
 		Pokemon Ditto = new Pokemon("Ditto", "Normal", "", 155, ditto, 110, 110, 110, 110, 210, "Bien", 0);
 		Pokemon Rayquaza = new Pokemon("Rayquaza", "Dragon", "Volador", 212, vacios, 222, 222, 156, 156, 161, "Bien",
 				0);
+		Pokemon Chansey = new Pokemon("Chansey", "Normal", "", 357, vacios, 62, 95, 62, 172, 112, "Bien", 0);
 		Pokemon[] pokemon = { new Pokemon(Charizard), new Pokemon(Blastoise), new Pokemon(Venasaur), new Pokemon(Zubat),
-				new Pokemon(Snorlax), new Pokemon(Ditto), new Pokemon(Rayquaza) };
+				new Pokemon(Snorlax), new Pokemon(Ditto), new Pokemon(Rayquaza), new Pokemon(Chansey) };
 
 		mostrarArrayPokemon(pokemon);
 		// leer que pokemon quiere el usuario
@@ -207,21 +208,22 @@ public class TestPokemon {
 
 			System.out.println("Ahora elija 4 de los ataques posibles:");
 			int u = 0;
-
+			System.out.println("Danza Espada");
+			System.out.println(Danza_Espada.nombre);
 			for (int b = 0; b < todos.length; b++) {
 
 				if (!todos[b].nombre.equals("Transformacion")) {
 
-					if ((((todos[b].tipo.equals(Jugador.tipo1) || todos[b].tipo.equals(Jugador.tipo2)))
-							|| (todos[b].nombre.equals("Terremoto") && (Jugador.nombre.equals("Snorlax"))))) {
+					if (((todos[b].tipo.equals(Jugador.tipo1) || todos[b].tipo.equals(Jugador.tipo2)) || (todos[b].nombre.equals("Terremoto") && (Jugador.nombre.equals("Snorlax"))))) {
 						je[u] = todos[b];
 						u++;
+						System.out.println("LOLO");
 					}
 				}
 			}
 			Rival = eligeRival(pokemon);
 
-			verAtaques(je);
+			verAtaques(je, max);
 			/*
 			 * for (int y = 0; y < je.length-1; y++) { System.out.println(y);
 			 * System.out.println(y + ". " + je[y].nombre); } mostrarAtaques(je, Jugador);
