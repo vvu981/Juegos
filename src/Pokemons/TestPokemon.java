@@ -51,8 +51,7 @@ public class TestPokemon {
 	public static int coincideTipo(Ataque[] a, Pokemon p) {
 		int j = 0;
 		for (int i = 0; i < a.length; i++) {
-			if ((a[i].tipo.equals(p.tipo1) || a[i].tipo.equals(p.tipo2))
-					|| (a[i].nombre.equals("Terremoto") && p.nombre.equals("Snorlax"))) {
+			if ((a[i].tipo.equals(p.tipo1) || a[i].tipo.equals(p.tipo2) ) && !a[i].nombre.equals("Transformacion") ) {
 				j++;
 			}
 
@@ -190,7 +189,7 @@ public class TestPokemon {
 		Pokemon Ditto = new Pokemon("Ditto", "Normal", "", 155, ditto, 110, 110, 110, 110, 210, "Bien", 0);
 		Pokemon Rayquaza = new Pokemon("Rayquaza", "Dragon", "Volador", 212, vacios, 222, 222, 156, 156, 161, "Bien",
 				0);
-		Pokemon Chansey = new Pokemon("Chansey", "Normal", "", 357, vacios, 62, 95, 62, 172, 112, "Bien", 0);
+		Pokemon Chansey = new Pokemon("Chansey", "Normal", "Agua", 357, vacios, 62, 95, 62, 172, 112, "Bien", 0);
 		Pokemon[] pokemon = { new Pokemon(Charizard), new Pokemon(Blastoise), new Pokemon(Venasaur), new Pokemon(Zubat),
 				new Pokemon(Snorlax), new Pokemon(Ditto), new Pokemon(Rayquaza), new Pokemon(Chansey) };
 
@@ -203,21 +202,17 @@ public class TestPokemon {
 		if (i != 5) {
 			Jugador = pokemon[i];
 			int max = coincideTipo(todos, Jugador);
-			System.out.println(max);
 			Ataque[] je = new Ataque[max];
-
+			
 			System.out.println("Ahora elija 4 de los ataques posibles:");
 			int u = 0;
-			System.out.println("Danza Espada");
-			System.out.println(Danza_Espada.nombre);
 			for (int b = 0; b < todos.length; b++) {
 
 				if (!todos[b].nombre.equals("Transformacion")) {
 
-					if (((todos[b].tipo.equals(Jugador.tipo1) || todos[b].tipo.equals(Jugador.tipo2)) || (todos[b].nombre.equals("Terremoto") && (Jugador.nombre.equals("Snorlax"))))) {
+					if (((todos[b].tipo.equals(Jugador.tipo1) || todos[b].tipo.equals(Jugador.tipo2)))) {
 						je[u] = todos[b];
 						u++;
-						System.out.println("LOLO");
 					}
 				}
 			}
@@ -406,6 +401,7 @@ public class TestPokemon {
 							jugador);
 					String Est2 = est_Cambiada(est_AFInicial2, est_AEInicial2, est_DFInicial2, est_DEInicial2, est_Vel2,
 							rival);
+					
 					System.out.println(jugador.nombre + Est1);
 					System.out.println(cadena1);
 					System.out.println();
@@ -2026,7 +2022,27 @@ public class TestPokemon {
 			}
 		}
 	}
-
+	public static String verEstado(Pokemon jugador) {
+		String cadena = "";
+		switch(jugador.estado) {
+		case "Dormido":
+			cadena += "(Dor.)";
+			break;
+		case "Envenenado":
+			cadena += "(Env.)";
+			break;
+		case "Paralizado":
+			cadena += "(Par.)";
+			break;
+		case "Congelado":
+			cadena += "(Cong.)";
+			break;
+		case "Quemado":
+			cadena += "(Quem.)";
+		}
+		return cadena;
+		
+	}
 	public static String barraVida(Pokemon jugador, double VidaTotal) {
 
 		System.out.println();
@@ -2034,43 +2050,43 @@ public class TestPokemon {
 
 		String cadena = "";
 		if (porc <= 0) {
-			cadena += "[                    ]";
+			cadena += "[                    ]" + verEstado(jugador);
 		} else if (porc < 15) {
-			cadena += "[===                 ]";
+			cadena += "[===                 ]"+ verEstado(jugador);
 		} else if (porc < 20) {
-			cadena += "[====                ]";
+			cadena += "[====                ]"+ verEstado(jugador);
 		} else if (porc < 25) {
-			cadena += "[=====               ]";
+			cadena += "[=====               ]"+ verEstado(jugador);
 		} else if (porc < 30) {
-			cadena += "[======              ]";
+			cadena += "[======              ]"+ verEstado(jugador);
 		} else if (porc < 35) {
-			cadena += "[=======             ]";
+			cadena += "[=======             ]"+ verEstado(jugador);
 		} else if (porc < 40) {
-			cadena += "[========            ]";
+			cadena += "[========            ]"+ verEstado(jugador);
 		} else if (porc < 45) {
-			cadena += "[=========           ]";
+			cadena += "[=========           ]"+ verEstado(jugador);
 		} else if (porc < 50) {
-			cadena += "[==========          ]";
+			cadena += "[==========          ]"+ verEstado(jugador);
 		} else if (porc < 55) {
-			cadena += "[===========         ]";
+			cadena += "[===========         ]"+ verEstado(jugador);
 		} else if (porc < 60) {
-			cadena += "[============        ]";
+			cadena += "[============        ]"+ verEstado(jugador);
 		} else if (porc < 65) {
-			cadena += "[=============       ]";
+			cadena += "[=============       ]"+ verEstado(jugador);
 		} else if (porc < 70) {
-			cadena += "[==============      ]";
+			cadena += "[==============      ]"+ verEstado(jugador);
 		} else if (porc < 75) {
-			cadena += "[===============     ]";
+			cadena += "[===============     ]"+ verEstado(jugador);
 		} else if (porc < 80) {
-			cadena += "[================    ]";
+			cadena += "[================    ]"+ verEstado(jugador);
 		} else if (porc < 85) {
-			cadena += "[=================   ]";
+			cadena += "[=================   ]"+ verEstado(jugador);
 		} else if (porc < 90) {
-			cadena += "[==================  ]";
+			cadena += "[==================  ]"+ verEstado(jugador);
 		} else if (porc < 95) {
-			cadena += "[=================== ]";
+			cadena += "[=================== ]"+ verEstado(jugador);
 		} else if (porc < 1000)
-			cadena += "[====================]";
+			cadena += "[====================]"+ verEstado(jugador);
 		return cadena;
 	}
 
