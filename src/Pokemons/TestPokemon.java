@@ -371,21 +371,6 @@ public class TestPokemon {
 		double diferencia = 0;
 		int jk = 0;
 
-		if (!rival.nombre.equals("Ditto")) {
-			if (numAtaqueRival < 20) {
-				jk = 0;
-			} else if (numAtaqueRival < 40) {
-				jk = 1;
-			} else if (numAtaqueRival < 60) {
-				jk = 2;
-
-			} else {
-				jk = 3;
-
-			}
-			System.out.println(rival.ataques[jk].nombre);
-		} else
-			jk = 0;
 
 		if (jugador.estado.equals(Bien)) {
 			js = 0.06;
@@ -407,6 +392,7 @@ public class TestPokemon {
 				for (int h = 0; (h < vidaTotal / 2 && jugador.vida < vidaTotal); h++) {
 					jugador.vida++;
 				}
+				System.out.println(jugador.nombre + " ha usado " + jugador.ataques[numAtaque].nombre);
 				System.out.println(jugador.nombre + " ha recuperado vida");
 
 				String cadena1 = barraVida(jugador, vidaTotal);
@@ -464,6 +450,8 @@ public class TestPokemon {
 						for (int h = 0; (h < vida2 / 2 && rival.vida < vida2); h++) {
 							rival.vida++;
 						}
+						System.out.println(rival.nombre + " ha usado " + rival.ataques[jk].nombre);
+
 						System.out.println(rival.nombre + " ha recuperado vida");
 
 						String cadena1 = barraVida(jugador, vidaTotal);
@@ -555,6 +543,8 @@ public class TestPokemon {
 				for (int h = 0; (h < vida2 / 2 && rival.vida < vida2); h++) {
 					rival.vida++;
 				}
+				System.out.println(jugador.nombre + " ha usado " + jugador.ataques[numAtaque].nombre);
+				System.out.println(rival.nombre + " ha usado " + rival.ataques[jk].nombre);
 				System.out.println(rival.nombre + " ha recuperado vida");
 
 				String cadena1 = barraVida(jugador, vidaTotal);
@@ -612,6 +602,7 @@ public class TestPokemon {
 							for (int h = 0; (h < vidaTotal / 2 && jugador.vida < vidaTotal); h++) {
 								jugador.vida++;
 							}
+							System.out.println(jugador.nombre + " ha usado " + jugador.ataques[numAtaque].nombre);
 							System.out.println(jugador.nombre + " ha recuperado vida");
 
 							cadena1 = barraVida(jugador, vidaTotal);
@@ -708,6 +699,7 @@ public class TestPokemon {
 						for (int h = 0; (h < vidaTotal / 2 && jugador.vida < vidaTotal); h++) {
 							jugador.vida++;
 						}
+						System.out.println(jugador.nombre + " ha usado " + jugador.ataques[numAtaque].nombre);
 						System.out.println(jugador.nombre + " ha recuperado vida");
 
 						String cadena1 = barraVida(jugador, vidaTotal);
@@ -803,6 +795,7 @@ public class TestPokemon {
 					for (int h = 0; (h < vidaTotal / 2 && jugador.vida < vidaTotal); h++) {
 						jugador.vida++;
 					}
+					System.out.println(jugador.nombre + " ha usado " + jugador.ataques[numAtaque].nombre);
 					System.out.println(jugador.nombre + " ha recuperado vida");
 
 					String cadena1 = barraVida(jugador, vidaTotal);
@@ -860,6 +853,7 @@ public class TestPokemon {
 							for (int h = 0; (h < vida2 / 2 && rival.vida < vida2); h++) {
 								rival.vida++;
 							}
+							System.out.println(rival.nombre + " ha usado " + rival.ataques[jk].nombre);
 							System.out.println(rival.nombre + " ha recuperado vida");
 
 							String cadena1 = barraVida(jugador, vidaTotal);
@@ -954,6 +948,7 @@ public class TestPokemon {
 					for (int h = 0; (h < vida2 / 2 && rival.vida < vida2); h++) {
 						rival.vida++;
 					}
+					System.out.println(rival.nombre + " ha usado " + rival.ataques[jk].nombre);
 					System.out.println(rival.nombre + " ha recuperado vida");
 
 					String cadena1 = barraVida(jugador, vidaTotal);
@@ -1012,7 +1007,7 @@ public class TestPokemon {
 							for (int h = 0; (h < vidaTotal / 2 && jugador.vida < vidaTotal); h++) {
 								jugador.vida++;
 							}
-
+							System.out.println(jugador.nombre + " ha usado " + jugador.ataques[numAtaque].nombre);
 							System.out.println(jugador.nombre + " ha recuperado vida");
 							String cadena1 = barraVida(jugador, vidaTotal);
 							String cadena2 = barraVida(rival, vida2);
