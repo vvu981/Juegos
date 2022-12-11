@@ -16,7 +16,6 @@ public class TestPokemon {
 	public static void mostrarAtaques(Ataque[] a, Pokemon p) {
 		for (int b = 0; b < a.length; b++) {
 			System.out.print(b + ". " + a[b].nombre + " (" + a[b].PP + ")");
-			System.out.println("XD");
 		}
 
 	}
@@ -28,23 +27,28 @@ public class TestPokemon {
 
 	}
 
-	public static Pokemon eligeRival(Pokemon[] p) {
+	public static Pokemon eligeRival(Pokemon[] p, int a) {
+	
+		int k = -1;
+		while (k != a) {
+			double rnd = Math.random() * 100;
+			if (rnd < 17) {
+				k = 0;
+			} else if (rnd < 36) {
+				k = 1;
+			} else if (rnd < 54) {
+				k = 2;
 
-		double rnd = Math.random() * 100;
-		if (rnd < 17) {
-			return p[0];
-		} else if (rnd < 36) {
-			return p[1];
-		} else if (rnd < 54) {
-			return p[2];
-
-		} else if (rnd < 75) {
-			return p[3];
-		} else if (rnd < 87) {
-			return p[4];
-		} else {
-			return p[5];
+			} else if (rnd < 75) {
+				k = 3;
+			} else if (rnd < 87) {
+				k = 4;
+			} else {
+				k = 5;
+			}
+			if (k!=a) break;
 		}
+		return p[k];
 
 	}
 
@@ -60,7 +64,7 @@ public class TestPokemon {
 		return j;
 	}
 
-	public static void main(String[] args) {
+	public static void iniciarJuego() {
 
 		System.out.println("Combate: ");
 		Scanner entrada = new Scanner(System.in);
@@ -215,7 +219,7 @@ public class TestPokemon {
 				u++;
 			}
 		}
-		Rival = eligeRival(pokemon);
+		Rival = eligeRival(pokemon, i);
 
 		verAtaques(je, max);
 		/*
@@ -267,16 +271,29 @@ public class TestPokemon {
 		double est_DFInicial2 = Rival.Est_defensa;
 		double est_DEInicial2 = Rival.Est_defensaEspecial;
 		double est_Vel2 = Rival.velocidad;
-
-		System.out.println("El rival será " + Rival.nombre);
-
+		System.out.println();
+		String a = "¡El rival será " + Rival.nombre + "!";
+		for (int h = 0; h < a.length() + 5; h++) {
+			if (h != 0)
+				System.out.print("-");
+			else
+				System.out.print(" ");
+		}
+		System.out.println();
+		System.out.println(" | " + a + " |");
+		for (int h = 0; h < a.length() + 5; h++) {
+			if (h != 0)
+				System.out.print("-");
+			else
+				System.out.print(" ");
+		}
+		System.out.println();
+		System.out.println();
 		int Num_ataque;
 		int turno = 1;
 		while (Jugador.vida > 0 && Rival.vida > 0) {
 			System.out.println("Elija un ataque: ");
-			System.out.println("XD");
 			mostrarAtaques(Jugador);
-			System.out.println("XD");
 			Num_ataque = entrada.nextInt();
 			System.out.println();
 			System.out.println("---------------------------------------------------\n\t\t   Turno: " + turno
@@ -301,34 +318,36 @@ public class TestPokemon {
 	public static String est_Cambiada(double est_AFInicial1, double est_AEInicial1, double est_DFInicial1,
 			double est_DEInicial1, double est_Vel1, Pokemon jugador) {
 
-		if (!jugador.nombre.equals("Ditto")) {
-			String cambio = "";
-			double calc = 0;
-			DecimalFormat df = new DecimalFormat("#.00");
-			df.format(calc);
-			if (est_AFInicial1 != jugador.Est_ataque) {
-				calc = jugador.Est_ataque / est_AFInicial1;
-				cambio = "(x" + df.format(calc) + " At.) ";
-			}
-			if (est_AEInicial1 != jugador.Est_ataqueEspecial) {
-				calc = jugador.Est_ataqueEspecial / est_AEInicial1;
-				cambio = "(x" + df.format(calc) + " At Esp.) ";
-			}
-			if (est_Vel1 != jugador.velocidad) {
-				calc = jugador.velocidad / est_Vel1;
-				cambio = "(x" + df.format(calc) + " Vel) ";
-			}
-			if (est_DFInicial1 != jugador.Est_defensa) {
-				calc = jugador.Est_defensa / est_DFInicial1;
-				cambio = "(x" + df.format(calc) + " Def.) ";
-			}
-			if (est_DEInicial1 != jugador.Est_defensaEspecial) {
-				calc = jugador.Est_defensaEspecial / est_DEInicial1;
-				cambio = "(x" + df.format(calc) + " Def. Esp.) ";
-			}
-			return cambio;
-		} else
-			return "";
+		String cambio = "";
+		double calc = 0;
+		DecimalFormat df = new DecimalFormat("#.00");
+		df.format(calc);
+		if (est_AFInicial1 != jugador.Est_ataque) {
+			calc = jugador.Est_ataque / est_AFInicial1;
+			cambio = "(x" + df.format(calc) + " At.) ";
+		}
+		if (est_AEInicial1 != jugador.Est_ataqueEspecial) {
+			System.out.println("Holaaa");
+			System.out.println(jugador.Est_ataque);
+			System.out.println(est_AEInicial1);
+			calc = jugador.Est_ataqueEspecial / est_AEInicial1;
+			System.out.println(calc);
+			cambio = "(x" + df.format(calc) + " At Esp.) ";
+		}
+		if (est_Vel1 != jugador.velocidad) {
+			calc = jugador.velocidad / est_Vel1;
+			cambio = "(x" + df.format(calc) + " Vel) ";
+		}
+		if (est_DFInicial1 != jugador.Est_defensa) {
+			calc = jugador.Est_defensa / est_DFInicial1;
+			cambio = "(x" + df.format(calc) + " Def.) ";
+		}
+		if (est_DEInicial1 != jugador.Est_defensaEspecial) {
+			calc = jugador.Est_defensaEspecial / est_DEInicial1;
+			cambio = "(x" + df.format(calc) + " Def. Esp.) ";
+		}
+		return cambio;
+
 	}
 
 	static int cambiado = 0;
@@ -966,7 +985,6 @@ public class TestPokemon {
 					System.out.println(cadena2);
 					System.out.println();
 				} else {
-					System.out.println("XDDDD");
 					vidaA = jugador.vida;
 					Atacar(rival, jugador, rival.ataques, jk, vida2);
 					String cadena1 = barraVida(jugador, vidaTotal);
@@ -1788,7 +1806,8 @@ public class TestPokemon {
 								p = 0;
 							} else
 								p = 1;
-							if (cambEstado < ataques[ataque].probabCambioEstado && rival.comprobarBien(rival) && !ataques[ataque].nombre.equals("Descanso")) {
+							if (cambEstado < ataques[ataque].probabCambioEstado && rival.comprobarBien(rival)
+									&& !ataques[ataque].nombre.equals("Descanso")) {
 								switch (ataques[ataque].cambioEstado) {
 								case "Envenenar":
 									rival.setEstado(Envenenado);
@@ -1821,11 +1840,12 @@ public class TestPokemon {
 							ataques[ataque].PP--;
 							jugador.ataques[ataque].setPP(ataques[ataque].PP);
 						} else {
-							System.out.println("No quedan PP");
-						}
-					} else
-						System.out.println("¡El ataque ha fallado!");
+							System.out.println("¡El ataque ha fallado!");
 
+						}
+					} else {
+						System.out.println("No quedan PP");
+					}
 				}
 
 				modificaEst(ataque, jugador, rival, vidaTotal);
@@ -1970,8 +1990,11 @@ public class TestPokemon {
 					jugador.setEst_ataque(jugador.Est_ataque);
 					break;
 				case 2:
+					System.out.println("Ataque:");
+					System.out.println(jugador.Est_ataque);
 					jugador.Est_ataque *= 2;
-					jugador.setEst_ataqueEspecial(jugador.Est_ataque);
+					jugador.setEst_ataque(jugador.Est_ataque);
+					System.out.println(jugador.Est_ataque);
 					break;
 				case 1:
 					jugador.Est_ataque += jugador.Est_ataque / 2;

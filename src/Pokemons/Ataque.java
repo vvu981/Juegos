@@ -38,7 +38,7 @@ public class Ataque {
 			 int cambAtFisicoR, int cambAtEspecialR,  int cambDefFisicaR, int cambDefEspecialR, int cambVelR, int cambPrecisionP, int cambPrecisionR, int PP) {
 		super();
 		this.nombre = nombre;
-		Poder = poder;
+		this.Poder = poder;
 		this.tipo = tipo;
 		this.prioridad = prioridad;
 		this.precision = precision;
