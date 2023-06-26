@@ -1,4 +1,4 @@
-package Pokemons;
+package JuegoPokemon;
 
 import Pokemons.Ataque;
 
@@ -45,7 +45,7 @@ public class Pokemon {
 	public String tipo2;
 	public double vida;
 	public Ataque ataque;
-	public Ataque[] ataques;
+	public JuegoPokemon.Ataque[] ataques;
 	public double Est_ataque;
 	public double Est_defensa;
 	public String estado;
@@ -53,7 +53,7 @@ public class Pokemon {
 	public double Est_defensaEspecial;
 	public int Drenadoras;
 	public double Precision;
-	public Pokemon(String nombre, String tipo1, String tipo2, double vida, Ataque[] ataques, double Est_ataque, double Est_ataqueEspecial, double Est_defensa, double Est_defensaEspecial,
+	public Pokemon(String nombre, String tipo1, String tipo2, double vida, JuegoPokemon.Ataque[] vacios, double Est_ataque, double Est_ataqueEspecial, double Est_defensa, double Est_defensaEspecial,
 			int velocidad, String estado, int Drenadoras, double Precision) {
 		super();
 		this.velocidad = velocidad;
@@ -65,7 +65,7 @@ public class Pokemon {
 		this.Est_ataqueEspecial = Est_ataqueEspecial;
 		this.Est_defensaEspecial = Est_defensaEspecial;
 		this.Est_defensa = Est_defensa;
-		this.ataques = ataques;
+		this.ataques = vacios;
 		
 		this.estado = new String(estado);
 		this.Drenadoras = Drenadoras;
@@ -133,12 +133,12 @@ public class Pokemon {
 		this.vida = vida;
 	}
 
-	public Ataque[] getAtaques() {
+	public JuegoPokemon.Ataque[] getAtaques() {
 		return ataques;
 	}
 
-	public void setAtaques(Ataque[] ataques) {
-		this.ataques = ataques;
+	public void setAtaques(JuegoPokemon.Ataque[] ataquesJugador) {
+		this.ataques = ataquesJugador;
 	}
 
 	public double getEst_ataqueEspecial() {

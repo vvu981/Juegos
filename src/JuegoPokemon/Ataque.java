@@ -1,4 +1,4 @@
-package Pokemons;
+package JuegoPokemon;
 
 
 public class Ataque {
